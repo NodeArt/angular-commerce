@@ -2,7 +2,7 @@
 
 Online store component written in Angular.  
 
-Full API and documentation check [here](https://nodeart.github.io/)
+Full API and documentation check [here](https://nodeart.github.io/).
 
 ## Store architecture
 
