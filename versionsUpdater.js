@@ -35,7 +35,7 @@ let changeVersions = (directories) => {
 
 let publishOnline = (directories) => {
     directories.forEach( (directory) => {
-        exec(`cd modules/${directory}  && git add . && git commit -m "Updated to ${newVersion} version" && git push origin master && npm publish --access=public `, (err, stdout, stderr) => {
+        exec(`cd modules/${directory}  && npm publish --access=public `, (err, stdout, stderr) => {
             if(stderr){
                 console.log(stderr);
             } else {
