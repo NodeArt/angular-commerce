@@ -1,0 +1,56 @@
+<h2>Address Delivery Form</h2>
+<form class="ui form" [formGroup]="addressDeliveryForm" (submit)="saveDelivery()">
+  <div>
+      <label>
+          <span>Name and surname</span>
+      </label>
+      <input formControlName="name" type="text" size="20" value="" autocomplete="off" required />
+  </div>
+  <div>
+      <label>
+          <span>Email</span>
+      </label>
+      <input formControlName="email" type="text" size="20" value="" autocomplete="off" required />
+  </div>
+  <div>
+      <label>
+          <span>Phone number</span>
+      </label>
+      <input formControlName="phoneNumber" type="text" size="20" value="" autocomplete="off" required />
+  </div>
+  <div>
+      <label>
+          <span>Country</span>
+      </label>
+      <select formControlName="country"> 
+          <option *ngFor="let country of countries" [value]="country.code">{{country.name}}</option>
+      </select>
+  </div>
+  <div>
+      <label>
+          <span>State</span>
+      </label>
+      <input formControlName="state" type="text" size="20" value="" autocomplete="off" required />
+  </div>
+  <div>
+      <label>
+          <span>Zip code</span>
+      </label>
+      <input formControlName="zipCode" type="text" size="20" value="" autocomplete="off" required />
+  </div>
+  <div>
+      <label>
+          <span>City</span>
+      </label>
+      <input formControlName="city" type="text" size="20" value="" autocomplete="off" required />
+  </div>
+  <div>
+      <label>
+          <span>Address line</span>
+      </label>
+      <input formControlName="addrLine1" type="text" size="20" value="" autocomplete="off" required />
+  </div>
+  
+
+  <button class="ui button" type="submit">Save Delivery</button>
+</form>

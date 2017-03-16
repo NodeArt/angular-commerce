@@ -1,0 +1,14 @@
+{
+  "name": "nodeart-components-loader",
+  "description": "Angular 2 webpack loader that convert templates and styles paths in components if there are custom templates.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "loader-utils": "0.2.16"
+  },
+  "version": "2.1.5"
+}

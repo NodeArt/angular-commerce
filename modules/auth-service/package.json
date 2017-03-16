@@ -1,0 +1,15 @@
+{
+  "name": "@nodeart/auth-service",
+  "version": "2.1.5",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nodeart/dal": "2.1.5",
+    "@nodeart/session-flow": "2.1.5"
+  }
+}

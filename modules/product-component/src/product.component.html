@@ -1,0 +1,73 @@
+<div class="main-container">
+  <div class="left-side">
+    <img class="product-img" [src]="product.imageUrl "/>
+  </div>
+  <div class="rigth-side">
+    <div class="product-name">
+      <h2>Name:</h2> {{product.name}}
+    </div>
+    <div class="product-price">
+      <h2>Price:</h2> {{product.price}}$
+    </div>
+    <div class="product-attributes-to-choose" *ngIf="attributesToChoose.length > 0">
+      <h2>Choose attributes:</h2>
+      <div *ngFor="let attribute of attributesToChoose; let i = index">
+        <h4>{{attribute.name}}</h4>
+        <select (change)="changedAttrSelect(i, $event.target.value)">
+          <option *ngFor="let child of attribute.childNames" [value]="child.key">{{child.name}}</option>
+        </select>
+      </div>
+    </div>
+    <button *ngIf="isAuth" (click)="buyProduct()">Buy</button>
+    <button *ngIf="!isAuth" (click)="login()">Login</button>
+  </div>
+</div>
+<div class="product-attrs">
+  <h2>Attributes:</h2>
+  <table class="ui celled striped table">
+    <tbody>
+      <tr *ngFor="let attribute of attributes">
+        <td>{{attribute.name}}</td>
+        <td>
+          <span *ngFor="let child of attribute.childNames">
+            {{child.name}}<br/> 
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="product-tags">
+  <h2>Tags:</h2>
+  <table class="ui celled striped table">
+    <tbody>
+      <tr *ngFor="let tag of tags">
+        <td>{{tag.name}}</td>
+        <td>{{tag.desc}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="product-description">
+  <h2>Description:</h2>
+  {{product.description}}
+</div>
+<div class="product-properties">
+  <h2>Properties:</h2>
+  <table class="ui celled striped table">
+    <tbody>
+      <tr *ngFor="let prop of product.customProps">
+        <td>{{prop.name}}</td>
+        <td>
+          {{prop.value}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+environment:
+  matrix:
+    - nodejs_version: '7'
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - set CI=true
+  - npm -g install npm@3.10.9
+  - set PATH=%APPDATA%\npm;%PATH%
+  - npm install
+  - npm run build
+matrix:
+  fast_finish: true
+build: off
+shallow_clone: true
+test_script:
+  - node --version
+  - npm --version
+  - echo "@todo"

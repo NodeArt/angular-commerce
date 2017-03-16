@@ -1,0 +1,19 @@
+{
+  "name": "@nodeart/basketservice",
+  "version": "2.1.5",
+  "description": "Save and remove products in basket, track user basket history",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.nodeart.io/a2c/basketservice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nodeart/dal": "2.1.5",
+    "@nodeart/session-flow": "2.1.5"
+  }
+}

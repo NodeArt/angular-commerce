@@ -1,0 +1,8 @@
+<h2>Tags</h2>
+<div class="ui vertical menu">
+  <div class="item" *ngFor="let item of tags">
+    <div>
+      <p>{{item.name}}<input type="checkbox" class="item" value="item.id" (change)="check(item.id, $event)"/></p>
+    </div>
+  </div>
+</div>

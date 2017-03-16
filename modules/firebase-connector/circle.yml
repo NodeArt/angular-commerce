@@ -1,0 +1,12 @@
+machine:
+  node:
+    version: 7.2.0
+
+dependencies:
+  pre:
+    - npm install
+    - npm run build
+
+test:
+  override:
+    - echo "@todo"

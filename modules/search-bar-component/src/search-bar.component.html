@@ -1,0 +1,11 @@
+Search product:
+<div class="search-input">
+    <input type="text" #query (input)="change(query.value)" >
+    <div class="button" (click)="showCountries()"></div>
+</div>
+<div class="menu" [ngClass]="{'products-list': products.length > 0}">
+  <div class="item product-item" *ngFor="let product of products" (click)="onSelect(product.id)">
+    <img class="ui mini avatar image" [src]="product.imageUrl">
+    {{product.name}}
+  </div>
+</div>

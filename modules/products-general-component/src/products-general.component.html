@@ -1,0 +1,11 @@
+<div *ngIf="dataReady">
+  <div>
+    <app-category-filter [categories]="categories" (categoryUpdated)="categoryFilter($event)"></app-category-filter>
+    <app-general-category-all [categoryIds]="categoryIds" [size]="itemsOnPage" [from]="from"></app-general-category-all>
+  </div>
+  <div>
+      <button (click)="dec()" [disabled]="currentPage == 1">Prev</button>
+      Page {{currentPage}} of {{totalPages}}
+      <button (click)="inc()" [disabled]="currentPage == totalPages">Next</button>
+  </div>
+</div>

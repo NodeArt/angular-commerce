@@ -1,0 +1,31 @@
+<button (click)="dec()" [disabled]="currentPage == 1">Prev</button>
+Page {{currentPage}} of {{totalPages}}
+<button (click)="inc()" [disabled]="currentPage == totalPages">Next</button> 
+<div class="left-side">
+  <app-attributes-search [categoryId]="categoryId" (attrsUpdated)="updateAttrs($event)"></app-attributes-search>
+  <app-tags-search [categoryId]="categoryId" (tagsUpdated)="updateTags($event)"></app-tags-search>
+  <button (click)="filter()">Filter</button>
+</div>
+<div class="ui cards">
+  <div class="card product" *ngFor="let product of products" >
+    <div class="image">
+      <img [src]="product.imageUrl">
+    </div>
+    <div class="content">
+      <div class="header">{{product.name}}</div>
+      <div class="meta">
+        <a>{{product.price}}</a>
+      </div>
+      <div class="description">
+        {{product.description}}
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui right floated primary button" (click)="onSelect(product.id)">
+        Buy product
+        <i class="right chevron icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+

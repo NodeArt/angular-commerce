@@ -1,0 +1,21 @@
+<div>
+    <payments *ngIf="showPayments" (paymentSaved)="paymentsChanged($event)"></payments>
+</div>
+<div>
+    <address-delivery *ngIf="showDeliveryForm" (addressDeliverySaved)="deliveriesChanged($event)"></address-delivery>
+</div>
+<div *ngIf="orderForm.totalPrice">
+    <h2>Total price: {{orderForm.totalPrice}} USD</h2>
+</div>
+
+<div *ngIf="showFinish">
+    <button (click)="finish()">Pay</button>
+</div>
+<div *ngIf="successPayment">
+    <h2>Your payment was successful!</h2>
+</div>
+<div *ngIf="failedPayment">
+    <h2>Your payment failed!</h2>
+    <h2>{{paymentStatus}}</h2>
+</div>
+<button (click)="backToPayments()">Back to payments</button>

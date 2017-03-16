@@ -1,0 +1,11 @@
+{
+  "name": "@nodeart/loading-indicator",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "version": "2.1.5"
+}

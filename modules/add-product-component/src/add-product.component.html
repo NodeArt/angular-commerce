@@ -1,0 +1,56 @@
+<form class="ui form" [formGroup]="productForm" (submit)="addProduct()">
+  <div class="field">
+    <label>Name</label>
+    <input type="text" name="name" formControlName="name">
+  </div>
+  <div class="field">
+    <label>Price</label>
+    <input type="text" name="price"  formControlName="price">
+  </div>
+  <div class="field">
+    <label>Image Url</label>
+    <input type="text" name="imageUrl" formControlName="imageUrl">
+  </div>
+  <div class="field">
+    <label>Description</label>
+    <input type="text" name="description" formControlName="description">
+  </div>
+  <div class="field">
+    <label>Category</label>
+    <select  name="category" formControlName="category" (change)="getProps($event)">
+      <option *ngFor="let category of categories" value="{{category.id}}" >{{category.name}}</option>
+    </select>
+  </div>
+  <div class="field" *ngIf="isCategorySelected == true">
+    <label>Attributes</label>
+    <input type="button" (click)="addAttribute()" *ngIf="this.addedAttributes.length < this.attributes.length" value="+">
+    <div *ngFor="let attr of addedAttributes; let i = index">
+      <select [(ngModel)]="attr.id" [ngModelOptions]="{standalone: true}" (change)="attr.values = searchAttrValues($event.target.value)">
+      <option *ngFor="let attribute of attr.attrs" [value]="attribute.id">{{attribute.name}}</option>
+      </select>
+      <div *ngIf="attr.id != ''">
+        <div class="ui vertical menu">
+          <div class="item">
+            <div class="menu">
+              <div *ngFor="let item of attr.values " >
+                  <p>{{item.name}}<input type="checkbox" class="item" value="item.key" (change)="check(attr, item.key, $event)"/></p>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>  
+      <button (click)="removeAttribute(i)">-</button>
+    </div>
+  </div>
+  <div class="field" *ngIf="isCategorySelected == true">
+    <label>Tags</label>
+    <input type="button" (click)="addTag()" *ngIf="this.addedTags.length < this.tags.length" value="+">
+    <div *ngFor="let tag of addedTags; let i = index">
+      <select [(ngModel)]="tag.id" [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let item of tag.tags" [value]="item.id">{{item.name}}</option>
+      </select>
+      <button (click)="removeTag(i)">-</button>
+    </div>
+  </div>
+  <button class="ui button" type="submit">Add product</button>
+</form>

@@ -1,0 +1,37 @@
+{
+  "name": "@nodeart/firebase-connector",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 5.4.1"
+  },
+  "main": "index.ts",
+  "scripts": {
+    "clean": "rimraf dist/",
+    "build:aot": "ngc -p tsconfig.json",
+    "build:jit": "tsc -p tsconfig.json",
+    "build": "npm run clean && npm run build:aot",
+    "start": "npm run build"
+  },
+  "types": "dist/index.d.ts",
+  "private": false,
+  "dependencies": {
+    "@angular/common": "^2.4.1",
+    "@angular/compiler": "^2.4.1",
+    "@angular/core": "^2.4.1",
+    "@angular/forms": "^2.4.1",
+    "@angular/platform-browser": "^2.4.1",
+    "core-js": "2.4.1",
+    "rimraf": "^2.5.4",
+    "rxjs": "5.0.2",
+    "typescript": "2.0.10",
+    "zone.js": "0.7.4",
+    "angularfire2": "2.0.0-beta.7"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "^2.4.1",
+    "@angular/platform-server": "^2.4.1",
+    "@types/jasmine": "2.2.30",
+    "@types/node": "6.0.54"
+  },
+  "version": "2.1.5"
+}

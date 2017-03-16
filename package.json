@@ -1,0 +1,16 @@
+{
+  "name": "@nodeart/store-components",
+  "version": "1.0.0",
+  "description": "Nodeart store components for quick and easy scaffolding of online store in Angular",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "compodoc -p tsconfig.json",
+    "serve": "compodoc -s"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "compodoc": "0.0.41"
+  }
+}

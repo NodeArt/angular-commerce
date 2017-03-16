@@ -1,0 +1,24 @@
+<form [formGroup]="twoCheckoutForm" (submit)="nextStep()">
+            <input id="token" name="token" type="hidden" value="">
+            <div>
+                <label>
+                    <span>Card Number</span>
+                </label>
+                <input formControlName="ccNo" type="text" size="20" value="" autocomplete="off" required />
+            </div>
+            <div>
+                <label>
+                    <span>Expiration Date (MM/YYYY)</span>
+                </label>
+                <input type="text" size="2" formControlName="expMonth" required />
+                <span> / </span>
+                <input type="text" size="2" formControlName="expYear" required />
+            </div>
+            <div>
+                <label>
+                    <span>CVC</span>
+                </label>
+                <input formControlName="cvv"  size="4" type="text" value="" autocomplete="off" required />
+            </div>
+            <button class="ui button" type="submit">Next step</button>
+        </form>

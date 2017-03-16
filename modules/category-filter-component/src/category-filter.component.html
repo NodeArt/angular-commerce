@@ -1,0 +1,7 @@
+<div>
+  <h3>Category filter</h3>
+  <select (change)="updated($event.target.value)">
+    <option value="all">All</option> 
+    <option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
+  </select>
+</div>

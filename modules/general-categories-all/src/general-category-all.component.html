@@ -1,0 +1,33 @@
+<div [ngSwitch]="loading">
+        <div *ngSwitchCase="false">
+            <div class="ui cards">
+              <div class="card product" *ngFor="let product of products" >
+                <div class="image">
+                  <img [src]="product.imageUrl" />
+                </div>
+                <div class="content">
+                  <div class="header">{{product.name}}</div>
+                  <div class="meta">
+                    <a>{{product.price}}</a>
+                  </div>
+                  <div class="description">
+                    {{product.description}}
+                  </div>
+                </div>
+                <div class="extra content">
+                  <div class="ui left floated primary button" (click)="addToCopmarison(product)">
+                    Compare
+                    <i class="left chevron icon"></i>
+                  </div>
+                  <div class="ui right floated primary button" (click)="onSelect(product.id)">
+                    Buy
+                    <i class="right chevron icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div *ngSwitchCase="true">
+            <loading-indicator></loading-indicator>
+        </div>
+    </div>

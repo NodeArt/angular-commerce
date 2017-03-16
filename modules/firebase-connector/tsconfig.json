@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "baseUrl": "",
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "declaration": true,
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "mapRoot": "",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "skipLibCheck": true,
+        "typeRoots": ["./node_modules/@types"],
+        "types": [
+            "node"
+        ],
+        "lib": [
+            "dom",
+            "es2015"
+        ]
+    },
+    "compileOnSave": false,
+    "buildOnSave": false,
+    "exclude": [
+        "node_modules",
+        "dist",
+        "**/*.ngfactory.ts",
+        "**/*.shim.ts"
+    ],
+    "angularCompilerOptions": {
+        "genDir": "dist",
+        "entryModule": "src/firebase-connector.module#FirebaseConnectorModule"
+    }
+}

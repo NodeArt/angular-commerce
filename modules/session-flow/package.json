@@ -1,0 +1,15 @@
+{
+  "name": "@nodeart/session-flow",
+  "description": "1. Set device Id\r 2. Set session Id\r 3. Track visited routes of user\r 4. Track user clicks\r 5. Detect mobile device",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.nodeart.io/a2c/sessionflow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "version": "2.1.5"
+}

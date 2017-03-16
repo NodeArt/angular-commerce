@@ -1,0 +1,16 @@
+<h1>Categories</h1>
+<div class="ui cards">
+  <div class="card category" *ngFor="let category of categories" >
+    <div class="content">
+      <div class="header">{{category.name}}</div>
+    </div>
+    <div class="extra content">
+      <div class="ui right floated primary button" (click)="onSelect(category.id)">
+        View products
+        <i class="right chevron icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+

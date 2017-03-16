@@ -1,0 +1,52 @@
+<!-- Router outlet start -->
+
+<div class="site-wrapper content-wrapper content-block">
+  <div class="shop-cart-block" *ngIf="products">
+    <a [routerLink]="['/product-list']" class="continue">Continue shopping</a>
+    <h2>Here's your shopping cart</h2>
+    <span class="grey">Please confirm your order</span>
+    <table class="shop-cart-table">
+      <tr *ngFor="let item of products; let i = index">
+
+        <td class="image-block">
+          <a [routerLink]="['/product', item.id]">
+            <img [src]="item.product.imageUrls[0]">
+          </a>
+        </td>
+
+        <td class="info-block">
+          <div class="info-block__container">
+            <div class="info-block__product-block">
+              <a [routerLink]="['/product', item.id]">{{item.product.name}}</a>
+              <div class="info-block__attrs" *ngFor="let attr of item.attributes">
+                <span class="attr-name grey">{{attr.name}}:</span>
+                <span class="attr-value grey">{{attr.value}}</span>
+              </div>
+              <a (click)="removeProduct(item)" class="delete">Delete</a>
+            </div>
+            <div class="info-block__product-params">
+              <button (click)="incItems(i)">+</button> 
+              <span class="info-block__product-count">{{item.items}}</span>
+              <button (click)="decItems(i)">-</button>
+              <!--<span class="info-block__product-price">{{item.product.price}} USD</span>-->
+              <div class="info-block__product-price">
+                <span class="price">{{item.product.price * item.items}}</span>
+                <span class="currency">USD</span>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="total-block" *ngIf="products.length > 0">
+      <div class="total-block__container">
+        <span class="total grey">Total</span>
+        <span class="price">{{totalPrice}} USD</span>
+      </div>
+      <button type="submit" class="btn btn-grad" (click)="buy()">Order now</button>
+    </div>
+  </div>
+</div>
+
+<!-- Router outlet end -->

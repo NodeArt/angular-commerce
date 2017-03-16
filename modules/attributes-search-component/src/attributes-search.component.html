@@ -1,0 +1,12 @@
+<h2>Attributes</h2>
+<div class="ui vertical menu">
+  <div class="item" *ngFor="let attribute of attributes">
+    <div class="header">{{attribute.name}}</div>
+    <div class="menu">
+      <div *ngFor="let item of attribute.childs">
+        <p>{{item.name}}<input type="checkbox" class="item" value="item.key" (change)="check(attribute.id, item.key, $event)"/></p>
+      </div>
+    </div>
+  </div>
+</div>
+

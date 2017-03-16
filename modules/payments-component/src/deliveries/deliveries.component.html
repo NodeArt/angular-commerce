@@ -1,0 +1,14 @@
+<h1>Deliveries</h1>
+<form class="ui form" [formGroup]="deliveryForm" (submit)="setDelivery()">
+  <div class="field">
+    <label>Select delivery method</label>
+    <select formControlName='deliveryMethod'>
+      <option *ngFor="let method of deliveryMethodsObjects" [value]="method.name">{{method.value}}</option>
+    </select>
+  </div>
+  <div [ngSwitch]="deliveryForm.value.deliveryMethod">
+    <pickup-delivery *ngSwitchCase="'PICKUP'"></pickup-delivery>
+    <address-delivery *ngSwitchCase="'ADDRESS_DELIVERY'"></address-delivery>
+  </div>
+  <button class="ui button" type="submit">Save delivery</button>
+</form>

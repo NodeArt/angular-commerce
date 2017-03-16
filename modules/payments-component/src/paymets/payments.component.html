@@ -1,0 +1,10 @@
+<div *ngIf="showPaymentsList">
+  <h1>Payments</h1>
+  <div *ngFor="let method of paymentMethodsArray">
+    <input type="radio" name="paymentMethods" [value]="method.name" (click)="setSelectedMethod($event.target.value)"> {{method.value}} <br/>
+  </div>
+</div>
+<div [ngSwitch]="selectedMethod">
+    <two-checkout *ngSwitchCase="'TWO_CHECKOUT'" (formSaved)="nextStep($event)"></two-checkout>
+    <stripe *ngSwitchCase="'STRIPE'" (formSaved)="nextStep($event)"></stripe>
+</div>

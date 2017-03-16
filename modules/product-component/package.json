@@ -1,0 +1,19 @@
+{
+  "name": "@nodeart/product-component",
+  "description": "Display product by ID from REST route",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.nodeart.io/a2c/productcmp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nodeart/basketservice": "2.1.5",
+    "@nodeart/productservice": "2.1.5"
+  },
+  "version": "2.1.5"
+}

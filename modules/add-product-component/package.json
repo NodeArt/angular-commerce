@@ -1,0 +1,14 @@
+{
+  "name": "@nodeart/add-product-component",
+  "version": "2.1.5",
+  "description": "Form to add new product",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nodeart/productservice": "2.1.5"
+  }
+}
