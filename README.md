@@ -25,16 +25,13 @@ If you want to create you own connector you must adopt it to `ElasticSearch flas
 
 To create documentation: 
 ```
-npm i compodoc -g
-compodod -p tsconfig.json
 npm i
-npm run build
+npm run build-docs
 ```
 
 To serve documentation: 
 ```
-compodoc -s
-npm run serve
+npm run serve-docs
 ```
 
 

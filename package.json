@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "compodoc -p tsconfig.json",
-    "serve": "compodoc -s"
+    "build-docs": "compodoc -p tsconfig.json",
+    "serve-docs": "compodoc -s"
   },
   "author": "",
   "license": "ISC",
