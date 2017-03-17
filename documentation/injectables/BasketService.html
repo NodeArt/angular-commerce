@@ -1054,7 +1054,7 @@ export class BasketService{
     });
     if(sessionFlow.userId &#x3D;&#x3D;&#x3D; &#x27;guest&#x27;){
       this.getProducts(sessionFlow.deviceId);
-      this.basketHistory &#x3D; this.dal.getBasketHistoryById(this.sessionFlow.deviceId);
+      this.basketHistory &#x3D; this.dal.getBasketHistorySubjectById(this.sessionFlow.deviceId);
     }
     this.dal.getAuth().onAuthStateChanged((data) &#x3D;&gt; {
       if(data &#x3D;&#x3D; null){
@@ -1065,7 +1065,7 @@ export class BasketService{
         console.log(this.userId);
         this.getProducts(this.userId);
         if(this.userId !&#x3D; &quot;&quot;){
-          this.basketHistory &#x3D; this.dal.getBasketHistoryById(this.userId);
+          this.basketHistory &#x3D; this.dal.getBasketHistorySubjectById(this.userId);
         }
       }
     });

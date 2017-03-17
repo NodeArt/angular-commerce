@@ -640,7 +640,6 @@
             </p>
             <p class="comment">
                 <p>Service that realize logic with connecting to firebase realtime database and authentication.<br>Components user doesn&#39;t directly calls connector method. He calls them from <a href="https://www.npmjs.com/package/@nodeart/dal">DAL</a></p>
-<p>Querying to <code>Firebase Realtime Database</code> are executed with <a href="https://github.com/firebase/flashlight">Firebase Flashlight</a>.<br>If you want to create you own connector you must adopt it to <code>ElasticSearch flashlight</code> output.</p>
 
             </p>
 
@@ -1044,7 +1043,7 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>[firebase.Promise]{</p>
+                                                <p>Observable containing non-null [firebase.User]{</p>
             
                                             </div>
                                 </td>
@@ -1203,7 +1202,7 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>[firebase.database.Reference]{</p>
+                                                <p>Observable of product object</p>
             
                                             </div>
                                 </td>
@@ -1247,7 +1246,7 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>[firebase.database.Reference]{</p>
+                                                <p>Observable of basket</p>
             
                                             </div>
                                 </td>
@@ -1284,26 +1283,26 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <b> getBasketHistoryById</b>
+                                    <b> getBasketHistorySubjectById</b>
                                 </td>
                             </tr>
             
                             <tr>
                                 <td class="col-md-4">
-            <code>getBasketHistoryById(id: any)</code>
+            <code>getBasketHistorySubjectById(userId: any)</code>
                                 </td>
                             </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>Returns basket history of user by userId or deviceId</p>
+                                        <div class="io-description"><p>Returns Rx Subject of basket history of user by userId or deviceId</p>
             </div>
                                         <div class="io-description">
                                                 <b>Parameters :</b>
                                                 <ul class="jsdoc-params">
                                                         <li>
                                                             <div>
-                                                                <b>id</b>
+                                                                <b>userId</b>
                                                             </div>
                                                             <div>
                                                                 <p>userId or deviceId</p>
@@ -1317,7 +1316,51 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>[firebase.database.Reference]{</p>
+                                                <p>Rx Subject of basket history</p>
+            
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getBasketHistoryById</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getBasketHistoryById(userId: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Returns Rx Observable of basket history of user by userId or deviceId</p>
+            </div>
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <ul class="jsdoc-params">
+                                                        <li>
+                                                            <div>
+                                                                <b>userId</b>
+                                                            </div>
+                                                            <div>
+                                                                <p>userId or deviceId</p>
+            
+                                                            </div>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                <p>Rx Observable of basket history</p>
             
                                             </div>
                                 </td>
@@ -1369,7 +1412,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>Observable of basket</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1484,7 +1528,7 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>[firebase.database.Reference]{</p>
+                                                <p>Observable of requested data hits</p>
             
                                             </div>
                                 </td>
@@ -1548,7 +1592,7 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>[firebase.database.Reference]{</p>
+                                                <p>Observable of requested data</p>
             
                                             </div>
                                 </td>
@@ -1612,7 +1656,7 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>[firebase.database.Reference]{</p>
+                                                <p>Observable of total item</p>
             
                                             </div>
                                 </td>
@@ -1964,7 +2008,7 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>[firebase.database.ThenableReference]{</p>
+                                                <p>Observable of orders</p>
             
                                             </div>
                                 </td>
@@ -2063,7 +2107,7 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>[firebase.database.Reference]{</p>
+                                                <p>Observable of payment response</p>
             
                                             </div>
                                 </td>
@@ -2219,9 +2263,6 @@ Observer
 /**
  * Service that realize logic with connecting to firebase realtime database and authentication.
  * Components user doesn&#x27;t directly calls connector method. He calls them from [DAL]{@link https://www.npmjs.com/package/@nodeart/dal}
- * 
- * Querying to &#x60;Firebase Realtime Database&#x60; are executed with [Firebase Flashlight]{@link https://github.com/firebase/flashlight}.
- * If you want to create you own connector you must adopt it to &#x60;ElasticSearch flashlight&#x60; output.
  */
 @Injectable()
 export class FirebaseConnector {
@@ -2351,7 +2392,7 @@ export class FirebaseConnector {
    * @param {string} email  User email
    * @param {string} password  User password
    * 
-   * @returns [firebase.Promise]{@link https://firebase.google.com/docs/reference/js/firebase.Promise} containing non-null [firebase.User]{@link https://firebase.google.com/docs/reference/js/firebase.User}
+   * @returns {Observable} Observable containing non-null [firebase.User]{@link https://firebase.google.com/docs/reference/js/firebase.User}
    */ 
   loginEmail(email, password){
     return Observable.create( observer &#x3D;&gt; {
@@ -2406,7 +2447,7 @@ export class FirebaseConnector {
    * 
    * @param {Object} queryObj ElasticSearch query object
    * 
-   * @returns [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of product object
+   * @returns {Observable} Observable of product object
    */
   getOneProduct(queryObj){
     let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push(queryObj).key;
@@ -2422,7 +2463,7 @@ export class FirebaseConnector {
    * 
    * @param {string} userId user Id
    * 
-   * @returns [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of basket
+   * @returns {Observable} Observable of basket
    */
   getBasketContent(userId){
     return Observable.create( observer &#x3D;&gt; {
@@ -2440,29 +2481,42 @@ export class FirebaseConnector {
   }
 
   /**
-   * Returns basket history of user by userId or deviceId
+   * Returns Rx Subject of basket history of user by userId or deviceId
    * 
-   * @param {string} id  userId or deviceId
+   * @param {string} userId  userId or deviceId
    * 
-   * @returns [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of basket history
+   * @returns {Subject} Rx Subject of basket history
    */
-  getBasketHistoryById(id){
-    let userId &#x3D; id;
-    let observer &#x3D; Observer.create( data &#x3D;&gt; {
+  getBasketHistorySubjectById(userId){
+    let basketHistory$ &#x3D; new Subject();
+    basketHistory$.subscribe(data &#x3D;&gt; {
       firebase.database().ref(&#x27;/basket-history/&#x27; + userId).push(data);
     });
-    let observable &#x3D; Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref(&#x27;/basket-history/&#x27; + userId).on(&#x27;value&#x27;, data &#x3D;&gt; {
-        observer.next(data);
-      });
-    });
-    return Subject.create(observer, observable);
+    return basketHistory$;
   }
+
+  /**
+   * Returns Rx Observable of basket history of user by userId or deviceId
+   * 
+   * @param {string} userId  userId or deviceId
+   * 
+   * @returns {Observable} Rx Observable of basket history
+   */
+   getBasketHistoryById(userId){
+     return Observable.create( observer &#x3D;&gt; {
+        firebase.database().ref().child(&#x27;/basket-history/&#x27; + userId).on(&#x27;value&#x27;, data &#x3D;&gt; {
+          observer.next(data);
+        });
+      });
+   }
+
 
   /**
    * Set new basket by user id or device id
    * @param id  userId or deviceId
    * @param newBasket 
+   * 
+   * @returns {Observable} Observable of basket
    */
   setNewBasket(id, newBasket){
     return Observable.create( observer &#x3D;&gt; {
@@ -2493,7 +2547,7 @@ export class FirebaseConnector {
    * @param {string} type ElasticSearch type
    * @param {Object} queryObj query object for ElasticSearch
    * 
-   * @returns  [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of requested data hits
+   * @returns  {Observable} Observable of requested data hits
    */
   requestData(index, type, queryObj){
     let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push({
@@ -2516,7 +2570,7 @@ export class FirebaseConnector {
    * @param {string} type ElasticSearch type
    * @param {Object} queryObj query object for ElasticSearch
    * 
-   * @returns  [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of requested data
+   * @returns  {Observable} Observable of requested data
    */
   requestFullData(index, type, queryObj){
     let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push({
@@ -2538,7 +2592,7 @@ export class FirebaseConnector {
    * @param {string} type ElasticSearch type
    * @param {Object} queryObj query object for ElasticSearch
    * 
-   * @returns  [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of total item
+   * @returns  {Observable} Observable of total item
    */
   requestItemsTotal(index, type,queryObj){
     let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push({
@@ -2659,7 +2713,7 @@ export class FirebaseConnector {
    * 
    * @param {Object} paymentData
    * 
-   * @returns [firebase.database.ThenableReference]{@link https://firebase.google.com/docs/reference/js/firebase.database.ThenableReference}
+   * @returns {Observable} Observable of orders
    */
   saveOrder(paymentData){
     return Observable.create( observer &#x3D;&gt; {
@@ -2690,7 +2744,7 @@ export class FirebaseConnector {
    * 
    * @param {string} paymentKey id of payment response. Payment request and payment response have same ids in their backets
    * 
-   * @returns [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of payment response
+   * @returns {Observable} Observable of payment response
    */
   listenPaymentResponse(paymentKey) {
     return Observable.create( observer &#x3D;&gt; {

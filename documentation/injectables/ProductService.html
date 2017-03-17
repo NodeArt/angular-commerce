@@ -640,8 +640,6 @@
             </p>
             <p class="comment">
                 <p>Product service. Has different methods for manipulating with products and its properties. </p>
-<h2 id="products-organization">Products organization</h2>
-<p>Product <code>categories</code> are organizated hierarchically. There are <code>general categories</code> which may have <code>child categories</code>.<br>  Those <code>child categories</code> may have other <code>child categories</code>.<br><code>Products</code> refer to categories  by <code>categoryId</code>.<br><code>Products</code> also have <code>attributes</code> and tags.<br><code>Attributes</code> can be with single value or with multiple childs. For examlpe, in <a href="../components/ProductComponent.html" >ProductComponent</a> if attribute<br>have multiple properities user must choose property he want to buy.<br><code>Attributes</code> are part of some <code>category</code>. </p>
 
             </p>
 
@@ -1472,15 +1470,6 @@ import {DbAbstractionLayer} from &quot;@nodeart/dal/index&quot;;
 
 /**
  * Product service. Has different methods for manipulating with products and its properties. 
- * 
- * ## Products organization
- * Product &#x60;categories&#x60; are organizated hierarchically. There are &#x60;general categories&#x60; which may have &#x60;child categories&#x60;.
- *  Those &#x60;child categories&#x60; may have other &#x60;child categories&#x60;. 
- * &#x60;Products&#x60; refer to categories  by &#x60;categoryId&#x60;.
- * &#x60;Products&#x60; also have &#x60;attributes&#x60; and tags.  
- * &#x60;Attributes&#x60; can be with single value or with multiple childs. For examlpe, in {@link ProductComponent} if attribute 
- * have multiple properities user must choose property he want to buy.
- * &#x60;Attributes&#x60; are part of some &#x60;category&#x60;. 
  */
 @Injectable()
 export class ProductService{

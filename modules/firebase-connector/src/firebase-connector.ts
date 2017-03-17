@@ -139,7 +139,7 @@ export class FirebaseConnector {
    * @param {string} email  User email
    * @param {string} password  User password
    * 
-   * @returns [firebase.Promise]{@link https://firebase.google.com/docs/reference/js/firebase.Promise} containing non-null [firebase.User]{@link https://firebase.google.com/docs/reference/js/firebase.User}
+   * @returns {Observable} Observable containing non-null [firebase.User]{@link https://firebase.google.com/docs/reference/js/firebase.User}
    */ 
   loginEmail(email, password){
     return Observable.create( observer => {
@@ -194,7 +194,7 @@ export class FirebaseConnector {
    * 
    * @param {Object} queryObj ElasticSearch query object
    * 
-   * @returns [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of product object
+   * @returns {Observable} Observable of product object
    */
   getOneProduct(queryObj){
     let key = firebase.database().ref().child('search/request').push(queryObj).key;
@@ -210,7 +210,7 @@ export class FirebaseConnector {
    * 
    * @param {string} userId user Id
    * 
-   * @returns [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of basket
+   * @returns {Observable} Observable of basket
    */
   getBasketContent(userId){
     return Observable.create( observer => {
@@ -228,29 +228,42 @@ export class FirebaseConnector {
   }
 
   /**
-   * Returns basket history of user by userId or deviceId
+   * Returns Rx Subject of basket history of user by userId or deviceId
    * 
-   * @param {string} id  userId or deviceId
+   * @param {string} userId  userId or deviceId
    * 
-   * @returns [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of basket history
+   * @returns {Subject} Rx Subject of basket history
    */
-  getBasketHistoryById(id){
-    let userId = id;
-    let observer = Observer.create( data => {
+  getBasketHistorySubjectById(userId){
+    let basketHistory$ = new Subject();
+    basketHistory$.subscribe(data => {
       firebase.database().ref('/basket-history/' + userId).push(data);
     });
-    let observable = Observable.create( observer => {
-      firebase.database().ref('/basket-history/' + userId).on('value', data => {
-        observer.next(data);
-      });
-    });
-    return Subject.create(observer, observable);
+    return basketHistory$;
   }
+
+  /**
+   * Returns Rx Observable of basket history of user by userId or deviceId
+   * 
+   * @param {string} userId  userId or deviceId
+   * 
+   * @returns {Observable} Rx Observable of basket history
+   */
+   getBasketHistoryById(userId){
+     return Observable.create( observer => {
+        firebase.database().ref().child('/basket-history/' + userId).on('value', data => {
+          observer.next(data);
+        });
+      });
+   }
+
 
   /**
    * Set new basket by user id or device id
    * @param id  userId or deviceId
    * @param newBasket 
+   * 
+   * @returns {Observable} Observable of basket
    */
   setNewBasket(id, newBasket){
     return Observable.create( observer => {
@@ -281,7 +294,7 @@ export class FirebaseConnector {
    * @param {string} type ElasticSearch type
    * @param {Object} queryObj query object for ElasticSearch
    * 
-   * @returns  [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of requested data hits
+   * @returns  {Observable} Observable of requested data hits
    */
   requestData(index, type, queryObj){
     let key = firebase.database().ref().child('search/request').push({
@@ -304,7 +317,7 @@ export class FirebaseConnector {
    * @param {string} type ElasticSearch type
    * @param {Object} queryObj query object for ElasticSearch
    * 
-   * @returns  [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of requested data
+   * @returns  {Observable} Observable of requested data
    */
   requestFullData(index, type, queryObj){
     let key = firebase.database().ref().child('search/request').push({
@@ -326,7 +339,7 @@ export class FirebaseConnector {
    * @param {string} type ElasticSearch type
    * @param {Object} queryObj query object for ElasticSearch
    * 
-   * @returns  [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of total item
+   * @returns  {Observable} Observable of total item
    */
   requestItemsTotal(index, type,queryObj){
     let key = firebase.database().ref().child('search/request').push({
@@ -447,7 +460,7 @@ export class FirebaseConnector {
    * 
    * @param {Object} paymentData
    * 
-   * @returns [firebase.database.ThenableReference]{@link https://firebase.google.com/docs/reference/js/firebase.database.ThenableReference}
+   * @returns {Observable} Observable of orders
    */
   saveOrder(paymentData){
     return Observable.create( observer => {
@@ -478,7 +491,7 @@ export class FirebaseConnector {
    * 
    * @param {string} paymentKey id of payment response. Payment request and payment response have same ids in their backets
    * 
-   * @returns [firebase.database.Reference]{@link https://firebase.google.com/docs/reference/js/firebase.database.Reference} of payment response
+   * @returns {Observable} Observable of payment response
    */
   listenPaymentResponse(paymentKey) {
     return Observable.create( observer => {

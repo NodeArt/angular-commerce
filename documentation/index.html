@@ -609,10 +609,9 @@
                <div class="content readme">
                    <div class="content-data">
 <h1 id="store-components">Store components</h1>
-<p>First update submodules: </p>
-<pre><code class="hljs undefined">git submodule update --init</code></pre><p>To create documentation: </p>
-<pre><code class="hljs undefined">npm i compodoc -g<br>compodod -p tsconfig.json<br>npm i<br>npm run build</code></pre><p>To serve documentation: </p>
-<pre><code class="hljs undefined">compodoc -s<br>npm run serve</code></pre><h2 id="store-architecture">Store architecture</h2>
+<p>Online store component written in Angular.  </p>
+<p>Full API and documentation check <a href="https://nodeart.github.io/">here</a>.</p>
+<h2 id="store-architecture">Store architecture</h2>
 <h3 id="components-dependencies">Components dependencies</h3>
 <p>Most of components are separated from each other. The most common dependency is <code>Data Abstraction Layer (DAL)</code>.<br>DAL is a bridge for some connector ( for now Firebase Connector ). DAL contains methods for manipulating with database<br>(get products, add products to shopping cart, remove products from shopping cart etc.), auth api (register user, login, logout etc.).</p>
 <h3 id="querying-to-database">Querying to database</h3>
@@ -621,7 +620,10 @@
 <p>About products organization you can read in docs for services, for example, <code>Product service</code> or <code>Basket service</code>.</p>
 <h3 id="creating-other-connectors">Creating other connectors</h3>
 <p>If you want to create you own connector you must adopt it to <code>ElasticSearch flashlight</code> output.</p>
-
+<h2 id="docs">Docs</h2>
+<p>To create documentation: </p>
+<pre><code class="hljs undefined">npm i<br>npm run build-docs</code></pre><p>To serve documentation: </p>
+<pre><code class="hljs undefined">npm run serve-docs</code></pre>
 
 
 

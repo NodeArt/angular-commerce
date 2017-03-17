@@ -50,7 +50,7 @@ export class BasketService{
     });
     if(sessionFlow.userId === 'guest'){
       this.getProducts(sessionFlow.deviceId);
-      this.basketHistory = this.dal.getBasketHistoryById(this.sessionFlow.deviceId);
+      this.basketHistory = this.dal.getBasketHistorySubjectById(this.sessionFlow.deviceId);
     }
     this.dal.getAuth().onAuthStateChanged((data) => {
       if(data == null){
@@ -61,7 +61,7 @@ export class BasketService{
         console.log(this.userId);
         this.getProducts(this.userId);
         if(this.userId != ""){
-          this.basketHistory = this.dal.getBasketHistoryById(this.userId);
+          this.basketHistory = this.dal.getBasketHistorySubjectById(this.userId);
         }
       }
     });

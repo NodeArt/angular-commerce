@@ -13,6 +13,28 @@ import {UserClick} from "./structures/click";
  * 4. Refferer url
  * 5. Saves visited routes
  * 6. Saves user clicks
+ * 
+ * To enable `Session Flow` for tracking inject `DAL` and `Session Flow` into root `AppComponent`. If you want to track user click also add HostListener on click:
+ * ```
+ * export class AppComponent {
+ *
+ * \@HostListener('click', ['$event']) onClick(e){
+ *    this.sessionFlow.addUserClick(e);
+ * }
+ *
+ * 
+ * constructor(
+ *            private dal: DbAbstractionLayer,
+ *            private sessionFlow: SessionFlow
+ *            ) {
+ * }
+ *
+ * ngOnInit() {
+ *    this.dal.checkOldSessionFlow(this.sessionFlow.deviceId);
+ *    this.dal.connectSessionFlowToDB(this.sessionFlow, this.sessionFlow.deviceId, this.sessionFlow.sessionId);
+ * }
+ * ```
+ * 
  */
 @Injectable()
 export class SessionFlow{

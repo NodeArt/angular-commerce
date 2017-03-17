@@ -649,7 +649,8 @@
 <li>Saves visited routes</li>
 <li>Saves user clicks</li>
 </ol>
-
+<p>To enable <code>Session Flow</code> for tracking inject <code>DAL</code> and <code>Session Flow</code> into root <code>AppComponent</code>. If you want to track user click also add HostListener on click:</p>
+<pre><code class="hljs undefined">export class AppComponent {<br><br>\@HostListener('click', ['$event']) onClick(e){<br>    this.sessionFlow.addUserClick(e);<br>}<br><br><br>constructor(<br>            private dal: DbAbstractionLayer,<br>            private sessionFlow: SessionFlow<br>            ) {<br>}<br><br>ngOnInit() {<br>    this.dal.checkOldSessionFlow(this.sessionFlow.deviceId);<br>    this.dal.connectSessionFlowToDB(this.sessionFlow, this.sessionFlow.deviceId, this.sessionFlow.sessionId);<br>}</code></pre>
             </p>
 
             <section>
@@ -1210,6 +1211,28 @@ import {UserClick} from &quot;./structures/click&quot;;
  * 4. Refferer url
  * 5. Saves visited routes
  * 6. Saves user clicks
+ * 
+ * To enable &#x60;Session Flow&#x60; for tracking inject &#x60;DAL&#x60; and &#x60;Session Flow&#x60; into root &#x60;AppComponent&#x60;. If you want to track user click also add HostListener on click:
+ * &#x60;&#x60;&#x60;
+ * export class AppComponent {
+ *
+ * \@HostListener(&#x27;click&#x27;, [&#x27;$event&#x27;]) onClick(e){
+ *    this.sessionFlow.addUserClick(e);
+ * }
+ *
+ * 
+ * constructor(
+ *            private dal: DbAbstractionLayer,
+ *            private sessionFlow: SessionFlow
+ *            ) {
+ * }
+ *
+ * ngOnInit() {
+ *    this.dal.checkOldSessionFlow(this.sessionFlow.deviceId);
+ *    this.dal.connectSessionFlowToDB(this.sessionFlow, this.sessionFlow.deviceId, this.sessionFlow.sessionId);
+ * }
+ * &#x60;&#x60;&#x60;
+ * 
  */
 @Injectable()
 export class SessionFlow{

@@ -74,7 +74,7 @@ export class DbAbstractionLayer {
    * 
    * @param {Object} queryObj ElasticSearch query object
    * 
-   * @returns Reference of product object.
+   * @returns Observable of product object.
    */
   getOneProduct(productId){
     var queryObj = {
@@ -103,21 +103,21 @@ export class DbAbstractionLayer {
    * 
    * @param {string} userId user Id
    * 
-   * @returns Reference of basket
+   * @returns {Observable} Observable of basket
    */
   getBasketContent(id){
     return this.connector.getBasketContent(id);
   }
 
   /**
-   * Returns basket history of user by userId or deviceId
+   * Returns Rx Subject of basket history of user by userId or deviceId
    * 
    * @param {string} id  userId or deviceId
    * 
-   * @returns database.Reference of basket history
+   * @returns {Subject} Subject of basket history
    */
-  getBasketHistoryById(id){
-    return this.connector.getBasketHistoryById(id);
+  getBasketHistorySubjectById(id){
+    return this.connector.getBasketHistorySubjectById(id);
   }
 
   /**
@@ -157,7 +157,7 @@ export class DbAbstractionLayer {
    * @param {string} type ElasticSearch type
    * @param {Object} queryObj query object for ElasticSearch
    * 
-   * @returns  Reference of requested data hits
+   * @returns  {Observable} Observable of requested data hits
    */
   requestData(esIndex, type, queryObj){
     return this.connector.requestData(esIndex, type, queryObj);
@@ -170,7 +170,7 @@ export class DbAbstractionLayer {
    * @param {string} type ElasticSearch type
    * @param {Object} queryObj query object for ElasticSearch
    * 
-   * @returns  Reference of requested data
+   * @returns  {Observable} Observable of requested data
    */
   requestFullData(esIndex, type, queryObj){
     return this.connector.requestFullData(esIndex, type, queryObj);
@@ -183,7 +183,7 @@ export class DbAbstractionLayer {
    * @param {string} type ElasticSearch type
    * @param {Object} queryObj query object for ElasticSearch
    * 
-   * @returns  Reference of total item
+   * @returns {Observable} Observable of total item
    */
   requestItemsTotal(esIndex, type, queryObj){
     return this.connector.requestItemsTotal(esIndex, 'product', queryObj);
@@ -194,7 +194,7 @@ export class DbAbstractionLayer {
    * 
    * @param {Object} queryObj  ElasticSearch query object
    * 
-   * @returns Reference of tags
+   * @returns {Observable} Observable of tags
    */
   getTags(queryObj){
     return this.connector.requestData(esIndex, 'tags', queryObj);
@@ -205,7 +205,7 @@ export class DbAbstractionLayer {
    * 
    * @param {Object} queryObj  ElasticSearch query object
    * 
-   * @returns Reference of attributes
+   * @returns {Observable} Observable of attributes
    */
   getAttributes(queryObj){
     return this.connector.requestData(esIndex, 'attributes', queryObj);
@@ -245,7 +245,7 @@ export class DbAbstractionLayer {
    * 
    * @param {string} uid  user Id
    * 
-   * @returns Reference
+   * @returns {Observable} Observable of user data
    */ 
   getUserData(uid){
     return this.connector.getUserData(uid);
@@ -316,7 +316,7 @@ export class DbAbstractionLayer {
    * 
    * @param {Object} paymentData
    * 
-   * @returns Reference
+   * @returns {Observable} Observable
    */
   saveOrder(orderData) {
     return this.connector.saveOrder(orderData);
@@ -328,7 +328,7 @@ export class DbAbstractionLayer {
    * @param {Object} data PaymentData
    * @param {string} paymentMethod  name of payment method
    * 
-   * @returns Reference
+   * @returns {Observable} Observable
    */
   addPaymentRequest(data, paymentMethod){
     return this.connector.addPaymentRequest(data, paymentMethod);
@@ -339,7 +339,7 @@ export class DbAbstractionLayer {
    * 
    * @param {string} paymentKey id of payment response. Payment request and payment response have same ids in their backets
    * 
-   * @returns Reference of payment response
+   * @returns {Observable} Observable of payment response
    */  
   listenPaymentResponse(paymentKey){
     return this.connector.listenPaymentResponse(paymentKey);
@@ -350,7 +350,7 @@ export class DbAbstractionLayer {
    * 
    * @param {string} userId user id
    * 
-   * @
+   * @returns {Observable} Observable of user orders
    */
   getOrdersByUserId(userId) {
     let queryObj = {
