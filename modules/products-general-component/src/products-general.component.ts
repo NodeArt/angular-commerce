@@ -85,7 +85,7 @@ export class ProductsGeneralComponent implements OnInit {
    * @param generalCategoryId  general category id
    */
   getCategoryIds(generalCategoryId){
-    this.productService.getCategories(generalCategoryId).subcribe( data => {
+    this.productService.getCategories(generalCategoryId).subscribe( data => {
       if(data.val()){
         console.log(data.val());
         let categories = data.val().map(category => {

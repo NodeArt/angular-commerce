@@ -45,8 +45,8 @@ export class ProductComponent implements OnInit {
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private basket: BasketService,
-              private zone: NgZone,
-              private router: Router){
+              protected zone: NgZone,
+              protected router: Router){
     if( basket.userId && basket.userId !== 'guest' ) {
       this.isAuth = true;
     }

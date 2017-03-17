@@ -5,8 +5,6 @@ import * as firebase from 'firebase';
 import { Observable } from "rxjs/Observable";
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
-import { Observer } from 'rxjs/Observer';
-Observer
 /**
  * Service that realize logic with connecting to firebase realtime database and authentication.
  * Components user doesn't directly calls connector method. He calls them from [DAL]{@link https://www.npmjs.com/package/@nodeart/dal}
