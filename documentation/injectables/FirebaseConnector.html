@@ -640,6 +640,7 @@
             </p>
             <p class="comment">
                 <p>Service that realize logic with connecting to firebase realtime database and authentication.<br>Components user doesn&#39;t directly calls connector method. He calls them from <a href="https://www.npmjs.com/package/@nodeart/dal">DAL</a></p>
+<p>Querying to <code>Firebase Realtime Database</code> are executed with <a href="https://github.com/firebase/flashlight">Firebase Flashlight</a>.<br>If you want to create you own connector you must adopt it to <code>ElasticSearch flashlight</code> output.</p>
 
             </p>
 
@@ -952,7 +953,7 @@
                                                 </ul>
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns: </b>    <code>void</code>
+                                            <b>Returns: </b>    <code>any</code>
             
                                         </div>
                                             <div class="io-description">
@@ -1283,19 +1284,19 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <b> getBasketHistorySubjectById</b>
+                                    <b> initializeBasketHistory</b>
                                 </td>
                             </tr>
             
                             <tr>
                                 <td class="col-md-4">
-            <code>getBasketHistorySubjectById(userId: any)</code>
+            <code>initializeBasketHistory(userId: any)</code>
                                 </td>
                             </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>Returns Rx Subject of basket history of user by userId or deviceId</p>
+                                        <div class="io-description"><p>Initialize basket history for user. If you want to track basket history run this method when user sign in</p>
             </div>
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1316,7 +1317,38 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>Rx Subject of basket history</p>
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getBasketHistorySubject</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getBasketHistorySubject()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Returns basket history subject</p>
+            </div>
+                                        <div class="io-description">
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>any</code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                <p>basketHistory Subject of basketHistory</p>
             
                                             </div>
                                 </td>
@@ -2210,6 +2242,36 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> basketHistory$</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>basketHistory$:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> basketHistorySubscription$</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>basketHistorySubscription$:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <b><span class="modifier">Private</span> sfUserClicks</b>
                                 </td>
                             </tr>
@@ -2258,11 +2320,13 @@ import * as firebase from &#x27;firebase&#x27;;
 import { Observable } from &quot;rxjs/Observable&quot;;
 import { FormGroup } from &#x27;@angular/forms&#x27;;
 import { Subject } from &#x27;rxjs/Subject&#x27;;
-import { Observer } from &#x27;rxjs/Observer&#x27;;
-Observer
+import { Subscription } from &#x27;rxjs/Rx&#x27;;
 /**
  * Service that realize logic with connecting to firebase realtime database and authentication.
  * Components user doesn&#x27;t directly calls connector method. He calls them from [DAL]{@link https://www.npmjs.com/package/@nodeart/dal}
+ *
+ * Querying to &#x60;Firebase Realtime Database&#x60; are executed with [Firebase Flashlight]{@link https://github.com/firebase/flashlight}.
+ * If you want to create you own connector you must adopt it to &#x60;ElasticSearch flashlight&#x60; output.
  */
 @Injectable()
 export class FirebaseConnector {
@@ -2276,6 +2340,10 @@ export class FirebaseConnector {
    * User performed clicks
    */
   private sfUserClicks;
+
+  private basketHistory$: Subject&lt;any&gt; &#x3D; new Subject();
+
+  private basketHistorySubscription$: Subscription;
 
   constructor(private http: Http){
   }
@@ -2357,16 +2425,26 @@ export class FirebaseConnector {
    * @param registerForm  Object that have email, password and any additional information about user. 
    * Additional information stores in firebase as user backet
    */
-  registerUser(registerForm){
+  registerUser(registerForm) : Observable&lt;any&gt;{
     let email &#x3D; registerForm.email;
     let password &#x3D; registerForm.password;
     delete registerForm.password;
     let userId &#x3D; this.guid();
-    return this.register(email, password).then(authData &#x3D;&gt; {
-      let firebaseUId &#x3D; authData.uid;
-      registerForm.firebaseUId &#x3D; firebaseUId;
-      firebase.database().ref(&#x27;user/&#x27; + userId).set(registerForm).then(data &#x3D;&gt; {
-        console.log(data);
+    return Observable.create(observer &#x3D;&gt; {
+      this.register(email, password).then(authData &#x3D;&gt; {
+        let firebaseUId &#x3D; authData.uid;
+        registerForm.firebaseUId &#x3D; firebaseUId;
+        firebase.database().ref(&#x27;user/&#x27; + userId).set(registerForm).then(data &#x3D;&gt; {
+           this.loginEmail(email, password).subscribe( data &#x3D;&gt; {
+              observer.next(data);
+              observer.complete();
+           })
+           .catch(error &#x3D;&gt; {
+              observer.error(error);
+           });
+        });
+      }).catch( error &#x3D;&gt; {
+        observer.error(error);
       });
     });
   }
@@ -2481,18 +2559,27 @@ export class FirebaseConnector {
   }
 
   /**
-   * Returns Rx Subject of basket history of user by userId or deviceId
+   * Initialize basket history for user. If you want to track basket history run this method when user sign in
    * 
-   * @param {string} userId  userId or deviceId
+   * @param {string} userId userId or deviceId
    * 
-   * @returns {Subject} Rx Subject of basket history
    */
-  getBasketHistorySubjectById(userId){
-    let basketHistory$ &#x3D; new Subject();
-    basketHistory$.subscribe(data &#x3D;&gt; {
+  initializeBasketHistory(userId) {
+    if(this.basketHistorySubscription$){
+      this.basketHistorySubscription$.unsubscribe();
+    }
+    this.basketHistorySubscription$ &#x3D; this.basketHistory$.subscribe( data &#x3D;&gt; {
       firebase.database().ref(&#x27;/basket-history/&#x27; + userId).push(data);
     });
-    return basketHistory$;
+  }
+
+  /**
+   * Returns basket history subject
+   * 
+   * @returns {Subject} basketHistory Subject of basketHistory
+   */
+  getBasketHistorySubject(): Subject&lt;any&gt; {
+    return this.basketHistory$;
   }
 
   /**

@@ -2,7 +2,7 @@ import {Component, OnInit, NgZone} from '@angular/core';
 import {ProductService} from "@nodeart/productservice";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {BasketService} from "@nodeart/basketservice";
-
+import {DbAbstractionLayer} from "@nodeart/dal";
 /**
  * Component that represent product page
  */
@@ -46,10 +46,15 @@ export class ProductComponent implements OnInit {
               private route: ActivatedRoute,
               private basket: BasketService,
               protected zone: NgZone,
-              protected router: Router){
-    if( basket.userId && basket.userId !== 'guest' ) {
-      this.isAuth = true;
-    }
+              protected router: Router,
+              private dal: DbAbstractionLayer){
+    this.dal.getAuth().onAuthStateChanged(data => {
+      if(data == null) {
+        this.isAuth = false;
+      } else { 
+        this.isAuth =true;
+      }
+    });
     this.route.params.forEach((params: Params) => {
       this.id = params['id'];
       this.productService.getOneProduct(this.id).subscribe( product => {
@@ -67,6 +72,7 @@ export class ProductComponent implements OnInit {
     });
 
   }
+
 
   ngOnInit() {
 

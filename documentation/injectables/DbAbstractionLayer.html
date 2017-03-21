@@ -1023,26 +1023,26 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <b> getBasketHistorySubjectById</b>
+                                    <b> initializeBasketHistory</b>
                                 </td>
                             </tr>
             
                             <tr>
                                 <td class="col-md-4">
-            <code>getBasketHistorySubjectById(id: any)</code>
+            <code>initializeBasketHistory(userId: any)</code>
                                 </td>
                             </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>Returns Rx Subject of basket history of user by userId or deviceId</p>
+                                        <div class="io-description"><p>Initialize basket history for user. If you want to track basket history run this method when user sign in</p>
             </div>
                                         <div class="io-description">
                                                 <b>Parameters :</b>
                                                 <ul class="jsdoc-params">
                                                         <li>
                                                             <div>
-                                                                <b>id</b>
+                                                                <b>userId</b>
                                                             </div>
                                                             <div>
                                                                 <p>userId or deviceId</p>
@@ -1056,7 +1056,82 @@
             
                                         </div>
                                             <div class="io-description">
-                                                <p>Subject of basket history</p>
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getBasketHistorySubject</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getBasketHistorySubject()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Returns basket history subject</p>
+            </div>
+                                        <div class="io-description">
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>any</code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                <p>basketHistory Subject of basketHistory</p>
+            
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getBasketHistoryById</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getBasketHistoryById(id: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Returns Rx Observable of basket history of user by userId or deviceId</p>
+            </div>
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <ul class="jsdoc-params">
+                                                        <li>
+                                                            <div>
+                                                                <b>userId</b>
+                                                            </div>
+                                                            <div>
+                                                                <p>userId or deviceId</p>
+            
+                                                            </div>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                <p>Rx Observable of basket history</p>
             
                                             </div>
                                 </td>
@@ -2289,14 +2364,33 @@ export class DbAbstractionLayer {
   }
 
   /**
-   * Returns Rx Subject of basket history of user by userId or deviceId
+   * Initialize basket history for user. If you want to track basket history run this method when user sign in
    * 
-   * @param {string} id  userId or deviceId
+   * @param {string} userId userId or deviceId
    * 
-   * @returns {Subject} Subject of basket history
    */
-  getBasketHistorySubjectById(id){
-    return this.connector.getBasketHistorySubjectById(id);
+  initializeBasketHistory(userId) {
+    return this.connector.initializeBasketHistory(userId);
+  }
+
+  /**
+   * Returns basket history subject
+   * 
+   * @returns {Subject} basketHistory Subject of basketHistory
+   */
+  getBasketHistorySubject(): Subject&lt;any&gt; {
+    return this.connector.getBasketHistorySubject();
+  }
+
+  /**
+   * Returns Rx Observable of basket history of user by userId or deviceId
+   * 
+   * @param {string} userId  userId or deviceId
+   * 
+   * @returns {Observable} Rx Observable of basket history
+   */
+  getBasketHistoryById(id) {
+    return this.connector.getBasketHistoryById(id);
   }
 
   /**

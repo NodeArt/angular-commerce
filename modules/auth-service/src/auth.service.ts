@@ -16,6 +16,7 @@ export class AuthService {
       if(authData === null){
         this.sessionFlow.userId = 'guest';
         this.userData = {};
+        this.dal.initializeBasketHistory(sessionFlow.deviceId);
       }
       if(authData){
         let uid = authData.uid;
@@ -25,6 +26,7 @@ export class AuthService {
             let userData = data.val()[0]['_source'];
             userData.userId = data.val()[0]['_id'];
             this.sessionFlow.userId = data.val()[0]['_id'];
+            this.dal.initializeBasketHistory(userData.userId);
             this.zone.run(() => {
               this.userData = userData;
             });

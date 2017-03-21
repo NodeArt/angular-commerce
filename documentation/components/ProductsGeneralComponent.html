@@ -1193,7 +1193,7 @@ export class ProductsGeneralComponent implements OnInit {
    * @param generalCategoryId  general category id
    */
   getCategoryIds(generalCategoryId){
-    this.productService.getCategories(generalCategoryId).subcribe( data &#x3D;&gt; {
+    this.productService.getCategories(generalCategoryId).subscribe( data &#x3D;&gt; {
       if(data.val()){
         console.log(data.val());
         let categories &#x3D; data.val().map(category &#x3D;&gt; {

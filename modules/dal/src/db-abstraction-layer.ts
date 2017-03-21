@@ -110,14 +110,33 @@ export class DbAbstractionLayer {
   }
 
   /**
-   * Returns Rx Subject of basket history of user by userId or deviceId
+   * Initialize basket history for user. If you want to track basket history run this method when user sign in
    * 
-   * @param {string} id  userId or deviceId
+   * @param {string} userId userId or deviceId
    * 
-   * @returns {Subject} Subject of basket history
    */
-  getBasketHistorySubjectById(id){
-    return this.connector.getBasketHistorySubjectById(id);
+  initializeBasketHistory(userId) {
+    return this.connector.initializeBasketHistory(userId);
+  }
+
+  /**
+   * Returns basket history subject
+   * 
+   * @returns {Subject} basketHistory Subject of basketHistory
+   */
+  getBasketHistorySubject(): Subject<any> {
+    return this.connector.getBasketHistorySubject();
+  }
+
+  /**
+   * Returns Rx Observable of basket history of user by userId or deviceId
+   * 
+   * @param {string} userId  userId or deviceId
+   * 
+   * @returns {Observable} Rx Observable of basket history
+   */
+  getBasketHistoryById(id) {
+    return this.connector.getBasketHistoryById(id);
   }
 
   /**

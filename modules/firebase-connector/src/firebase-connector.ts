@@ -5,9 +5,13 @@ import * as firebase from 'firebase';
 import { Observable } from "rxjs/Observable";
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Rx';
 /**
  * Service that realize logic with connecting to firebase realtime database and authentication.
  * Components user doesn't directly calls connector method. He calls them from [DAL]{@link https://www.npmjs.com/package/@nodeart/dal}
+ *
+ * Querying to `Firebase Realtime Database` are executed with [Firebase Flashlight]{@link https://github.com/firebase/flashlight}.
+ * If you want to create you own connector you must adopt it to `ElasticSearch flashlight` output.
  */
 @Injectable()
 export class FirebaseConnector {
@@ -21,6 +25,10 @@ export class FirebaseConnector {
    * User performed clicks
    */
   private sfUserClicks;
+
+  private basketHistory$: Subject<any> = new Subject();
+
+  private basketHistorySubscription$: Subscription;
 
   constructor(private http: Http){
   }
@@ -102,16 +110,26 @@ export class FirebaseConnector {
    * @param registerForm  Object that have email, password and any additional information about user. 
    * Additional information stores in firebase as user backet
    */
-  registerUser(registerForm){
+  registerUser(registerForm) : Observable<any>{
     let email = registerForm.email;
     let password = registerForm.password;
     delete registerForm.password;
     let userId = this.guid();
-    return this.register(email, password).then(authData => {
-      let firebaseUId = authData.uid;
-      registerForm.firebaseUId = firebaseUId;
-      firebase.database().ref('user/' + userId).set(registerForm).then(data => {
-        console.log(data);
+    return Observable.create(observer => {
+      this.register(email, password).then(authData => {
+        let firebaseUId = authData.uid;
+        registerForm.firebaseUId = firebaseUId;
+        firebase.database().ref('user/' + userId).set(registerForm).then(data => {
+           this.loginEmail(email, password).subscribe( data => {
+              observer.next(data);
+              observer.complete();
+           })
+           .catch(error => {
+              observer.error(error);
+           });
+        });
+      }).catch( error => {
+        observer.error(error);
       });
     });
   }
@@ -226,18 +244,27 @@ export class FirebaseConnector {
   }
 
   /**
-   * Returns Rx Subject of basket history of user by userId or deviceId
+   * Initialize basket history for user. If you want to track basket history run this method when user sign in
    * 
-   * @param {string} userId  userId or deviceId
+   * @param {string} userId userId or deviceId
    * 
-   * @returns {Subject} Rx Subject of basket history
    */
-  getBasketHistorySubjectById(userId){
-    let basketHistory$ = new Subject();
-    basketHistory$.subscribe(data => {
+  initializeBasketHistory(userId) {
+    if(this.basketHistorySubscription$){
+      this.basketHistorySubscription$.unsubscribe();
+    }
+    this.basketHistorySubscription$ = this.basketHistory$.subscribe( data => {
       firebase.database().ref('/basket-history/' + userId).push(data);
     });
-    return basketHistory$;
+  }
+
+  /**
+   * Returns basket history subject
+   * 
+   * @returns {Subject} basketHistory Subject of basketHistory
+   */
+  getBasketHistorySubject(): Subject<any> {
+    return this.basketHistory$;
   }
 
   /**

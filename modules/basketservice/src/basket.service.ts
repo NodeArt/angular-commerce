@@ -34,10 +34,11 @@ export class BasketService{
   userId: string;
 
   /**
-   * User basket history
+   * User basket history Rx Subject
    */
-  basketHistory;
+  basketHistory: Subject<any>;
   constructor(private sessionFlow: SessionFlow, private dal: DbAbstractionLayer){
+    this.basketHistory = this.dal.getBasketHistorySubject();
     this.products.subscribe(products => {
       this.productsSnapshot = products;
       this.totalPrice = 0;
@@ -50,7 +51,6 @@ export class BasketService{
     });
     if(sessionFlow.userId === 'guest'){
       this.getProducts(sessionFlow.deviceId);
-      this.basketHistory = this.dal.getBasketHistorySubjectById(this.sessionFlow.deviceId);
     }
     this.dal.getAuth().onAuthStateChanged((data) => {
       if(data == null){
@@ -58,11 +58,7 @@ export class BasketService{
       }
       if(data){
         this.userId = data.uid;
-        console.log(this.userId);
         this.getProducts(this.userId);
-        if(this.userId != ""){
-          this.basketHistory = this.dal.getBasketHistorySubjectById(this.userId);
-        }
       }
     });
   }
@@ -115,7 +111,6 @@ export class BasketService{
                 }
               }
             }
-            console.log(result);
             this.products.next(result);
           }
         });
@@ -149,7 +144,6 @@ export class BasketService{
         this.getProducts(this.sessionFlow.deviceId);
       });
     }
-    console.log(product);
     this.basketHistory.next({
       action: "added",
       product: product
@@ -175,11 +169,6 @@ export class BasketService{
         return prevArray;
       }
     }, []);
-    console.log({
-      action: "deleted",
-      product: product
-    });
-    console.log(newBasket);
     if(this.userId){
       this.dal.setNewBasket(this.userId, newBasket).subscribe(data => {});
       this.getProducts(this.userId);
@@ -205,11 +194,6 @@ export class BasketService{
       prevArray.push(basketProduct);
       return prevArray;
     }, []);
-    console.log({
-      action: "deleted",
-      product: product
-    });
-    console.log(newBasket);
     if(this.userId){
       this.dal.setNewBasket(this.userId, newBasket).subscribe(data => {});
       this.getProducts(this.userId);

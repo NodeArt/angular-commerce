@@ -688,7 +688,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(productService: any, route: any, basket: any, zone: any, router: any)</code>
+                            <code>constructor(productService: any, route: any, basket: any, zone: any, router: any, dal: any)</code>
                         </td>
                     </tr>
     
@@ -1001,7 +1001,7 @@
 import {ProductService} from &quot;@nodeart/productservice&quot;;
 import {ActivatedRoute, Params, Router} from &quot;@angular/router&quot;;
 import {BasketService} from &quot;@nodeart/basketservice&quot;;
-
+import {DbAbstractionLayer} from &quot;@nodeart/dal&quot;;
 /**
  * Component that represent product page
  */
@@ -1044,11 +1044,16 @@ export class ProductComponent implements OnInit {
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private basket: BasketService,
-              private zone: NgZone,
-              private router: Router){
-    if( basket.userId &amp;&amp; basket.userId !&#x3D;&#x3D; &#x27;guest&#x27; ) {
-      this.isAuth &#x3D; true;
-    }
+              protected zone: NgZone,
+              protected router: Router,
+              private dal: DbAbstractionLayer){
+    this.dal.getAuth().onAuthStateChanged(data &#x3D;&gt; {
+      if(data &#x3D;&#x3D; null) {
+        this.isAuth &#x3D; false;
+      } else { 
+        this.isAuth &#x3D;true;
+      }
+    });
     this.route.params.forEach((params: Params) &#x3D;&gt; {
       this.id &#x3D; params[&#x27;id&#x27;];
       this.productService.getOneProduct(this.id).subscribe( product &#x3D;&gt; {
@@ -1066,6 +1071,7 @@ export class ProductComponent implements OnInit {
     });
 
   }
+
 
   ngOnInit() {
 

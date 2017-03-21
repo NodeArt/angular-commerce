@@ -878,7 +878,7 @@
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>User basket history</p>
+                                    <div class="io-description"><p>User basket history Rx Subject</p>
             </div>
                                 </td>
                             </tr>
@@ -1038,10 +1038,11 @@ export class BasketService{
   userId: string;
 
   /**
-   * User basket history
+   * User basket history Rx Subject
    */
-  basketHistory;
+  basketHistory: Subject&lt;any&gt;;
   constructor(private sessionFlow: SessionFlow, private dal: DbAbstractionLayer){
+    this.basketHistory &#x3D; this.dal.getBasketHistorySubject();
     this.products.subscribe(products &#x3D;&gt; {
       this.productsSnapshot &#x3D; products;
       this.totalPrice &#x3D; 0;
@@ -1054,7 +1055,6 @@ export class BasketService{
     });
     if(sessionFlow.userId &#x3D;&#x3D;&#x3D; &#x27;guest&#x27;){
       this.getProducts(sessionFlow.deviceId);
-      this.basketHistory &#x3D; this.dal.getBasketHistorySubjectById(this.sessionFlow.deviceId);
     }
     this.dal.getAuth().onAuthStateChanged((data) &#x3D;&gt; {
       if(data &#x3D;&#x3D; null){
@@ -1062,11 +1062,7 @@ export class BasketService{
       }
       if(data){
         this.userId &#x3D; data.uid;
-        console.log(this.userId);
         this.getProducts(this.userId);
-        if(this.userId !&#x3D; &quot;&quot;){
-          this.basketHistory &#x3D; this.dal.getBasketHistorySubjectById(this.userId);
-        }
       }
     });
   }
@@ -1119,7 +1115,6 @@ export class BasketService{
                 }
               }
             }
-            console.log(result);
             this.products.next(result);
           }
         });
@@ -1153,7 +1148,6 @@ export class BasketService{
         this.getProducts(this.sessionFlow.deviceId);
       });
     }
-    console.log(product);
     this.basketHistory.next({
       action: &quot;added&quot;,
       product: product
@@ -1179,11 +1173,6 @@ export class BasketService{
         return prevArray;
       }
     }, []);
-    console.log({
-      action: &quot;deleted&quot;,
-      product: product
-    });
-    console.log(newBasket);
     if(this.userId){
       this.dal.setNewBasket(this.userId, newBasket).subscribe(data &#x3D;&gt; {});
       this.getProducts(this.userId);
@@ -1209,11 +1198,6 @@ export class BasketService{
       prevArray.push(basketProduct);
       return prevArray;
     }, []);
-    console.log({
-      action: &quot;deleted&quot;,
-      product: product
-    });
-    console.log(newBasket);
     if(this.userId){
       this.dal.setNewBasket(this.userId, newBasket).subscribe(data &#x3D;&gt; {});
       this.getProducts(this.userId);

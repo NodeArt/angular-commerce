@@ -871,6 +871,7 @@ export class AuthService {
       if(authData &#x3D;&#x3D;&#x3D; null){
         this.sessionFlow.userId &#x3D; &#x27;guest&#x27;;
         this.userData &#x3D; {};
+        this.dal.initializeBasketHistory(sessionFlow.deviceId);
       }
       if(authData){
         let uid &#x3D; authData.uid;
@@ -880,6 +881,7 @@ export class AuthService {
             let userData &#x3D; data.val()[0][&#x27;_source&#x27;];
             userData.userId &#x3D; data.val()[0][&#x27;_id&#x27;];
             this.sessionFlow.userId &#x3D; data.val()[0][&#x27;_id&#x27;];
+            this.dal.initializeBasketHistory(userData.userId);
             this.zone.run(() &#x3D;&gt; {
               this.userData &#x3D; userData;
             });
