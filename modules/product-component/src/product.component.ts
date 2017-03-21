@@ -161,7 +161,8 @@ export class ProductComponent implements OnInit {
     let buyObj = {
       id: this.id,
       fullId: this.id + "?",
-      attributes: []
+      attributes: [],
+      product: this.product
     };
     buyObj.attributes = this.attributesToChoose.map(item => {
       let obj = {
