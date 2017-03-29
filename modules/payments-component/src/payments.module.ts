@@ -1,3 +1,4 @@
+import { PaymentsService } from './payments.service';
 import {NgModule} from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,7 +36,8 @@ import { PaymentsSpinnerComponent } from './payments-spinner/payments-spinner.co
     PaymentsContainerComponent,
     TwoCheckoutComponent,
     StripeComponent,
-    PaymentsSpinnerComponent
+    PaymentsSpinnerComponent,
+    PaymentsService
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,7 @@ import { PaymentsSpinnerComponent } from './payments-spinner/payments-spinner.co
     BasketServiceModule
   ],
   providers: [
+    PaymentsService
   ]
 
 })

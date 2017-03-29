@@ -262,6 +262,9 @@
                                     <a href="../injectables/PasswordAuth.html" >PasswordAuth</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/PaymentsService.html" >PaymentsService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/ProductService.html" >ProductService</a>
                                 </li>
                                 <li class="link">
@@ -558,6 +561,9 @@
                                            <a href="../injectables/PasswordAuth.html" >PasswordAuth</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../injectables/PaymentsService.html" >PaymentsService</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../injectables/ProductService.html" >ProductService</a>
                                        </li>
                                        <li class="link">
@@ -685,6 +691,14 @@
                     </ul>
                 </div>
                 <div class="col-sm-3">
+                    <h3>Providers<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#providers-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="../injectables/PaymentsService.html" >PaymentsService</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
                     <h3>Imports<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#imports-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
                     <ul class="list-group">
                             <li class="list-group-item">
@@ -719,13 +733,17 @@
                             <li class="list-group-item">
                                     <a href="../components/PaymentsSpinnerComponent.html" >PaymentsSpinnerComponent</a>
                             </li>
+                            <li class="list-group-item">
+                                    <a href="../s/PaymentsService.html" >PaymentsService</a>
+                            </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre><code class="hljs javascript">import {NgModule} from &#x27;@angular/core&#x27;;
+        <pre><code class="hljs javascript">import { PaymentsService } from &#x27;./payments.service&#x27;;
+import {NgModule} from &#x27;@angular/core&#x27;;
 import { HttpModule } from &#x27;@angular/http&#x27;;
 import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
 import { FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
@@ -762,7 +780,8 @@ import { PaymentsSpinnerComponent } from &#x27;./payments-spinner/payments-spinn
     PaymentsContainerComponent,
     TwoCheckoutComponent,
     StripeComponent,
-    PaymentsSpinnerComponent
+    PaymentsSpinnerComponent,
+    PaymentsService
   ],
   imports: [
     BrowserModule,
@@ -772,6 +791,7 @@ import { PaymentsSpinnerComponent } from &#x27;./payments-spinner/payments-spinn
     BasketServiceModule
   ],
   providers: [
+    PaymentsService
   ]
 
 })

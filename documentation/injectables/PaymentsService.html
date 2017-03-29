@@ -101,7 +101,7 @@
                                     <a href="../modules/PaymentsModule.html" >PaymentsModule</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../modules/ProductModule.html"  class="active" >ProductModule</a>
+                                    <a href="../modules/ProductModule.html" >ProductModule</a>
                                 </li>
                                 <li class="link">
                                     <a href="../modules/ProductServiceModule.html" >ProductServiceModule</a>
@@ -262,7 +262,7 @@
                                     <a href="../injectables/PasswordAuth.html" >PasswordAuth</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../injectables/PaymentsService.html" >PaymentsService</a>
+                                    <a href="../injectables/PaymentsService.html"  class="active" >PaymentsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/ProductService.html" >ProductService</a>
@@ -400,7 +400,7 @@
                                            <a href="../modules/PaymentsModule.html" >PaymentsModule</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../modules/ProductModule.html"  class="active" >ProductModule</a>
+                                           <a href="../modules/ProductModule.html" >ProductModule</a>
                                        </li>
                                        <li class="link">
                                            <a href="../modules/ProductServiceModule.html" >ProductServiceModule</a>
@@ -561,7 +561,7 @@
                                            <a href="../injectables/PasswordAuth.html" >PasswordAuth</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../injectables/PaymentsService.html" >PaymentsService</a>
+                                           <a href="../injectables/PaymentsService.html"  class="active" >PaymentsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/ProductService.html" >ProductService</a>
@@ -612,26 +612,16 @@
                    
                    </nav>
                </div>
-               <div class="content module">
+               <div class="content injectable">
                    <div class="content-data">
 
-<ol class="breadcrumb">
-  <li>Modules</li>
-  <li>ProductModule</li>
-</ol>
 
-<div class="text-center">
-    <object id="demo-svg" type="image/svg+xml" data="../modules/ProductModule/dependencies.svg" style="width: 100%; height: 250px;">
-            Your browser does not support SVG
-    </object>
-    <div class="btn-group">
-        <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
-        <button id="reset" class="btn btn-default btn-sm">Reset</button>
-        <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
-    </div>
-</div>
-<script src="../js/libs/svg-pan-zoom.min.js"></script>
-<script src="../js/svg-pan-zoom.controls.js"></script>
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>PaymentsService</li>
+</ol>
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="active">
@@ -648,74 +638,58 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>modules/product-component/src/product.module.ts</code>
+            <code>modules/payments-component/src/payments.service.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Module that represent product page</p>
 
-            </p>
+            <section>
+                <h3 id="constructor">Constructor</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>constructor()</code>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+            </section>
 
-        <div class="container-fluid module">
-            <div class="row">
-                <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#declarations-anchor" target="_blank"><span class="fa fa-info-circle"></span></a></h3>
-                    <ul class="list-group">
-                            <li class="list-group-item">
-                                <a href="../components/ProductComponent.html">ProductComponent</a>
-                            </li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h3>Imports<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#imports-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
-                    <ul class="list-group">
-                            <li class="list-group-item">
-                                    <a href="../modules/BasketServiceModule.html" >BasketServiceModule</a>
-                            </li>
-                            <li class="list-group-item">
-                                    <a href="../modules/ProductServiceModule.html" >ProductServiceModule</a>
-                            </li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h3>Exports<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#exports-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
-                    <ul class="list-group">
-                            <li class="list-group-item">
-                                    <a href="../components/ProductComponent.html" >ProductComponent</a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Public</span> orderSubject</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-circle"></span><code>orderSubject:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
     </div>
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre><code class="hljs javascript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { RouterModule } from &#x27;@angular/router&#x27;;
-import { ProductServiceModule } from &#x27;@nodeart/productservice&#x27;;
-import { BasketServiceModule } from &#x27;@nodeart/basketservice&#x27;;
-import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
-import { ProductComponent } from &#x27;./product.component&#x27;;
-import { CommonModule } from &#x27;@angular/common&#x27;;
+        <pre><code class="hljs javascript">import { Subject } from &#x27;rxjs/Subject&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+@Injectable()
+export class PaymentsService {
 
-/**
- * Module that represent product page
- */
-@NgModule({
-    imports: [BasketServiceModule, ProductServiceModule, CommonModule, RouterModule],
-    exports: [ProductComponent],
-    declarations: [ProductComponent],
-    providers: [],
-})
-export class ProductModule { }
-</code></pre>
+    public orderSubject: Subject&lt;any&gt;;
+
+    constructor(){
+        this.orderSubject &#x3D; new Subject();
+    }
+}</code></pre>
     </div>
 </div>
-
-
-
 
 
 

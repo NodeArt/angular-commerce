@@ -1,3 +1,4 @@
+import { PaymentsService } from './payments.service';
 import { AuthService } from '@nodeart/auth-service';
 import { BasketService } from '@nodeart/basketservice';
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -89,7 +90,8 @@ export class PaymentsContainerComponent implements OnInit {
         private basketService: BasketService,
         private zone: NgZone,
         private dal: DbAbstractionLayer,
-        private authService: AuthService) {
+        private authService: AuthService,
+        private paymentsService: PaymentsService) {
     }
     ngOnInit() {
         this.zone.run(() => {
@@ -170,6 +172,7 @@ export class PaymentsContainerComponent implements OnInit {
               this.isLoading = false;
             };
             this.saveOrder(data).subscribe( res => {
+                this.paymentsService.orderSubject.next(data);
                 this.failedPayment = data.failedPayment;
                 this.successPayment = data.successPayment;
             } ).catch(e => {

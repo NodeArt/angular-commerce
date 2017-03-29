@@ -206,22 +206,6 @@ export class FirebaseConnector {
   }
 
   /**
-   * Returns product by queryObj provided by DbAbstractionLayer
-   * 
-   * @param {Object} queryObj ElasticSearch query object
-   * 
-   * @returns {Observable} Observable of product object
-   */
-  getOneProduct(queryObj){
-    let key = firebase.database().ref().child('search/request').push(queryObj).key;
-    return Observable.create( observer => {
-      firebase.database().ref().child('search/response/' + key + '/hits').on('value', data => {
-        observer.next(data);
-      });
-    });
-  }
-
-  /**
    * Returns basket content of specific user
    * 
    * @param {string} userId user Id
@@ -325,12 +309,15 @@ export class FirebaseConnector {
     let key = firebase.database().ref().child('search/request').push({
       index: index,
       type: type,
-      query: JSON.stringify(queryObj)
+      body: queryObj
     }).key;
     console.log(key);
     return Observable.create( observer => {
-      firebase.database().ref().child('search/response/' + key + '/hits').on('value', data => {
-        observer.next(data);
+      firebase.database().ref().child('search/response/' + key + '/hits/hits').on('value', data => {
+        if(data.val()){
+          console.log(data.val());
+          observer.next(data);
+        }
       });
     });
   }
@@ -348,10 +335,10 @@ export class FirebaseConnector {
     let key = firebase.database().ref().child('search/request').push({
       index: index,
       type: type,
-      query: JSON.stringify(queryObj)
+      body: queryObj
     }).key;
     return Observable.create( observer => {
-      firebase.database().ref().child('search/response/' + key).on('value', data => {
+      firebase.database().ref().child('search/response/' + key + '/hits').on('value', data => {
         observer.next(data);
       });
     });
@@ -370,10 +357,10 @@ export class FirebaseConnector {
     let key = firebase.database().ref().child('search/request').push({
       index: index,
       type: type,
-      query: JSON.stringify(queryObj)
+      body: queryObj
     }).key;
     return Observable.create( observer => {
-      firebase.database().ref().child('search/response/' + key + '/total').on('value', data => {
+      firebase.database().ref().child('search/response/' + key + '/hits/total').on('value', data => {
         observer.next(data);
       });
     });
@@ -553,5 +540,20 @@ export class FirebaseConnector {
         }
       });
     });
+  }
+
+  /**
+   * Emits order object when new order added
+   * 
+   * @returns {Observable} Observable of new order
+   */
+  listenOrders() : Observable<any>{
+    return Observable.create( observer => {
+      firebase.database().ref('orders').on('child_added', newOrder => {
+        if(newOrder.val()){
+          observer.next(newOrder.val());
+        }
+      });
+    })
   }
 }

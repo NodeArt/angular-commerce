@@ -20,7 +20,14 @@ export class ProductService{
    * @param {string} id id of product
    */
   getOneProduct(id: string){
-    return this.dal.getOneProduct(id);
+    let queryObject = {
+      "query": {
+          "term":{
+              "_id": id
+          }
+      }
+    };
+    return this.dal.requestData(this.esIndex, 'product', queryObject);
   }
 
   /**

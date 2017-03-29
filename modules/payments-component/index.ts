@@ -1,3 +1,4 @@
+export { PaymentsService } from './src/payments.service';
 export { TwoCheckoutComponent } from './src/paymets/payment-methods/2checkout/two-checkout.component';
 export { StripeComponent } from './src/paymets/payment-methods/stripe/stripe.component';
 export { PaymentsContainerComponent } from './src/payments-container.component';

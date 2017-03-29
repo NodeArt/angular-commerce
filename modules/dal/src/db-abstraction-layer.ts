@@ -1,6 +1,7 @@
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { esIndex } from './consts';
 import {Injectable, Inject} from "@angular/core";
-
 /**
  * Data abstraction layer is an absraction to some connector (for now realized {@link FirebaseConnector}, but you can create your own using this contract).
  * To use some connector you must provide it in app.module.ts
@@ -67,28 +68,6 @@ export class DbAbstractionLayer {
    */
   addProduct(product){
     this.connector.addProduct(product);
-  }
-
-  /**
-   * Returns product by queryObj provided by DbAbstractionLayer
-   * 
-   * @param {Object} queryObj ElasticSearch query object
-   * 
-   * @returns Observable of product object.
-   */
-  getOneProduct(productId){
-    var queryObj = {
-            index: esIndex,
-            type: 'product',
-            query: {
-                "query": {
-                    "term":{
-                        "_id": productId
-                    }
-                }
-            }
-        };
-    return this.connector.getOneProduct(queryObj);
   }
 
   /**
@@ -375,7 +354,7 @@ export class DbAbstractionLayer {
     let queryObj = {
       query: {
         match: {
-          userId: userId
+          "orderForm.userId": userId
         }
       }
     };
@@ -400,5 +379,14 @@ export class DbAbstractionLayer {
    */
   getOrderById(id) {
     return this.connector.getOrderById(id);
+  }
+  
+  /**
+   * Emits order object when new order added
+   * 
+   * @returns {Observable} Observable of new order
+   */
+  listenOrders() :Observable<any> {
+    return this.connector.listenOrders();
   }
 }

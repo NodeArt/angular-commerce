@@ -4,6 +4,8 @@ Online store component written in Angular.
 
 Full API and documentation check [here](https://nodeart.github.io/).
 
+Check change log [here](https://github.com/NodeArt/angular-commerce/blob/master/CHANGELOG.md)
+
 ## Store architecture
 
 ### Components dependencies

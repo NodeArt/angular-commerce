@@ -262,6 +262,9 @@
                                     <a href="../injectables/PasswordAuth.html" >PasswordAuth</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../injectables/PaymentsService.html" >PaymentsService</a>
+                                </li>
+                                <li class="link">
                                     <a href="../injectables/ProductService.html" >ProductService</a>
                                 </li>
                                 <li class="link">
@@ -556,6 +559,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/PasswordAuth.html" >PasswordAuth</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/PaymentsService.html" >PaymentsService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/ProductService.html" >ProductService</a>
@@ -1159,52 +1165,6 @@
                                         </div>
                                             <div class="io-description">
                                                 
-                                            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b> getOneProduct</b>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-            <code>getOneProduct(queryObj: any)</code>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description"><p>Returns product by queryObj provided by DbAbstractionLayer</p>
-            </div>
-                                        <div class="io-description">
-                                                <b>Parameters :</b>
-                                                <ul class="jsdoc-params">
-                                                        <li>
-                                                            <div>
-                                                                <b>queryObj</b>
-                                                                    :     <code>Object</code>
-            
-                                                            </div>
-                                                            <div>
-                                                                <p>ElasticSearch query object</p>
-            
-                                                            </div>
-                                                        </li>
-                                                </ul>
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns: </b>    <code>void</code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                <p>Observable of product object</p>
-            
                                             </div>
                                 </td>
                             </tr>
@@ -2234,6 +2194,38 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> listenOrders</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>listenOrders()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Emits order object when new order added</p>
+            </div>
+                                        <div class="io-description">
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>any</code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                <p>Observable of new order</p>
+            
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             </section>
 
             <section>
@@ -2521,22 +2513,6 @@ export class FirebaseConnector {
   }
 
   /**
-   * Returns product by queryObj provided by DbAbstractionLayer
-   * 
-   * @param {Object} queryObj ElasticSearch query object
-   * 
-   * @returns {Observable} Observable of product object
-   */
-  getOneProduct(queryObj){
-    let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push(queryObj).key;
-    return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;search/response/&#x27; + key + &#x27;/hits&#x27;).on(&#x27;value&#x27;, data &#x3D;&gt; {
-        observer.next(data);
-      });
-    });
-  }
-
-  /**
    * Returns basket content of specific user
    * 
    * @param {string} userId user Id
@@ -2640,12 +2616,15 @@ export class FirebaseConnector {
     let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push({
       index: index,
       type: type,
-      query: JSON.stringify(queryObj)
+      body: queryObj
     }).key;
     console.log(key);
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;search/response/&#x27; + key + &#x27;/hits&#x27;).on(&#x27;value&#x27;, data &#x3D;&gt; {
-        observer.next(data);
+      firebase.database().ref().child(&#x27;search/response/&#x27; + key + &#x27;/hits/hits&#x27;).on(&#x27;value&#x27;, data &#x3D;&gt; {
+        if(data.val()){
+          console.log(data.val());
+          observer.next(data);
+        }
       });
     });
   }
@@ -2663,10 +2642,10 @@ export class FirebaseConnector {
     let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push({
       index: index,
       type: type,
-      query: JSON.stringify(queryObj)
+      body: queryObj
     }).key;
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;search/response/&#x27; + key).on(&#x27;value&#x27;, data &#x3D;&gt; {
+      firebase.database().ref().child(&#x27;search/response/&#x27; + key + &#x27;/hits&#x27;).on(&#x27;value&#x27;, data &#x3D;&gt; {
         observer.next(data);
       });
     });
@@ -2685,10 +2664,10 @@ export class FirebaseConnector {
     let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push({
       index: index,
       type: type,
-      query: JSON.stringify(queryObj)
+      body: queryObj
     }).key;
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;search/response/&#x27; + key + &#x27;/total&#x27;).on(&#x27;value&#x27;, data &#x3D;&gt; {
+      firebase.database().ref().child(&#x27;search/response/&#x27; + key + &#x27;/hits/total&#x27;).on(&#x27;value&#x27;, data &#x3D;&gt; {
         observer.next(data);
       });
     });
@@ -2868,6 +2847,21 @@ export class FirebaseConnector {
         }
       });
     });
+  }
+
+  /**
+   * Emits order object when new order added
+   * 
+   * @returns {Observable} Observable of new order
+   */
+  listenOrders() : Observable&lt;any&gt;{
+    return Observable.create( observer &#x3D;&gt; {
+      firebase.database().ref(&#x27;orders&#x27;).on(&#x27;child_added&#x27;, newOrder &#x3D;&gt; {
+        if(newOrder.val()){
+          observer.next(newOrder.val());
+        }
+      });
+    })
   }
 }
 </code></pre>
