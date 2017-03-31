@@ -171,13 +171,15 @@ export class PaymentsContainerComponent implements OnInit {
               });
               this.isLoading = false;
             };
-            this.saveOrder(data).subscribe( res => {
-                this.paymentsService.orderSubject.next(data);
-                this.failedPayment = data.failedPayment;
-                this.successPayment = data.successPayment;
-            } ).catch(e => {
-                this.successPayment = false;
-                this.failedPayment = true;
+            this.saveOrder(data).subscribe( 
+                res => {
+                    this.paymentsService.orderSubject.next(data);
+                    this.failedPayment = data.failedPayment;
+                    this.successPayment = data.successPayment;
+                },
+                e => {
+                    this.successPayment = false;
+                    this.failedPayment = true;
             });
         });
     }

@@ -1,3 +1,14 @@
+# 2.1.20
+
+### Features
+
+* **firebase-connector:** registerUser(registerForm) - add registerTimestapm
+* **firebase-connector:** change names token-requests, token-response to payment-request, payment-response
+
+### Bug fixes 
+
+* **payments-container:** fix catch on subscribe
+
 # 2.1.19
 
 ### Features

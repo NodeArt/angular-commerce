@@ -115,6 +115,8 @@ export class FirebaseConnector {
     let password = registerForm.password;
     delete registerForm.password;
     let userId = this.guid();
+    // add current time
+    registerForm["registerTime"] = Date.now();
     return Observable.create(observer => {
       this.register(email, password).then(authData => {
         let firebaseUId = authData.uid;
@@ -492,7 +494,7 @@ export class FirebaseConnector {
    * @returns [firebase.database.ThenableReference]{@link https://firebase.google.com/docs/reference/js/firebase.database.ThenableReference}
    */
   addPaymentRequest(data, paymentMethod) {
-    return firebase.database().ref('token-requests').push({
+    return firebase.database().ref('payment-request').push({
             data: data,
             payMethod: paymentMethod
         });
@@ -507,7 +509,7 @@ export class FirebaseConnector {
    */
   listenPaymentResponse(paymentKey) {
     return Observable.create( observer => {
-      firebase.database().ref('token-response/' + paymentKey).on('value', data => {
+      firebase.database().ref('payment-response/' + paymentKey).on('value', data => {
         if(data.val()){
           observer.next(data);
         }
