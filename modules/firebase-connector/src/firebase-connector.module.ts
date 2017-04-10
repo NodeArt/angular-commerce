@@ -6,10 +6,18 @@ import {FacebookAuth} from "./authMethods/facebook";
 import {PasswordAuth} from "./authMethods/password";
 import {TwitterAuth} from "./authMethods/twitter";
 import {AnonymouslyAuth} from "./authMethods/anonymously";
-
+import {VkAuth} from "./authMethods/vk";
 /**
  * Firebase connector module
  */
+
+export {
+  VkAuthConfig,
+  PopupConfig,
+  FbConfig,
+  VkConfig
+} from  "./authMethods/vk";
+
 @NgModule({
   providers: [
     FirebaseConnector,
@@ -18,9 +26,10 @@ import {AnonymouslyAuth} from "./authMethods/anonymously";
     FacebookAuth,
     PasswordAuth,
     TwitterAuth,
-    AnonymouslyAuth
+    AnonymouslyAuth,
+    VkAuth
   ]
 })
 export class FirebaseConnectorModule {
-  
+
 }
