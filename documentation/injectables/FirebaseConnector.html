@@ -273,6 +273,9 @@
                                 <li class="link">
                                     <a href="../injectables/TwitterAuth.html" >TwitterAuth</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../injectables/VkAuth.html" >VkAuth</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -289,6 +292,15 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/AuthMethod.html" >AuthMethod</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/PopupConfig.html" >PopupConfig</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/VkAuthConfig.html" >VkAuthConfig</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/VkConfig.html" >VkConfig</a>
                                 </li>
                         </ul>
                     </li>
@@ -572,6 +584,9 @@
                                        <li class="link">
                                            <a href="../injectables/TwitterAuth.html" >TwitterAuth</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../injectables/VkAuth.html" >VkAuth</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -588,6 +603,15 @@
                    >
                                        <li class="link">
                                            <a href="../interfaces/AuthMethod.html" >AuthMethod</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/PopupConfig.html" >PopupConfig</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/VkAuthConfig.html" >VkAuthConfig</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/VkConfig.html" >VkConfig</a>
                                        </li>
                                </ul>
                            </li>
@@ -959,7 +983,7 @@
                                                 </ul>
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns: </b>    <code>any</code>
+                                            <b>Returns: </b>    <code>Observable&lt;any&gt;</code>
             
                                         </div>
                                             <div class="io-description">
@@ -1304,7 +1328,7 @@
                                         <div class="io-description">
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns: </b>    <code>any</code>
+                                            <b>Returns: </b>    <code>Subject&lt;any&gt;</code>
             
                                         </div>
                                             <div class="io-description">
@@ -1774,7 +1798,7 @@
             
                             <tr>
                                 <td class="col-md-4">
-            <code>addGeneralCategory(generalCategoryForm: any)</code>
+            <code>addGeneralCategory(generalCategoryForm: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a>)</code>
                                 </td>
                             </tr>
             
@@ -1819,7 +1843,7 @@
             
                             <tr>
                                 <td class="col-md-4">
-            <code>addCategory(categoryForm: any)</code>
+            <code>addCategory(categoryForm: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a>)</code>
                                 </td>
                             </tr>
             
@@ -1864,7 +1888,7 @@
             
                             <tr>
                                 <td class="col-md-4">
-            <code>addAttribute(attributeForm: any, categoryId: any)</code>
+            <code>addAttribute(attributeForm: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a>, categoryId: any)</code>
                                 </td>
                             </tr>
             
@@ -1918,7 +1942,7 @@
             
                             <tr>
                                 <td class="col-md-4">
-            <code>addTag(tagForm: any, categoryId: any)</code>
+            <code>addTag(tagForm: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a>, categoryId: any)</code>
                                 </td>
                             </tr>
             
@@ -2215,7 +2239,7 @@
                                         <div class="io-description">
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns: </b>    <code>any</code>
+                                            <b>Returns: </b>    <code>Observable&lt;any&gt;</code>
             
                                         </div>
                                             <div class="io-description">
@@ -2239,7 +2263,7 @@
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-lock"></span><code>basketHistory$:     <code>any</code>
+                                    <span class="modifier-icon fa fa-lock"></span><code>basketHistory$:     <code>Subject&lt;any&gt;</code>
             </bcode>
                                 </td>
                             </tr>
@@ -2254,7 +2278,7 @@
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <span class="modifier-icon fa fa-lock"></span><code>basketHistorySubscription$:     <code>any</code>
+                                    <span class="modifier-icon fa fa-lock"></span><code>basketHistorySubscription$:     <code>Subscription</code>
             </bcode>
                                 </td>
                             </tr>
@@ -2422,6 +2446,8 @@ export class FirebaseConnector {
     let password &#x3D; registerForm.password;
     delete registerForm.password;
     let userId &#x3D; this.guid();
+    // add current time
+    registerForm[&quot;registerTime&quot;] &#x3D; Date.now();
     return Observable.create(observer &#x3D;&gt; {
       this.register(email, password).then(authData &#x3D;&gt; {
         let firebaseUId &#x3D; authData.uid;
@@ -2799,7 +2825,7 @@ export class FirebaseConnector {
    * @returns [firebase.database.ThenableReference]{@link https://firebase.google.com/docs/reference/js/firebase.database.ThenableReference}
    */
   addPaymentRequest(data, paymentMethod) {
-    return firebase.database().ref(&#x27;token-requests&#x27;).push({
+    return firebase.database().ref(&#x27;payment-request&#x27;).push({
             data: data,
             payMethod: paymentMethod
         });
@@ -2814,7 +2840,7 @@ export class FirebaseConnector {
    */
   listenPaymentResponse(paymentKey) {
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref(&#x27;token-response/&#x27; + paymentKey).on(&#x27;value&#x27;, data &#x3D;&gt; {
+      firebase.database().ref(&#x27;payment-response/&#x27; + paymentKey).on(&#x27;value&#x27;, data &#x3D;&gt; {
         if(data.val()){
           observer.next(data);
         }

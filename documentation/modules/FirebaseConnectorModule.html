@@ -273,6 +273,9 @@
                                 <li class="link">
                                     <a href="../injectables/TwitterAuth.html" >TwitterAuth</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../injectables/VkAuth.html" >VkAuth</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -289,6 +292,15 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/AuthMethod.html" >AuthMethod</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/PopupConfig.html" >PopupConfig</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/VkAuthConfig.html" >VkAuthConfig</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/VkConfig.html" >VkConfig</a>
                                 </li>
                         </ul>
                     </li>
@@ -572,6 +584,9 @@
                                        <li class="link">
                                            <a href="../injectables/TwitterAuth.html" >TwitterAuth</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../injectables/VkAuth.html" >VkAuth</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -588,6 +603,15 @@
                    >
                                        <li class="link">
                                            <a href="../interfaces/AuthMethod.html" >AuthMethod</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/PopupConfig.html" >PopupConfig</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/VkAuthConfig.html" >VkAuthConfig</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/VkConfig.html" >VkConfig</a>
                                        </li>
                                </ul>
                            </li>
@@ -651,13 +675,6 @@
             <code>modules/firebase-connector/src/firebase-connector.module.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Firebase connector module</p>
-
-            </p>
 
         <div class="container-fluid module">
             <div class="row">
@@ -685,6 +702,9 @@
                             <li class="list-group-item">
                                 <a href="../injectables/AnonymouslyAuth.html" >AnonymouslyAuth</a>
                             </li>
+                            <li class="list-group-item">
+                                <a href="../injectables/VkAuth.html" >VkAuth</a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -699,10 +719,18 @@ import {FacebookAuth} from &quot;./authMethods/facebook&quot;;
 import {PasswordAuth} from &quot;./authMethods/password&quot;;
 import {TwitterAuth} from &quot;./authMethods/twitter&quot;;
 import {AnonymouslyAuth} from &quot;./authMethods/anonymously&quot;;
-
+import {VkAuth} from &quot;./authMethods/vk&quot;;
 /**
  * Firebase connector module
  */
+
+export {
+  VkAuthConfig,
+  PopupConfig,
+  FbConfig,
+  VkConfig
+} from  &quot;./authMethods/vk&quot;;
+
 @NgModule({
   providers: [
     FirebaseConnector,
@@ -711,11 +739,12 @@ import {AnonymouslyAuth} from &quot;./authMethods/anonymously&quot;;
     FacebookAuth,
     PasswordAuth,
     TwitterAuth,
-    AnonymouslyAuth
+    AnonymouslyAuth,
+    VkAuth
   ]
 })
 export class FirebaseConnectorModule {
-  
+
 }
 </code></pre>
     </div>
