@@ -79,15 +79,17 @@ export class VkAuth implements AuthMethod {
                  */
                 .catch((err, outputObs) => outputObs)
                 /**
-                 * transfrom hash to object
+                 * transform hash to object
                  */
-                .map(hash => hash.replace('#', ''))
-                .map(params => params.split('&'))
-                .map((arr: Array<string>) => arr.reduce((acc, elem) => {
-                    const [key, val] = elem.split('=');
-                    acc[key] = val;
-                    return acc;
-                }, {}))
+                .map(hash =>
+                    hash.replace('#', '')
+                        .split('&')
+                        .reduce((acc, elem) => {
+                            const [key, val] = elem.split('=');
+                            acc[decodeURIComponent(key)] = decodeURIComponent(val);
+                            return acc;
+                        }, {})
+                )
                 /**
                  * once we have reached subscribe, trigger next on subject and block interval execution
                  */
@@ -147,7 +149,7 @@ export class VkAuth implements AuthMethod {
      * utility function that converts an object to url
      * @returns {string}
      */
-    public createUrl(obj, starter): string {
+    public createUrl(obj : Object, starter?: string): string {
         const join = (arr: Array<string>): string => arr.join(',');
         return Object.keys(obj)
             .reduce(
@@ -156,7 +158,7 @@ export class VkAuth implements AuthMethod {
                         join(obj[key]) :
                         obj[key]
                     }`,
-                starter
+                starter || ''
             )
     }
 }

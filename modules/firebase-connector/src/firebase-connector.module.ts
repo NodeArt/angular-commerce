@@ -14,7 +14,6 @@ import {VkAuth} from "./authMethods/vk";
 export {
   VkAuthConfig,
   PopupConfig,
-  FbConfig,
   VkConfig
 } from  "./authMethods/vk";
 
