@@ -156,8 +156,9 @@ export class ProductService{
     for(let i = 0; i < attributes.length; i++){
         let key = "attributes." + attributes[i]['attrId'];
         queryObject.query.bool.must[0]['bool'].should.push({
-          match: {
-            [key] : attributes[i]['valueName']
+          multi_match: {
+            query: attributes[i]['valueName'],
+            fields: [key]
           }
         });
     }
@@ -344,8 +345,9 @@ export class ProductService{
     for(let i = 0; i < attributes.length; i++){
         let key = "attributes." + attributes[i]['attrId'];
         queryObject.query.bool.must[0]['bool'].should.push({
-          match: {
-            [key] : attributes[i]['valueName']
+          multi_match: {
+            query: attributes[i]['valueName'],
+            fields: [key]
           }
         });
     }

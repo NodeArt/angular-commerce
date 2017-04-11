@@ -1,3 +1,14 @@
+# 2.1.22
+
+### Features 
+
+* **firebase-connector:** add VK.com auth method
+* **product-service:** rewrite queries to Firebase Flashlight v3.0.0
+* **product-list-component:** rewrite to new product-service
+* **product-general-component:** add category update output
+
+
+
 # 2.1.21
 
 ### Features 

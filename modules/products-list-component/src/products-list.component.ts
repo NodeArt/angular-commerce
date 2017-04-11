@@ -57,6 +57,8 @@ export class ProductsListComponent implements OnInit {
    */
   @Input() categoryId = "";
 
+  @Input() priceRanges = [0, 'Infinity'];
+
   constructor(private dal: DbAbstractionLayer,
               private router: Router, 
               private productService: ProductService,
@@ -106,7 +108,7 @@ export class ProductsListComponent implements OnInit {
     console.log(this.attrs);
     console.log(this.tags);
     this.productService
-      .searchProducts(this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
+      .searchProducts(this.categoryId, this.priceRanges ,this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
       .subscribe( data =>{
       if(data.val()){
         this.products = data.val().map(item => {
@@ -124,7 +126,7 @@ export class ProductsListComponent implements OnInit {
   filter(){
     this.currentPage = 1;
     this.getTotalPages();
-    this.productService.filterProducts(this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
+    this.productService.filterProducts(this.priceRanges ,this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
       .subscribe(data => {
         if (data.val()){
           if (data.val()['total'] == 0) { 
@@ -144,7 +146,7 @@ export class ProductsListComponent implements OnInit {
    * Get total pages for product from category
    */
   getTotalPages(){
-    this.productService.getTotalPages(this.attrs, this.tags).subscribe( data => {
+    this.productService.getTotalPages(this.categoryId, this.priceRanges, this.attrs, this.tags).subscribe( data => {
       if(data.val()){
         let items = data.val();
         this.totalPages = Math.ceil(items / this.itemsOnPage);
