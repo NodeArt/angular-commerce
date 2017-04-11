@@ -36,8 +36,7 @@ import { PaymentsSpinnerComponent } from './payments-spinner/payments-spinner.co
     PaymentsContainerComponent,
     TwoCheckoutComponent,
     StripeComponent,
-    PaymentsSpinnerComponent,
-    PaymentsService
+    PaymentsSpinnerComponent
   ],
   imports: [
     BrowserModule,

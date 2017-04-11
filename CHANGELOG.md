@@ -1,3 +1,10 @@
+# 2.1.21
+
+### Features 
+
+* **firebase-connector, dal:** add getOrderSubject()
+* **payments-component:** update Stripe component to new api, add validators
+
 # 2.1.20
 
 ### Features

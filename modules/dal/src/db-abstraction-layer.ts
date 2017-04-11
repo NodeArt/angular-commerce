@@ -389,4 +389,8 @@ export class DbAbstractionLayer {
   listenOrders() :Observable<any> {
     return this.connector.listenOrders();
   }
+
+  getOrderSubject() {
+    return this.connector.getOrderSubject();
+  }
 }

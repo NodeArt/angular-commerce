@@ -1,33 +1,36 @@
 <h1>Custom Stripe Form</h1>
-<form action="" method="POST" id="payment-form" [formGroup]="stripeForm" (submit)="handleCardData()">
-  <span class="payment-message" *ngIf="stripeError">
-    {{ stripeError.message }}
-  </span>
+<form action="" method="POST" id="payment-form" [formGroup]="stripeForm" (submit)="handleCardData($event)">
+  <fieldset>
 
-  <div class="form-row">
-    <label>
-      <span>Card Number</span>
-      <input formControlName="cardNumber" type="text" size="20" data-stripe="number"
-             autocomplete="off">
-    </label>
-  </div>
+    <span class="payment-message" *ngIf="stripeError">
+      {{ stripeError.message }}
+    </span>
 
-  <div class="form-row">
-    <label>
-      <span>Expiration (MM/YY)</span>
-      <input formControlName="expiryMonth" type="text" size="2" data-stripe="exp_month" autocomplete="off">
-    </label>
-    <span> / </span>
-    <input formControlName="expiryYear" type="text" size="2" data-stripe="exp_year" autocomplete="off">
-  </div>
+    <div class="form-row">
+      <label>
+        <span>Card Number</span>
+        <input formControlName="cardNumber" type="text" size="20" data-stripe="number"
+               autocomplete="off">
+      </label>
+    </div>
 
-  <div class="form-row">
-    <label>
-      <span>CVC</span>
-      <input formControlName="cvc" type="password" size="4" data-stripe="cvc" autocomplete="off"
-             maxlength="3" pattern="[0-9]+">
-    </label>
-  </div>
+    <div class="form-row">
+      <label>
+        <span>Expiration (MM/YY)</span>
+        <input formControlName="expiryMonth" type="text" size="2" data-stripe="exp_month" autocomplete="off">
+      </label>
+      <span> / </span>
+      <input formControlName="expiryYear" type="text" size="2" data-stripe="exp_year" autocomplete="off">
+    </div>
 
-  <input type="submit" value="Submit Payment">
+    <div class="form-row">
+      <label>
+        <span>CVC</span>
+        <input formControlName="cvc" type="password" size="4" data-stripe="cvc" autocomplete="off"
+               maxlength="3" pattern="[0-9]+">
+      </label>
+    </div>
+
+    <input type="submit" value="Submit Payment">
+  </fieldset>
 </form>

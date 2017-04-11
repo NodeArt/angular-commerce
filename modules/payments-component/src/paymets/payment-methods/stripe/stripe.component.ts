@@ -1,47 +1,33 @@
-import {Component, OnInit, Output, EventEmitter} from "@angular/core";
-import {FormGroup, FormBuilder} from "@angular/forms";
+import {Component, OnInit, Output, EventEmitter, Renderer, ViewChildren} from "@angular/core";
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {onlyNumberValidator} from './validators/only-number.validator';
+import {controlLengthValidator} from './validators/control-length.validator';
 
 declare var Stripe: StripeStatic;
 
-const STRIPE_PUBLIC_KEY: string = "pk_live_jKTMk9TvGKrsu9CCHRzfmjME";
+const STRIPE_PUBLIC_KEY: string = "pk_test_0uWBpHwggickbc69DcYtC6a4";
 
-/**
- * Stripe pay component 
- */
 @Component({
   selector: 'stripe',
   templateUrl: './stripe.component.html',
-  styleUrls: ['stripe.component.scss']
+  styleUrls: ['stripe.component.scss'],
+  host: {'style': 'position: relative'}
 })
 export class StripeComponent implements OnInit {
 
-  /**
-   * Emits data when form saves
-   */
   @Output() formSaved = new EventEmitter();
 
-  /**
-   * 2Checkout form
-   */
+  @ViewChildren('stripeInput') stripeInputs;
+
   stripeForm: FormGroup;
 
-  /**
-   * Stripe error object
-   */
-  stripeError: StripeError;
+  stripeServerError: StripeError;
 
-  /**
-   * Is request in process
-   */
   isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder) {
-    this.stripeForm = fb.group({
-      cardNumber: '',
-      expiryMonth: '',
-      expiryYear: '',
-      cvc: ''
-    });
+  constructor(private fb: FormBuilder,
+              private renderer: Renderer) {
+    this.stripeForm = fb.group(this.initPaymentMethodCardModel());
   }
 
   ngOnInit() {
@@ -49,12 +35,26 @@ export class StripeComponent implements OnInit {
     Stripe.setPublishableKey(STRIPE_PUBLIC_KEY);
   }
 
-  /**
-   * On submit form process card data
-   * @param event form event
-   */
+  initPaymentMethodCardModel() {
+    const expiryMonthRegex = `(0[1-9]|1[0-2])`;
+    const expiryYearRegex = `([0-9]{2})$`;
+    const cvcRegex = `([0-9]{3})`;
+
+    const model = {
+      cardNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16) ,onlyNumberValidator]],
+      expiryMonth: ['', [Validators.required, Validators.pattern(expiryMonthRegex), onlyNumberValidator]],
+      expiryYear: ['', [Validators.required, Validators.pattern(expiryYearRegex), onlyNumberValidator]],
+      cvc: ['', [Validators.required, Validators.pattern(cvcRegex), onlyNumberValidator]]
+    };
+
+    return model;
+  }
+
   handleCardData(event): void {
     event.preventDefault();
+    if(!this.validateStripeFormInputs())
+      return;
+
     this.isLoading = true;
     let stripeForm = this.stripeForm.value;
     console.log(stripeForm);
@@ -69,16 +69,12 @@ export class StripeComponent implements OnInit {
       .then(this.nextStep.bind(this))
       .catch((error) => {
         console.log(error);
-        this.stripeError = error;
+        this.stripeServerError = error;
         return Promise.resolve();
       })
       .then(() => this.isLoading = false)
   }
 
-  /**
-   * Generate card token using stripe.js lib
-   * @param data stripe data
-   */
   getCardToken(data: StripeTokenData): Promise<any> {
     return new Promise((resolve, reject) => {
       Stripe.card.createToken(data, (status: number, response: StripeTokenResponse) => {
@@ -91,13 +87,20 @@ export class StripeComponent implements OnInit {
     });
   }
 
-  /**
-   * Finish pay method after completing of forms filling. This method use {@link PaymentsContainerComponent}
-   * @param dal DataAbstractLayer
-   * @param data data to process
-   * 
-   * @returns {Observable} Observable of payment response
-   */
+  validateStripeFormInputs(): boolean {
+    let inputsArray = this.stripeInputs.toArray();
+    return this.checkInputsForValidity(inputsArray);
+  }
+
+  checkInputsForValidity(inputs) {
+    let el = inputs.find((e) => e.nativeElement.classList.contains('ng-invalid'));
+    if (el && el.nativeElement) {
+      this.renderer.invokeElementMethod(el.nativeElement, 'focus', []);
+      return false;
+    }
+    return true;
+  }
+
   payMethod(dal, data) {
     delete data.paymentForm.payMethod;
     console.log(data.orderForm.totalPrice);
@@ -112,14 +115,17 @@ export class StripeComponent implements OnInit {
     }
 
     let paymentKey = dal.addPaymentRequest(stripeData, "STRIPE").key;
-    return dal.listenPaymentResponse(paymentKey).map(response => {
+    console.log('Payment Key', paymentKey);
+    return dal.listenPaymentResponse(paymentKey).map(res => {
       console.log("Listen responce from stripe");
+
+      let response = res.val();
 
       console.log(response);
 
-      if (response.message) {
-        response.status = response.message;
-      }
+      // if (response.message) {
+      //   response.status = response.message;
+      // }
 
       if (response.status) {
         if (response.status === "succeeded") {
@@ -128,19 +134,16 @@ export class StripeComponent implements OnInit {
         } else {
           data.successPayment = false;
           data.failedPayment = true;
-          data.status = response.message || "";
+          data.status = response['outcome']['seller_message'] || "";
         }
-      } 
+      }
 
       return data;
     });
   }
 
-  /**
-   * After completing pay process
-   */
   nextStep(token: string) {
-    this.stripeError = null;
+    this.stripeServerError = null;
     let paymentForm = {
       token: token,
       deliveryRequired: true,

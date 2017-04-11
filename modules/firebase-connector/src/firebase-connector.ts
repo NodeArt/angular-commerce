@@ -30,6 +30,8 @@ export class FirebaseConnector {
 
   private basketHistorySubscription$: Subscription;
 
+  private orderSubject: Subject<any>;
+
   constructor(private http: Http){
   }
 
@@ -557,5 +559,9 @@ export class FirebaseConnector {
         }
       });
     })
+  }
+
+  getOrderSubject() {
+    return this.orderSubject;
   }
 }

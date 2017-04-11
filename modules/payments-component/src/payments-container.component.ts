@@ -90,8 +90,7 @@ export class PaymentsContainerComponent implements OnInit {
         private basketService: BasketService,
         private zone: NgZone,
         private dal: DbAbstractionLayer,
-        private authService: AuthService,
-        private paymentsService: PaymentsService) {
+        private authService: AuthService) {
     }
     ngOnInit() {
         this.zone.run(() => {
@@ -173,7 +172,7 @@ export class PaymentsContainerComponent implements OnInit {
             };
             this.saveOrder(data).subscribe( 
                 res => {
-                    this.paymentsService.orderSubject.next(data);
+                    this.dal.getOrderSubject().next(data);
                     this.failedPayment = data.failedPayment;
                     this.successPayment = data.successPayment;
                 },
