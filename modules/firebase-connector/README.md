@@ -16,15 +16,10 @@ Internal work of a service one can found in [source](./src/authMethods/vk.ts)
 ```typescript
 //vkAuthConfig.service.ts
 import {Injectable} from "@angular.core";
-import {
-    VkAuthConfig, FbConfig, VkConfig, PopupConfig 
-} from "@nodeart/firebase-connector";
+import {VkAuthConfig, VkConfig, PopupConfig} from "@nodeart/firebase-connector";
 
 @Injectable()
 export class VkConfig implements VkAuthConfig {
-    public fbConfig : FbConfig = {
-        dbPath: 'auth/vk'
-    };
     public vkConfig : VkConfig = {
         client_id: 'app_id',
         display: 'popup',
@@ -38,6 +33,7 @@ export class VkConfig implements VkAuthConfig {
         width: 600
     };
     public cleanUp: true;
+    public dbPath: 'vkAuth';
     constructor() { }
 }
 ```
@@ -64,16 +60,20 @@ const authWithVk = admin.database().ref('auth/vk');
 const listener = (ref, snapshot) => {
   const key = snapshot.key,
         val = snapshot.val();
-  
+        
   if (!val.processed) {
     admin.auth()
         .createCustomToken(val['access_token'])
-        .then(token => ref.child(key))
-        .then(ref => ref.set(Object.assign(val, {
-           token,
-           processed: true
-        })))
-        .then(() => console.log(`custom token generated = ${key}`))
+        .then(token => {
+          const data = Object.assign(val, {
+            access_token: token,
+            expires_in: null,
+            processed: true
+          });
+          ref.child(key).set(data);
+          return data
+        })
+        .then(data => console.log(`custom token generated = ${JSON.stringify(data)}`))
   }
 };
 

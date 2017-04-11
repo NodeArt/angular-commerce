@@ -50,9 +50,9 @@ export class VkAuth implements AuthMethod {
              * each 1 second trigger an interval
              */
             Observable.interval(1000)
-                /**
-                 * that is mapped to location
-                 */
+            /**
+             * that is mapped to location
+             */
                 .map(() => vkAuthWindow.location)
                 /**
                  * path execution forward only if there is a hash in location (will block execution of unloaded window)
@@ -100,7 +100,7 @@ export class VkAuth implements AuthMethod {
              */
             stopper.flatMap((obj: Object) => {
                 const db = firebase['database']();
-                dbRef = db.ref(this.config.fbConfig.dbPath).push();
+                dbRef = db.ref(this.config.dbPath).push();
                 dbRef.set(obj);
                 return Observable.fromPromise(dbRef.once('child_changed') as Promise<any>);
             })
@@ -139,7 +139,7 @@ export class VkAuth implements AuthMethod {
                 .subscribe(
                     auth => resolve(auth),
                     err => reject(err)
-                );
+                )
         });
     }
 
@@ -166,8 +166,8 @@ export class VkAuth implements AuthMethod {
  */
 export interface VkAuthConfig {
     popupConfig: PopupConfig;
-    fbConfig: FbConfig;
     vkConfig: VkConfig;
+    dbPath: string;
     cleanUp: boolean;
 }
 
@@ -180,10 +180,6 @@ export interface VkConfig {
     v: string | number;
     state?: string;
     revoke?: number;
-}
-
-export interface FbConfig {
-    dbPath: string;
 }
 
 export interface PopupConfig {

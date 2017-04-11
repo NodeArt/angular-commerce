@@ -273,6 +273,9 @@
                                 <li class="link">
                                     <a href="../injectables/TwitterAuth.html" >TwitterAuth</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../injectables/VkAuth.html" >VkAuth</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -289,6 +292,15 @@
                             >
                                 <li class="link">
                                     <a href="../interfaces/AuthMethod.html" >AuthMethod</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/PopupConfig.html" >PopupConfig</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/VkAuthConfig.html" >VkAuthConfig</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/VkConfig.html" >VkConfig</a>
                                 </li>
                         </ul>
                     </li>
@@ -572,6 +584,9 @@
                                        <li class="link">
                                            <a href="../injectables/TwitterAuth.html" >TwitterAuth</a>
                                        </li>
+                                       <li class="link">
+                                           <a href="../injectables/VkAuth.html" >VkAuth</a>
+                                       </li>
                                </ul>
                            </li>
                    
@@ -588,6 +603,15 @@
                    >
                                        <li class="link">
                                            <a href="../interfaces/AuthMethod.html" >AuthMethod</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/PopupConfig.html" >PopupConfig</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/VkAuthConfig.html" >VkAuthConfig</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/VkConfig.html" >VkConfig</a>
                                        </li>
                                </ul>
                            </li>
@@ -1376,13 +1400,15 @@ export class PaymentsContainerComponent implements OnInit {
               });
               this.isLoading &#x3D; false;
             };
-            this.saveOrder(data).subscribe( res &#x3D;&gt; {
-                this.paymentsService.orderSubject.next(data);
-                this.failedPayment &#x3D; data.failedPayment;
-                this.successPayment &#x3D; data.successPayment;
-            } ).catch(e &#x3D;&gt; {
-                this.successPayment &#x3D; false;
-                this.failedPayment &#x3D; true;
+            this.saveOrder(data).subscribe( 
+                res &#x3D;&gt; {
+                    this.paymentsService.orderSubject.next(data);
+                    this.failedPayment &#x3D; data.failedPayment;
+                    this.successPayment &#x3D; data.successPayment;
+                },
+                e &#x3D;&gt; {
+                    this.successPayment &#x3D; false;
+                    this.failedPayment &#x3D; true;
             });
         });
     }
