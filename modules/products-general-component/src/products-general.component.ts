@@ -2,7 +2,7 @@ import { ProductService } from '@nodeart/productservice';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
-import { Component, OnInit, NgZone, Input } from '@angular/core';
+import { Component, OnInit, NgZone, Input, EventEmitter, Output } from '@angular/core';
 
 /**
  * Component that represent product from specific general category. User can filter product by child categories from current general category
@@ -61,6 +61,8 @@ export class ProductsGeneralComponent implements OnInit {
    * Id of general category
    */
   @Input() generalCategoryId;
+
+  @Output() categoryUpdated = new EventEmitter();
   constructor(private router: Router,
               private route: ActivatedRoute,
               private productService: ProductService,
@@ -116,6 +118,7 @@ export class ProductsGeneralComponent implements OnInit {
    * @param categoryId category id
    */
   categoryFilter(categoryId){
+    this.categoryUpdated.next(categoryId);
     if(categoryId === "all"){
       this.categoryIds = this.allCategoryIds;
     } else {

@@ -743,6 +743,22 @@
             </table>
     </section>
 
+    <section>
+        <h3 id="outputs">Outputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>categoryUpdated</code>
+                        </td>
+                        <td class="col-md-10">
+                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
     <section>
         <h3 id="constructor">Constructor</h3>
@@ -1140,7 +1156,7 @@
 import { ActivatedRoute, Params } from &#x27;@angular/router&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { Subject } from &#x27;rxjs/Subject&#x27;;
-import { Component, OnInit, NgZone, Input } from &#x27;@angular/core&#x27;;
+import { Component, OnInit, NgZone, Input, EventEmitter, Output } from &#x27;@angular/core&#x27;;
 
 /**
  * Component that represent product from specific general category. User can filter product by child categories from current general category
@@ -1199,6 +1215,8 @@ export class ProductsGeneralComponent implements OnInit {
    * Id of general category
    */
   @Input() generalCategoryId;
+
+  @Output() categoryUpdated &#x3D; new EventEmitter();
   constructor(private router: Router,
               private route: ActivatedRoute,
               private productService: ProductService,
@@ -1254,6 +1272,7 @@ export class ProductsGeneralComponent implements OnInit {
    * @param categoryId category id
    */
   categoryFilter(categoryId){
+    this.categoryUpdated.next(categoryId);
     if(categoryId &#x3D;&#x3D;&#x3D; &quot;all&quot;){
       this.categoryIds &#x3D; this.allCategoryIds;
     } else {

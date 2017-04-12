@@ -256,7 +256,7 @@
                                     <a href="../injectables/GithubAuth.html" >GithubAuth</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../injectables/GoogleAuth.html"  class="active" >GoogleAuth</a>
+                                    <a href="../injectables/GoogleAuth.html" >GoogleAuth</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/PasswordAuth.html" >PasswordAuth</a>
@@ -274,7 +274,7 @@
                                     <a href="../injectables/TwitterAuth.html" >TwitterAuth</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../injectables/VkAuth.html" >VkAuth</a>
+                                    <a href="../injectables/VkAuth.html"  class="active" >VkAuth</a>
                                 </li>
                         </ul>
                     </li>
@@ -567,7 +567,7 @@
                                            <a href="../injectables/GithubAuth.html" >GithubAuth</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../injectables/GoogleAuth.html"  class="active" >GoogleAuth</a>
+                                           <a href="../injectables/GoogleAuth.html" >GoogleAuth</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/PasswordAuth.html" >PasswordAuth</a>
@@ -585,7 +585,7 @@
                                            <a href="../injectables/TwitterAuth.html" >TwitterAuth</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../injectables/VkAuth.html" >VkAuth</a>
+                                           <a href="../injectables/VkAuth.html"  class="active" >VkAuth</a>
                                        </li>
                                </ul>
                            </li>
@@ -644,7 +644,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>GoogleAuth</li>
+  <li>VkAuth</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -662,15 +662,21 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>modules/firebase-connector/src/authMethods/google.ts</code>
+            <code>modules/firebase-connector/src/authMethods/vk.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Google firebase auth service</p>
-
+                <p>Vk firebase auth service<br><code>vk.com</code> is not among standard auth providers in firebase, so we provide our own solution for<br>this. To get acquainted with the flow, please, read <a href="https://vk.com/dev/implicit_flow_user">this</a> article.</p>
+<p>In order to avoid creation of http server, vkAuthService works only with firebase and not with REST API.<br>So, we strongly recommend to set redirect url to be a current location, thus one can get a token on a client side.</p>
+<p>Internal work of a service one can found in source tab.</p>
+<p><strong>Usage:</strong></p>
+<p><code>VkConfigService</code> declaration</p>
+<pre><code class="hljs typescript"><span class="hljs-comment">//vkAuthConfig.service.ts</span><br>     <span class="hljs-keyword">import</span> {Injectable} from <span class="hljs-string">"@angular/core"</span>;<br>     <span class="hljs-keyword">import</span> {VkAuthConfig, VkConfig, PopupConfig} from <span class="hljs-string">"@nodeart/firebase-connector"</span>;<br><br>\<span class="hljs-meta">@Injectable</span>()<br>    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> VkConfiguration <span class="hljs-keyword">implements</span> VkAuthConfig {<br>        <span class="hljs-keyword">public</span> vkConfig : VkConfig = {<br>            client_id: <span class="hljs-string">'app_id'</span>,<br>            display: <span class="hljs-string">'popup'</span>,<br>            scope: [<span class="hljs-string">'friends'</span>],<br>            response_type: <span class="hljs-string">'token'</span>,<br>            v: <span class="hljs-number">5.63</span><br>        };<br>        <span class="hljs-keyword">public</span> popupConfig: PopupConfig = {<br>            location: <span class="hljs-string">'no'</span>,<br>            height: <span class="hljs-number">600</span>,<br>            width: <span class="hljs-number">600</span><br>        };<br>        <span class="hljs-keyword">public</span> cleanUp: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">public</span> dbPath: <span class="hljs-built_in">string</span> = <span class="hljs-string">'vkAuth'</span>;<br>        <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) { }<br>    }</code></pre><p><code>VkConfigService</code> register</p>
+<pre><code class="hljs typescript">         <span class="hljs-comment">//someModule.module.ts</span><br>         <span class="hljs-keyword">import</span> {NgModule} from <span class="hljs-string">"@angular/core"</span>;<br>         <span class="hljs-keyword">import</span> {VkConfiguration} from <span class="hljs-string">"./vkAuthConfig.service"</span>;<br>         \<span class="hljs-meta">@NgModule</span>({<br>          providers: [<br>            {provide: <span class="hljs-string">'VkAuthConfig'</span>, useClass: VkConfiguration}<br>          ]<br>        })<br>         <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SomeModule { }</code></pre><p>Server side or <a href="https://firebase.google.com/docs/functions/">firebase cloud functions</a> code:</p>
+<pre><code class="hljs javascript"><span class="hljs-meta">'use strict'</span>;<br><br><span class="hljs-keyword">const</span> admin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'firebase-admin'</span>);<br>         <span class="hljs-keyword">const</span> authWithVk = admin.database().ref(<span class="hljs-string">'auth/vk'</span>);<br><br><span class="hljs-keyword">const</span> listener = <span class="hljs-function">(<span class="hljs-params">ref, snapshot</span>) =&gt;</span> {<br>          <span class="hljs-keyword">const</span> key = snapshot.key,<br>                val = snapshot.val();<br><br>          <span class="hljs-keyword">if</span> (!val.processed) {<br>            admin.auth()<br>                .createCustomToken(val[<span class="hljs-string">'access_token'</span>])<br>                .then(<span class="hljs-function"><span class="hljs-params">token</span> =&gt;</span> {<br>                  <span class="hljs-keyword">const</span> data = <span class="hljs-built_in">Object</span>.assign(val, {<br>                    <span class="hljs-attr">access_token</span>: token,<br>                    <span class="hljs-attr">expires_in</span>: <span class="hljs-literal">null</span>,<br>                    <span class="hljs-attr">processed</span>: <span class="hljs-literal">true</span><br>                  });<br>                  ref.child(key).set(data);<br>                  <span class="hljs-keyword">return</span> data<br>                })<br>                .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`custom token generated = <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(data)}</span>`</span>))<br>          }<br>        };<br><br>authWithVk.on(<span class="hljs-string">'child_added'</span>, snapshot =&gt; listener(authWithVk, snapshot));</code></pre>
             </p>
 
             <section>
@@ -679,7 +685,7 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(firebase: any)</code>
+                                    <code>constructor(config: <a href="../injectables/VkAuth.html" >VkAuthConfig</a>)</code>
                                 </td>
                             </tr>
             
@@ -708,9 +714,38 @@
                                         <div class="io-description"><p>Login method</p>
             </div>
                                         <div class="io-description">
+                                            <b>Returns: </b>    <code>any</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Public</span> createUrl</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <span class="modifier-icon method fa fa-play circle">
+                                            <span class="fa fa-circle"></span>
+                                        </span>
+                                    <code>createUrl(obj: Object, starter: string)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>utility function that converts an object to url</p>
+            </div>
+                                        <div class="io-description">
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns: </b>    <code>void</code>
+                                            <b>Returns: </b>    <code>string</code>
             
                                         </div>
                                             <div class="io-description">
@@ -728,6 +763,32 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> authorize</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>authorize:     <code>string</code>
+            </bcode>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value: </i><code>https://oauth.vk.com/authorize</code>
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>VkAuth page base url;</p>
+            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <b> name</b>
                                 </td>
                             </tr>
@@ -739,7 +800,7 @@
                             </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <i>Default value: </i><code>Google</code>
+                                        <i>Default value: </i><code>Vk</code>
                                     </td>
                                 </tr>
                             <tr>
@@ -753,36 +814,277 @@
             </section>
     </div>
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre><code class="hljs javascript">import {AuthMethods, AuthProviders, AngularFire, FirebaseRef, FirebaseAuthState} from &quot;angularfire2&quot;;
-import {AuthMethod} from &quot;./auth-method&quot;;
-import {Injectable, Inject} from &quot;@angular/core&quot;;
+        <pre><code class="hljs javascript">import { FirebaseAuthState } from &#x27;angularfire2&#x27;;
+import { Injectable, Inject } from &#x27;@angular/core&#x27;;
+import { AuthMethod } from &#x27;./auth-method&#x27;;
+import { Observable, Subject } from &#x27;rxjs&#x27;;
+import * as firebase from &#x27;firebase&#x27;;
+/**
+ * Vk firebase auth service
+ * &#x60;vk.com&#x60; is not among standard auth providers in firebase, so we provide our own solution for
+ * this. To get acquainted with the flow, please, read [this](https://vk.com/dev/implicit_flow_user) article.
+ *
+ * In order to avoid creation of http server, vkAuthService works only with firebase and not with REST API.
+ * So, we strongly recommend to set redirect url to be a current location, thus one can get a token on a client side.
+ *
+ * Internal work of a service one can found in source tab.
+ *
+ * **Usage:**
+ *
+ * &#x60;VkConfigService&#x60; declaration
+ * &#x60;&#x60;&#x60;typescript
+ * //vkAuthConfig.service.ts
+ *     import {Injectable} from &quot;@angular/core&quot;;
+ *     import {VkAuthConfig, VkConfig, PopupConfig} from &quot;@nodeart/firebase-connector&quot;;
+ *
+ * \@Injectable()
+ *    export class VkConfiguration implements VkAuthConfig {
+ *        public vkConfig : VkConfig &#x3D; {
+ *            client_id: &#x27;app_id&#x27;,
+ *            display: &#x27;popup&#x27;,
+ *            scope: [&#x27;friends&#x27;],
+ *            response_type: &#x27;token&#x27;,
+ *            v: 5.63
+ *        };
+ *        public popupConfig: PopupConfig &#x3D; {
+ *            location: &#x27;no&#x27;,
+ *            height: 600,
+ *            width: 600
+ *        };
+ *        public cleanUp: boolean &#x3D; true;
+ *        public dbPath: string &#x3D; &#x27;vkAuth&#x27;;
+ *        constructor() { }
+ *    }
+ * &#x60;&#x60;&#x60;
+ *
+ * &#x60;VkConfigService&#x60; register
+ *
+ * &#x60;&#x60;&#x60;typescript
+ *         //someModule.module.ts
+ *         import {NgModule} from &quot;@angular/core&quot;;
+ *         import {VkConfiguration} from &quot;./vkAuthConfig.service&quot;;
+ *         \@NgModule({
+ *          providers: [
+ *            {provide: &#x27;VkAuthConfig&#x27;, useClass: VkConfiguration}
+ *          ]
+ *        })
+ *         export class SomeModule { }
+ *         &#x60;&#x60;&#x60;
+ *
+ * Server side or [firebase cloud functions](https://firebase.google.com/docs/functions/) code:
+ * &#x60;&#x60;&#x60;javascript
+ * &#x27;use strict&#x27;;
+ *
+ * const admin &#x3D; require(&#x27;firebase-admin&#x27;);
+ *         const authWithVk &#x3D; admin.database().ref(&#x27;auth/vk&#x27;);
+ *
+ * const listener &#x3D; (ref, snapshot) &#x3D;&gt; {
+ *          const key &#x3D; snapshot.key,
+ *                val &#x3D; snapshot.val();
+ *
+ *          if (!val.processed) {
+ *            admin.auth()
+ *                .createCustomToken(val[&#x27;access_token&#x27;])
+ *                .then(token &#x3D;&gt; {
+ *                  const data &#x3D; Object.assign(val, {
+ *                    access_token: token,
+ *                    expires_in: null,
+ *                    processed: true
+ *                  });
+ *                  ref.child(key).set(data);
+ *                  return data
+ *                })
+ *                .then(data &#x3D;&gt; console.log(&#x60;custom token generated &#x3D; ${JSON.stringify(data)}&#x60;))
+ *          }
+ *        };
+ *
+ * authWithVk.on(&#x27;child_added&#x27;, snapshot &#x3D;&gt; listener(authWithVk, snapshot));
+ * &#x60;&#x60;&#x60;
+ *
+ */
+
+@Injectable()
+export class VkAuth implements AuthMethod {
+    /**
+     * Name of auth method
+     */
+    name: string &#x3D; &#x27;Vk&#x27;;
+    /**
+     * VkAuth page base url;
+     */
+    private authorize: string &#x3D; &#x27;https://oauth.vk.com/authorize&#x27;;
+
+    constructor(
+        @Inject(&#x27;VkAuthConfig&#x27;) private config : VkAuthConfig
+    ) {
+        this.config.vkConfig.redirect_uri &#x3D; this.config.vkConfig.redirect_uri || window.location.href
+    }
+
+    /**
+     * Login method
+     */
+    login(): Promise&lt;FirebaseAuthState&gt; {
+        /**
+         * Create a popup window and get its reference.
+         * @type {Window}
+         */
+        const vkAuthWindow &#x3D; window.open(
+            this.createUrl(this.config.vkConfig, this.authorize),
+            &#x27;_blank&#x27;,
+            Object.keys(this.config.popupConfig).reduce(
+                (acc, key) &#x3D;&gt; acc +&#x3D; &#x60;${key}&#x3D;${this.config.popupConfig[key]},&#x60;,
+                &#x27;&#x27;
+            )
+        );
+
+        return new Promise((resolve, reject) &#x3D;&gt; {
+            /**
+             * flow: ---window.origin: blank----window.origin Error(cross-origin)----window.orogin OK
+             */
+            let dbRef;
+            const stopper &#x3D; new Subject();
+            /**
+             * each 1 second trigger an interval
+             */
+            Observable.interval(1000)
+            /**
+             * that is mapped to location
+             */
+                .map(() &#x3D;&gt; vkAuthWindow.location)
+                /**
+                 * path execution forward only if there is a hash in location (will block execution of unloaded window)
+                 */
+                .filter(location &#x3D;&gt; !!location.hash)
+                /**
+                 * path forward only if there is an access_token in hash,
+                 * otherwise throw an Error
+                 */
+                .map(location &#x3D;&gt; {
+                    if (location.hash.indexOf(&#x27;access_token&#x27;) !&#x3D;&#x3D; -1) {
+                        return location.hash;
+                    } else {
+                        throw new Error(&#x27;no_token&#x27;)
+                    }
+                })
+                /**
+                 * stop interval execution after subject will trigger next function
+                 */
+                .takeUntil(stopper)
+                /**
+                 * handle all errors that happen while execution and start observable again on failure
+                 * (will block cross-origin) errors
+                 */
+                .catch((err, outputObs) &#x3D;&gt; outputObs)
+                /**
+                 * transform hash to object
+                 */
+                .map(hash &#x3D;&gt;
+                    hash.replace(&#x27;#&#x27;, &#x27;&#x27;)
+                        .split(&#x27;&amp;&#x27;)
+                        .reduce((acc, elem) &#x3D;&gt; {
+                            const [key, val] &#x3D; elem.split(&#x27;&#x3D;&#x27;);
+                            acc[decodeURIComponent(key)] &#x3D; decodeURIComponent(val);
+                            return acc;
+                        }, {})
+                )
+                /**
+                 * once we have reached subscribe, trigger next on subject and block interval execution
+                 */
+                .subscribe(
+                    auth &#x3D;&gt; stopper.next(auth),
+                    err &#x3D;&gt; console.log(err, &#x27;err&#x27;)
+                );
+            /**
+             * set object with access token and uid to firebase database
+             */
+            stopper.flatMap((obj: Object) &#x3D;&gt; {
+                const db &#x3D; firebase[&#x27;database&#x27;]();
+                dbRef &#x3D; db.ref(this.config.dbPath).push();
+                dbRef.set(obj);
+                return Observable.fromPromise(dbRef.once(&#x27;child_changed&#x27;) as Promise&lt;any&gt;);
+            })
+                /**
+                 * once the data is changed, get an access token
+                 */
+                .map(snapshot &#x3D;&gt; snapshot.val())
+                /**
+                 * clean up
+                 */
+                .do(() &#x3D;&gt; {
+                    if (this.config.cleanUp) {
+                        dbRef.remove();
+                    }
+                })
+                /**
+                 * get only not null values
+                 */
+                .filter(val &#x3D;&gt; !!val)
+                /**
+                 * take the value only once
+                 */
+                .first()
+                /**
+                 * get only access token field
+                 */
+                .map(data &#x3D;&gt; typeof data &#x3D;&#x3D;&#x3D; &#x27;object&#x27; ? data[&#x27;token&#x27;] : data)
+                /**
+                 * auth with custom token
+                 */
+                .flatMap(token &#x3D;&gt; Observable.fromPromise(firebase[&#x27;auth&#x27;]().signInWithCustomToken(token) as Promise&lt;any&gt;))
+                /**
+                 * close popup window
+                 */
+                .do(() &#x3D;&gt; vkAuthWindow.close())
+                .subscribe(
+                    auth &#x3D;&gt; resolve(auth),
+                    err &#x3D;&gt; reject(err)
+                )
+        });
+    }
+
+    /**
+     * utility function that converts an object to url
+     * @returns {string}
+     */
+    public createUrl(obj : Object, starter?: string): string {
+        const join &#x3D; (arr: Array&lt;string&gt;): string &#x3D;&gt; arr.join(&#x27;,&#x27;);
+        return Object.keys(obj)
+            .reduce(
+                (acc: string, key: string, i: number): string &#x3D;&gt; acc +&#x3D; &#x60;${i &#x3D;&#x3D;&#x3D; 0 ? &#x27;?&#x27; : &#x27;&amp;&#x27;}${key}&#x3D;${
+                    Array.isArray(obj[key]) ?
+                        join(obj[key]) :
+                        obj[key]
+                    }&#x60;,
+                starter || &#x27;&#x27;
+            )
+    }
+}
 
 /**
- * Google firebase auth service
+ * Utility interfaces
  */
-@Injectable()
-export class GoogleAuth implements AuthMethod{
-
-  /**
-   * Name of auth method
-   */
-  name: string &#x3D; &#x27;Google&#x27;;
-
-  constructor(private firebase: AngularFire){
-  }
-
-  /**
-   * Login method
-   * @return {firebase.Promise&lt;FirebaseAuthState&gt;} promise with FirebaseAuthState
-   */
-  login(){
-    return this.firebase.auth.login({
-      provider: AuthProviders.Google,
-      method: AuthMethods.Popup
-    });
-  }
+export interface VkAuthConfig {
+    popupConfig: PopupConfig;
+    vkConfig: VkConfig;
+    dbPath: string;
+    cleanUp: boolean;
 }
-</code></pre>
+
+export interface VkConfig {
+    client_id: string;
+    redirect_uri?: string;
+    scope: Array&lt;string&gt;;
+    display: string;
+    response_type: string;
+    v: string | number;
+    state?: string;
+    revoke?: number;
+}
+
+export interface PopupConfig {
+    location: string;
+    [key: string] : any;
+}</code></pre>
     </div>
 </div>
 
