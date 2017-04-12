@@ -1,5 +1,29 @@
 # Firebase connector
 
+**GoogleAuth**
+
+`google.com` firebaseAuth method
+
+**GithubAuth**
+
+`github.com` firebaseAuth method
+
+**FacebookAuth**
+
+`facebook.com` firebaseAuth method
+
+**PasswordAuth**
+
+email & password firebaseAuth method
+
+**TwitterAuth**
+
+`twitter.com` firebaseAuth method
+
+**AnonymouslyAuth**
+
+anonymous firebaseAuth method
+
 **VkAuth**
 
 `vk.com` is not among standard auth providers in firebase, so we provide our own solution for 
@@ -15,11 +39,11 @@ Internal work of a service one can found in [source](./src/authMethods/vk.ts)
 `VkConfigService` declaration
 ```typescript
 //vkAuthConfig.service.ts
-import {Injectable} from "@angular.core";
+import {Injectable} from "@angular/core";
 import {VkAuthConfig, VkConfig, PopupConfig} from "@nodeart/firebase-connector";
 
 @Injectable()
-export class VkConfig implements VkAuthConfig {
+export class VkConfiguration implements VkAuthConfig {
     public vkConfig : VkConfig = {
         client_id: 'app_id',
         display: 'popup',
@@ -32,8 +56,8 @@ export class VkConfig implements VkAuthConfig {
         height: 600,
         width: 600
     };
-    public cleanUp: true;
-    public dbPath: 'vkAuth';
+    public cleanUp: boolean = true;
+    public dbPath: string = 'vkAuth';
     constructor() { }
 }
 ```
@@ -41,10 +65,10 @@ export class VkConfig implements VkAuthConfig {
 ```typescript
 //someModule.module.ts
 import {NgModule} from "@angular/core";
-import {VkConfig} from "./vkAuthConfig.service";
+import {VkConfiguration} from "./vkAuthConfig.service";
 @NgModule({
   providers: [
-    {provide: 'VkAuthConfig', useClass: VkConfig}
+    {provide: 'VkAuthConfig', useClass: VkConfiguration}
   ]
 })
 export class SomeModule { }
