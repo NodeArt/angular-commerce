@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/payments-component",
-  "version": "2.1.25",
+  "version": "2.1.26",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "@types/stripe": "0.0.34",
-    "@nodeart/basketservice": "2.1.25"
+    "@nodeart/basketservice": "2.1.26"
   }
 }

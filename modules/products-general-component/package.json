@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/products-general-component",
-  "version": "2.1.25",
+  "version": "2.1.26",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/productservice": "2.1.25",
-    "@nodeart/category-filter-component": "2.1.25",
-    "@nodeart/general-categories-all": "2.1.25"
+    "@nodeart/productservice": "2.1.26",
+    "@nodeart/category-filter-component": "2.1.26",
+    "@nodeart/general-categories-all": "2.1.26"
   }
 }
