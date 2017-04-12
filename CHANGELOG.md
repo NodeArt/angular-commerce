@@ -1,9 +1,13 @@
-# 2.1.23-2.1.26
+# 2.1.23-2.1.27
 
 ### Features 
 
 * **firebase-connector:** small fixes in VK.com auth method
 * **products-general-component:** add Output that emit categoryId when category updated
+
+### Bug fixes 
+
+* **productservice:** change filterProduct() method
 
 # 2.1.22
 

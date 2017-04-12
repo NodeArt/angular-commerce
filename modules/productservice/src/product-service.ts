@@ -129,7 +129,7 @@ export class ProductService{
    * 
    * @returns {Observable} Observable of products
    */
-  filterProducts(priceRange: number[], attributes : any[], tags: any[], size, offset){
+  filterProducts(priceRange: any, attributes : any[], tags: any[], size, offset){
     let queryObject = {
      size: size,
      from: offset,
