@@ -57,7 +57,7 @@ export class VkConfiguration implements VkAuthConfig {
         width: 600
     };
     public cleanUp: boolean = true;
-    public dbPath: string = 'vkAuth';
+    public dbPath: string = 'auth/vk'; // #1 note that this field should be the same on server and client side #2;
     constructor() { }
 }
 ```
@@ -79,7 +79,8 @@ Server side or [firebase cloud functions](https://firebase.google.com/docs/funct
 'use strict';
 
 const admin = require('firebase-admin');
-const authWithVk = admin.database().ref('auth/vk');
+// #2 note that this field should be the same on server and client side #1;
+const authWithVk = admin.database().ref('auth/vk'); 
 
 const listener = (ref, snapshot) => {
   const key = snapshot.key,

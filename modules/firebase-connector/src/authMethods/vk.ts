@@ -36,7 +36,7 @@ import * as firebase from 'firebase';
  *            width: 600
  *        };
  *        public cleanUp: boolean = true;
- *        public dbPath: string = 'vkAuth';
+ *        public dbPath: string = 'auth/vk';
  *        constructor() { }
  *    }
  * ```
