@@ -1653,8 +1653,9 @@ export class ProductService{
     for(let i &#x3D; 0; i &lt; attributes.length; i++){
         let key &#x3D; &quot;attributes.&quot; + attributes[i][&#x27;attrId&#x27;];
         queryObject.query.bool.must[0][&#x27;bool&#x27;].should.push({
-          match: {
-            [key] : attributes[i][&#x27;valueName&#x27;]
+          multi_match: {
+            query: attributes[i][&#x27;valueName&#x27;],
+            fields: [key]
           }
         });
     }
@@ -1841,8 +1842,9 @@ export class ProductService{
     for(let i &#x3D; 0; i &lt; attributes.length; i++){
         let key &#x3D; &quot;attributes.&quot; + attributes[i][&#x27;attrId&#x27;];
         queryObject.query.bool.must[0][&#x27;bool&#x27;].should.push({
-          match: {
-            [key] : attributes[i][&#x27;valueName&#x27;]
+          multi_match: {
+            query: attributes[i][&#x27;valueName&#x27;],
+            fields: [key]
           }
         });
     }

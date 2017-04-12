@@ -663,13 +663,6 @@
     <code>modules/payments-component/src/paymets/payment-methods/stripe/stripe.component.ts</code>
 </p>
 
-    <p class="comment">
-        <h3>Description</h3>
-    </p>
-    <p class="comment">
-        <p>Stripe pay component </p>
-
-    </p>
 
 
 <section>
@@ -681,6 +674,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>&nbsp;&nbsp;&nbsp;&nbsp;"style":"position: relative"<br>}</code></td>
+            </tr>
 
 
 
@@ -720,8 +717,6 @@
                             <code>formSaved</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Emits data when form saves</p>
-</div>
                             <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
 
                         </td>
@@ -736,7 +731,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(fb: any)</code>
+                            <code>constructor(fb: any, renderer: any)</code>
                         </td>
                     </tr>
     
@@ -746,6 +741,30 @@
 
     <section>
         <h3 id="methods">Methods</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> initPaymentMethodCardModel</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>initPaymentMethodCardModel()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -762,29 +781,10 @@
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>On submit form process card data</p>
-    </div>
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>event</b>
-                                                    </div>
-                                                    <div>
-                                                        <p>form event</p>
-    
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>void</code>
     
                                 </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -805,29 +805,58 @@
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Generate card token using stripe.js lib</p>
-    </div>
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>data</b>
-                                                    </div>
-                                                    <div>
-                                                        <p>stripe data</p>
-    
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>any</code>
     
                                 </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> validateStripeFormInputs</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>validateStripeFormInputs()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>boolean</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> checkInputsForValidity</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>checkInputsForValidity(inputs: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
                         </td>
                     </tr>
                 </tbody>
@@ -848,39 +877,10 @@
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Finish pay method after completing of forms filling. This method use <a href="../components/PaymentsContainerComponent.html" >PaymentsContainerComponent</a></p>
-    </div>
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>dal</b>
-                                                    </div>
-                                                    <div>
-                                                        <p>DataAbstractLayer</p>
-    
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <b>data</b>
-                                                    </div>
-                                                    <div>
-                                                        <p>data to process</p>
-    
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>void</code>
     
                                 </div>
-                                    <div class="io-description">
-                                        <p>Observable of payment response</p>
-    
-                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -901,8 +901,6 @@
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>After completing pay process</p>
-    </div>
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>void</code>
     
@@ -933,33 +931,6 @@
                                 <i>Default value: </i><code>false</code>
                             </td>
                         </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Is request in process</p>
-    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> stripeError</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>stripeError:     <code>any</code>
-    </bcode>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Stripe error object</p>
-    </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -975,10 +946,34 @@
     </bcode>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>2Checkout form</p>
-    </div>
+                            <b> stripeInputs</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>stripeInputs:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> stripeServerError</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>stripeServerError:     <code>any</code>
+    </bcode>
                         </td>
                     </tr>
                 </tbody>
@@ -986,50 +981,36 @@
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import {Component, OnInit, Output, EventEmitter} from &quot;@angular/core&quot;;
-import {FormGroup, FormBuilder} from &quot;@angular/forms&quot;;
+            <pre><code class="hljs javascript">import {Component, OnInit, Output, EventEmitter, Renderer, ViewChildren} from &quot;@angular/core&quot;;
+import {FormGroup, FormBuilder, Validators} from &quot;@angular/forms&quot;;
+import {onlyNumberValidator} from &#x27;./validators/only-number.validator&#x27;;
+import {controlLengthValidator} from &#x27;./validators/control-length.validator&#x27;;
 
 declare var Stripe: StripeStatic;
 
-const STRIPE_PUBLIC_KEY: string &#x3D; &quot;pk_live_jKTMk9TvGKrsu9CCHRzfmjME&quot;;
+const STRIPE_PUBLIC_KEY: string &#x3D; &quot;pk_test_0uWBpHwggickbc69DcYtC6a4&quot;;
 
-/**
- * Stripe pay component 
- */
 @Component({
   selector: &#x27;stripe&#x27;,
   templateUrl: &#x27;./stripe.component.html&#x27;,
-  styleUrls: [&#x27;stripe.component.scss&#x27;]
+  styleUrls: [&#x27;stripe.component.scss&#x27;],
+  host: {&#x27;style&#x27;: &#x27;position: relative&#x27;}
 })
 export class StripeComponent implements OnInit {
 
-  /**
-   * Emits data when form saves
-   */
   @Output() formSaved &#x3D; new EventEmitter();
 
-  /**
-   * 2Checkout form
-   */
+  @ViewChildren(&#x27;stripeInput&#x27;) stripeInputs;
+
   stripeForm: FormGroup;
 
-  /**
-   * Stripe error object
-   */
-  stripeError: StripeError;
+  stripeServerError: StripeError;
 
-  /**
-   * Is request in process
-   */
   isLoading: boolean &#x3D; false;
 
-  constructor(private fb: FormBuilder) {
-    this.stripeForm &#x3D; fb.group({
-      cardNumber: &#x27;&#x27;,
-      expiryMonth: &#x27;&#x27;,
-      expiryYear: &#x27;&#x27;,
-      cvc: &#x27;&#x27;
-    });
+  constructor(private fb: FormBuilder,
+              private renderer: Renderer) {
+    this.stripeForm &#x3D; fb.group(this.initPaymentMethodCardModel());
   }
 
   ngOnInit() {
@@ -1037,12 +1018,26 @@ export class StripeComponent implements OnInit {
     Stripe.setPublishableKey(STRIPE_PUBLIC_KEY);
   }
 
-  /**
-   * On submit form process card data
-   * @param event form event
-   */
+  initPaymentMethodCardModel() {
+    const expiryMonthRegex &#x3D; &#x60;(0[1-9]|1[0-2])&#x60;;
+    const expiryYearRegex &#x3D; &#x60;([0-9]{2})$&#x60;;
+    const cvcRegex &#x3D; &#x60;([0-9]{3})&#x60;;
+
+    const model &#x3D; {
+      cardNumber: [&#x27;&#x27;, [Validators.required, Validators.minLength(16), Validators.maxLength(16) ,onlyNumberValidator]],
+      expiryMonth: [&#x27;&#x27;, [Validators.required, Validators.pattern(expiryMonthRegex), onlyNumberValidator]],
+      expiryYear: [&#x27;&#x27;, [Validators.required, Validators.pattern(expiryYearRegex), onlyNumberValidator]],
+      cvc: [&#x27;&#x27;, [Validators.required, Validators.pattern(cvcRegex), onlyNumberValidator]]
+    };
+
+    return model;
+  }
+
   handleCardData(event): void {
     event.preventDefault();
+    if(!this.validateStripeFormInputs())
+      return;
+
     this.isLoading &#x3D; true;
     let stripeForm &#x3D; this.stripeForm.value;
     console.log(stripeForm);
@@ -1057,16 +1052,12 @@ export class StripeComponent implements OnInit {
       .then(this.nextStep.bind(this))
       .catch((error) &#x3D;&gt; {
         console.log(error);
-        this.stripeError &#x3D; error;
+        this.stripeServerError &#x3D; error;
         return Promise.resolve();
       })
       .then(() &#x3D;&gt; this.isLoading &#x3D; false)
   }
 
-  /**
-   * Generate card token using stripe.js lib
-   * @param data stripe data
-   */
   getCardToken(data: StripeTokenData): Promise&lt;any&gt; {
     return new Promise((resolve, reject) &#x3D;&gt; {
       Stripe.card.createToken(data, (status: number, response: StripeTokenResponse) &#x3D;&gt; {
@@ -1079,13 +1070,20 @@ export class StripeComponent implements OnInit {
     });
   }
 
-  /**
-   * Finish pay method after completing of forms filling. This method use {@link PaymentsContainerComponent}
-   * @param dal DataAbstractLayer
-   * @param data data to process
-   * 
-   * @returns {Observable} Observable of payment response
-   */
+  validateStripeFormInputs(): boolean {
+    let inputsArray &#x3D; this.stripeInputs.toArray();
+    return this.checkInputsForValidity(inputsArray);
+  }
+
+  checkInputsForValidity(inputs) {
+    let el &#x3D; inputs.find((e) &#x3D;&gt; e.nativeElement.classList.contains(&#x27;ng-invalid&#x27;));
+    if (el &amp;&amp; el.nativeElement) {
+      this.renderer.invokeElementMethod(el.nativeElement, &#x27;focus&#x27;, []);
+      return false;
+    }
+    return true;
+  }
+
   payMethod(dal, data) {
     delete data.paymentForm.payMethod;
     console.log(data.orderForm.totalPrice);
@@ -1100,14 +1098,17 @@ export class StripeComponent implements OnInit {
     }
 
     let paymentKey &#x3D; dal.addPaymentRequest(stripeData, &quot;STRIPE&quot;).key;
-    return dal.listenPaymentResponse(paymentKey).map(response &#x3D;&gt; {
+    console.log(&#x27;Payment Key&#x27;, paymentKey);
+    return dal.listenPaymentResponse(paymentKey).map(res &#x3D;&gt; {
       console.log(&quot;Listen responce from stripe&quot;);
+
+      let response &#x3D; res.val();
 
       console.log(response);
 
-      if (response.message) {
-        response.status &#x3D; response.message;
-      }
+      // if (response.message) {
+      //   response.status &#x3D; response.message;
+      // }
 
       if (response.status) {
         if (response.status &#x3D;&#x3D;&#x3D; &quot;succeeded&quot;) {
@@ -1116,19 +1117,16 @@ export class StripeComponent implements OnInit {
         } else {
           data.successPayment &#x3D; false;
           data.failedPayment &#x3D; true;
-          data.status &#x3D; response.message || &quot;&quot;;
+          data.status &#x3D; response[&#x27;outcome&#x27;][&#x27;seller_message&#x27;] || &quot;&quot;;
         }
-      } 
+      }
 
       return data;
     });
   }
 
-  /**
-   * After completing pay process
-   */
   nextStep(token: string) {
-    this.stripeError &#x3D; null;
+    this.stripeServerError &#x3D; null;
     let paymentForm &#x3D; {
       token: token,
       deliveryRequired: true,
@@ -1137,7 +1135,8 @@ export class StripeComponent implements OnInit {
     console.log(paymentForm);
     this.formSaved.next(paymentForm);
   }
-}</code></pre>
+}
+</code></pre>
         </div>
     </div>
 

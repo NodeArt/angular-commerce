@@ -2264,6 +2264,30 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getOrderSubject</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getOrderSubject()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             </section>
 
     </div>
@@ -2658,6 +2682,10 @@ export class DbAbstractionLayer {
    */
   listenOrders() :Observable&lt;any&gt; {
     return this.connector.listenOrders();
+  }
+
+  getOrderSubject() {
+    return this.connector.getOrderSubject();
   }
 }
 </code></pre>

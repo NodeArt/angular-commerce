@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/dal",
-  "version": "2.1.22",
+  "version": "2.1.23",
   "description": "Bridge for database connector(for now only Firebase).",
   "main": "index.ts",
   "scripts": {
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/firebase-connector": "2.1.22"
+    "@nodeart/firebase-connector": "2.1.23"
   }
 }

@@ -2250,6 +2250,30 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getOrderSubject</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getOrderSubject()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             </section>
 
             <section>
@@ -2279,6 +2303,21 @@
                             <tr>
                                 <td class="col-md-4">
                                     <span class="modifier-icon fa fa-lock"></span><code>basketHistorySubscription$:     <code>Subscription</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> orderSubject</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>orderSubject:     <code>Subject&lt;any&gt;</code>
             </bcode>
                                 </td>
                             </tr>
@@ -2360,6 +2399,8 @@ export class FirebaseConnector {
   private basketHistory$: Subject&lt;any&gt; &#x3D; new Subject();
 
   private basketHistorySubscription$: Subscription;
+
+  private orderSubject: Subject&lt;any&gt;;
 
   constructor(private http: Http){
   }
@@ -2888,6 +2929,10 @@ export class FirebaseConnector {
         }
       });
     })
+  }
+
+  getOrderSubject() {
+    return this.orderSubject;
   }
 }
 </code></pre>

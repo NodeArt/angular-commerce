@@ -34,7 +34,7 @@
 </g>
 <g id="clust12" class="cluster">
 <title>cluster_PaymentsModule_exports</title>
-<polygon fill="none" stroke="#000000" points="285,-208 285,-260 1855,-260 1855,-208 285,-208"/>
+<polygon fill="none" stroke="#000000" points="317,-208 317,-260 1753,-260 1753,-208 317,-208"/>
 </g>
 <g id="clust14" class="cluster">
 <title>cluster_PaymentsModule_providers</title>
@@ -55,8 +55,8 @@
 <!-- PaymentsComponent&#45;&gt;PaymentsModule -->
 <g id="edge1" class="edge">
 <title>PaymentsComponent&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M2196,-122.308C2196,-142.1455 2196,-171 2196,-171 2196,-171 1110.1774,-171 1110.1774,-171"/>
-<polygon fill="#000000" stroke="#000000" points="1110.1775,-167.5001 1100.1774,-171 1110.1774,-174.5001 1110.1775,-167.5001"/>
+<path fill="none" stroke="#000000" d="M2196,-122.1289C2196,-142.5724 2196,-173 2196,-173 2196,-173 1110.1774,-173 1110.1774,-173"/>
+<polygon fill="#000000" stroke="#000000" points="1110.1775,-169.5001 1100.1774,-173 1110.1774,-176.5001 1110.1775,-169.5001"/>
 </g>
 <!-- DeliveriesComponent -->
 <g id="node2" class="node">
@@ -67,8 +67,8 @@
 <!-- DeliveriesComponent&#45;&gt;PaymentsModule -->
 <g id="edge2" class="edge">
 <title>DeliveriesComponent&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M2041,-122.1686C2041,-141.0898 2041,-168 2041,-168 2041,-168 1110.2413,-168 1110.2413,-168"/>
-<polygon fill="#000000" stroke="#000000" points="1110.2414,-164.5001 1100.2413,-168 1110.2413,-171.5001 1110.2414,-164.5001"/>
+<path fill="none" stroke="#000000" d="M2041,-122.1061C2041,-141.3391 2041,-169 2041,-169 2041,-169 1110.2413,-169 1110.2413,-169"/>
+<polygon fill="#000000" stroke="#000000" points="1110.2414,-165.5001 1100.2413,-169 1110.2413,-172.5001 1110.2414,-165.5001"/>
 </g>
 <!-- PickupDeliveryComponent -->
 <g id="node3" class="node">
@@ -79,8 +79,8 @@
 <!-- PickupDeliveryComponent&#45;&gt;PaymentsModule -->
 <g id="edge3" class="edge">
 <title>PickupDeliveryComponent&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M1815.5181,-122.302C1815.5181,-140.2699 1815.5181,-165 1815.5181,-165 1815.5181,-165 1110.1188,-165 1110.1188,-165"/>
-<polygon fill="#000000" stroke="#000000" points="1110.1189,-161.5001 1100.1188,-165 1110.1188,-168.5001 1110.1189,-161.5001"/>
+<path fill="none" stroke="#000000" d="M1869,-122.2667C1869,-140.5552 1869,-166 1869,-166 1869,-166 1110.1002,-166 1110.1002,-166"/>
+<polygon fill="#000000" stroke="#000000" points="1110.1003,-162.5001 1100.1002,-166 1110.1002,-169.5001 1110.1003,-162.5001"/>
 </g>
 <!-- AddressDeliveryComponent -->
 <g id="node4" class="node">
@@ -91,8 +91,8 @@
 <!-- AddressDeliveryComponent&#45;&gt;PaymentsModule -->
 <g id="edge4" class="edge">
 <title>AddressDeliveryComponent&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M1639.5447,-122.0352C1639.5447,-138.7344 1639.5447,-161 1639.5447,-161 1639.5447,-161 1110.1992,-161 1110.1992,-161"/>
-<polygon fill="#000000" stroke="#000000" points="1110.1992,-157.5001 1100.1992,-161 1110.1992,-164.5001 1110.1992,-157.5001"/>
+<path fill="none" stroke="#000000" d="M1597.6373,-122.0336C1597.6373,-139.0597 1597.6373,-162 1597.6373,-162 1597.6373,-162 1110.0079,-162 1110.0079,-162"/>
+<polygon fill="#000000" stroke="#000000" points="1110.008,-158.5001 1100.0079,-162 1110.0079,-165.5001 1110.008,-158.5001"/>
 </g>
 <!-- PaymentsContainerComponent -->
 <g id="node5" class="node">
@@ -103,8 +103,8 @@
 <!-- PaymentsContainerComponent&#45;&gt;PaymentsModule -->
 <g id="edge5" class="edge">
 <title>PaymentsContainerComponent&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M1454.4301,-122.2819C1454.4301,-137.9478 1454.4301,-158 1454.4301,-158 1454.4301,-158 1110.2076,-158 1110.2076,-158"/>
-<polygon fill="#000000" stroke="#000000" points="1110.2076,-154.5001 1100.2076,-158 1110.2076,-161.5001 1110.2076,-154.5001"/>
+<path fill="none" stroke="#000000" d="M1403.4301,-122.0091C1403.4301,-138.0494 1403.4301,-159 1403.4301,-159 1403.4301,-159 1110.1112,-159 1110.1112,-159"/>
+<polygon fill="#000000" stroke="#000000" points="1110.1112,-155.5001 1100.1112,-159 1110.1112,-162.5001 1110.1112,-155.5001"/>
 </g>
 <!-- TwoCheckoutComponent -->
 <g id="node6" class="node">
@@ -115,8 +115,8 @@
 <!-- TwoCheckoutComponent&#45;&gt;PaymentsModule -->
 <g id="edge6" class="edge">
 <title>TwoCheckoutComponent&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M1269.7582,-122.1243C1269.7582,-136.7832 1269.7582,-155 1269.7582,-155 1269.7582,-155 1110.2207,-155 1110.2207,-155"/>
-<polygon fill="#000000" stroke="#000000" points="1110.2207,-151.5001 1100.2207,-155 1110.2206,-158.5001 1110.2207,-151.5001"/>
+<path fill="none" stroke="#000000" d="M1218.7582,-122.1243C1218.7582,-136.7832 1218.7582,-155 1218.7582,-155 1218.7582,-155 1110.0637,-155 1110.0637,-155"/>
+<polygon fill="#000000" stroke="#000000" points="1110.0637,-151.5001 1100.0637,-155 1110.0636,-158.5001 1110.0637,-151.5001"/>
 </g>
 <!-- StripeComponent -->
 <g id="node7" class="node">
@@ -145,110 +145,98 @@
 <!-- PaymentsComponent  -->
 <g id="node15" class="node">
 <title>PaymentsComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="1846.7703,-252 1707.2297,-252 1707.2297,-216 1846.7703,-216 1846.7703,-252"/>
-<text text-anchor="middle" x="1777" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">PaymentsComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="1744.7703,-252 1605.2297,-252 1605.2297,-216 1744.7703,-216 1744.7703,-252"/>
+<text text-anchor="middle" x="1675" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">PaymentsComponent </text>
 </g>
 <!-- PaymentsModule&#45;&gt;PaymentsComponent  -->
 <g id="edge14" class="edge">
 <title>PaymentsModule&#45;&gt;PaymentsComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1100.0654,-174C1266.0114,-174 1736.7278,-174 1736.7278,-174 1736.7278,-174 1736.7278,-205.998 1736.7278,-205.998"/>
-<polygon fill="#000000" stroke="#000000" points="1733.2278,-205.998 1736.7278,-215.998 1740.2278,-205.9981 1733.2278,-205.998"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1100.2005,-177C1255.773,-177 1675,-177 1675,-177 1675,-177 1675,-205.9648 1675,-205.9648"/>
+<polygon fill="#000000" stroke="#000000" points="1671.5001,-205.9648 1675,-215.9648 1678.5001,-205.9649 1671.5001,-205.9648"/>
 </g>
 <!-- DeliveriesComponent  -->
 <g id="node16" class="node">
 <title>DeliveriesComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="1689.3603,-252 1546.6397,-252 1546.6397,-216 1689.3603,-216 1689.3603,-252"/>
-<text text-anchor="middle" x="1618" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">DeliveriesComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="1587.3603,-252 1444.6397,-252 1444.6397,-216 1587.3603,-216 1587.3603,-252"/>
+<text text-anchor="middle" x="1516" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">DeliveriesComponent </text>
 </g>
 <!-- PaymentsModule&#45;&gt;DeliveriesComponent  -->
 <g id="edge15" class="edge">
 <title>PaymentsModule&#45;&gt;DeliveriesComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1100.2097,-178C1234.5968,-178 1559.1545,-178 1559.1545,-178 1559.1545,-178 1559.1545,-205.973 1559.1545,-205.973"/>
-<polygon fill="#000000" stroke="#000000" points="1555.6545,-205.973 1559.1545,-215.973 1562.6545,-205.973 1555.6545,-205.973"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1100.0371,-180C1224.2467,-180 1508.1545,-180 1508.1545,-180 1508.1545,-180 1508.1545,-205.7181 1508.1545,-205.7181"/>
+<polygon fill="#000000" stroke="#000000" points="1504.6545,-205.718 1508.1545,-215.7181 1511.6545,-205.7181 1504.6545,-205.718"/>
 </g>
 <!-- PickupDeliveryComponent  -->
 <g id="node17" class="node">
 <title>PickupDeliveryComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="1528.1981,-252 1355.8019,-252 1355.8019,-216 1528.1981,-216 1528.1981,-252"/>
-<text text-anchor="middle" x="1442" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">PickupDeliveryComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="1426.1981,-252 1253.8019,-252 1253.8019,-216 1426.1981,-216 1426.1981,-252"/>
+<text text-anchor="middle" x="1340" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">PickupDeliveryComponent </text>
 </g>
 <!-- PaymentsModule&#45;&gt;PickupDeliveryComponent  -->
 <g id="edge16" class="edge">
 <title>PaymentsModule&#45;&gt;PickupDeliveryComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1100.206,-181C1194.2998,-181 1371.4176,-181 1371.4176,-181 1371.4176,-181 1371.4176,-205.7604 1371.4176,-205.7604"/>
-<polygon fill="#000000" stroke="#000000" points="1367.9177,-205.7604 1371.4176,-215.7604 1374.9177,-205.7604 1367.9177,-205.7604"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1100.1721,-184C1178.0712,-184 1307.9876,-184 1307.9876,-184 1307.9876,-184 1307.9876,-205.9489 1307.9876,-205.9489"/>
+<polygon fill="#000000" stroke="#000000" points="1304.4876,-205.9488 1307.9876,-215.9489 1311.4876,-205.9489 1304.4876,-205.9488"/>
 </g>
 <!-- AddressDeliveryComponent  -->
 <g id="node18" class="node">
 <title>AddressDeliveryComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="1337.6813,-252 1158.3187,-252 1158.3187,-216 1337.6813,-216 1337.6813,-252"/>
-<text text-anchor="middle" x="1248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">AddressDeliveryComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="1235.6813,-252 1056.3187,-252 1056.3187,-216 1235.6813,-216 1235.6813,-252"/>
+<text text-anchor="middle" x="1146" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">AddressDeliveryComponent </text>
 </g>
 <!-- PaymentsModule&#45;&gt;AddressDeliveryComponent  -->
 <g id="edge17" class="edge">
 <title>PaymentsModule&#45;&gt;AddressDeliveryComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1100.1594,-184C1134.1795,-184 1170.7726,-184 1170.7726,-184 1170.7726,-184 1170.7726,-205.9489 1170.7726,-205.9489"/>
-<polygon fill="#000000" stroke="#000000" points="1167.2727,-205.9488 1170.7726,-215.9489 1174.2727,-205.9489 1167.2727,-205.9488"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1078.0766,-187.1061C1078.0766,-187.1061 1078.0766,-205.991 1078.0766,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="1074.5767,-205.9909 1078.0766,-215.991 1081.5767,-205.991 1074.5767,-205.9909"/>
 </g>
 <!-- PaymentsContainerComponent  -->
 <g id="node19" class="node">
 <title>PaymentsContainerComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="1140.4782,-252 945.5218,-252 945.5218,-216 1140.4782,-216 1140.4782,-252"/>
-<text text-anchor="middle" x="1043" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">PaymentsContainerComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="1038.4782,-252 843.5218,-252 843.5218,-216 1038.4782,-216 1038.4782,-252"/>
+<text text-anchor="middle" x="941" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">PaymentsContainerComponent </text>
 </g>
 <!-- PaymentsModule&#45;&gt;PaymentsContainerComponent  -->
 <g id="edge18" class="edge">
 <title>PaymentsModule&#45;&gt;PaymentsContainerComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1043,-187.1061C1043,-187.1061 1043,-205.991 1043,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="1039.5001,-205.9909 1043,-215.991 1046.5001,-205.991 1039.5001,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1012.1226,-187.1061C1012.1226,-187.1061 1012.1226,-205.991 1012.1226,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="1008.6226,-205.9909 1012.1226,-215.991 1015.6226,-205.991 1008.6226,-205.9909"/>
 </g>
 <!-- TwoCheckoutComponent  -->
 <g id="node20" class="node">
 <title>TwoCheckoutComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="928.1481,-252 763.8519,-252 763.8519,-216 928.1481,-216 928.1481,-252"/>
-<text text-anchor="middle" x="846" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TwoCheckoutComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="826.1481,-252 661.8519,-252 661.8519,-216 826.1481,-216 826.1481,-252"/>
+<text text-anchor="middle" x="744" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TwoCheckoutComponent </text>
 </g>
 <!-- PaymentsModule&#45;&gt;TwoCheckoutComponent  -->
 <g id="edge19" class="edge">
 <title>PaymentsModule&#45;&gt;TwoCheckoutComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M985.9552,-184C945.9955,-184 899.7074,-184 899.7074,-184 899.7074,-184 899.7074,-205.9489 899.7074,-205.9489"/>
-<polygon fill="#000000" stroke="#000000" points="896.2075,-205.9488 899.7074,-215.9489 903.2075,-205.9489 896.2075,-205.9488"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M986.0063,-184C909.5575,-184 783.2937,-184 783.2937,-184 783.2937,-184 783.2937,-205.9489 783.2937,-205.9489"/>
+<polygon fill="#000000" stroke="#000000" points="779.7937,-205.9488 783.2937,-215.9489 786.7937,-205.9489 779.7937,-205.9488"/>
 </g>
 <!-- StripeComponent  -->
 <g id="node21" class="node">
 <title>StripeComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="746.2717,-252 627.7283,-252 627.7283,-216 746.2717,-216 746.2717,-252"/>
-<text text-anchor="middle" x="687" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">StripeComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="644.2717,-252 525.7283,-252 525.7283,-216 644.2717,-216 644.2717,-252"/>
+<text text-anchor="middle" x="585" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">StripeComponent </text>
 </g>
 <!-- PaymentsModule&#45;&gt;StripeComponent  -->
 <g id="edge20" class="edge">
 <title>PaymentsModule&#45;&gt;StripeComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M985.8415,-181C895.8755,-181 731.3661,-181 731.3661,-181 731.3661,-181 731.3661,-205.7604 731.3661,-205.7604"/>
-<polygon fill="#000000" stroke="#000000" points="727.8661,-205.7604 731.3661,-215.7604 734.8661,-205.7604 727.8661,-205.7604"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M985.8315,-180C872.1843,-180 628.7226,-180 628.7226,-180 628.7226,-180 628.7226,-205.7181 628.7226,-205.7181"/>
+<polygon fill="#000000" stroke="#000000" points="625.2227,-205.718 628.7226,-215.7181 632.2227,-205.7181 625.2227,-205.718"/>
 </g>
 <!-- PaymentsSpinnerComponent  -->
 <g id="node22" class="node">
 <title>PaymentsSpinnerComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="609.3185,-252 426.6815,-252 426.6815,-216 609.3185,-216 609.3185,-252"/>
-<text text-anchor="middle" x="518" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">PaymentsSpinnerComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="507.3185,-252 324.6815,-252 324.6815,-216 507.3185,-216 507.3185,-252"/>
+<text text-anchor="middle" x="416" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">PaymentsSpinnerComponent </text>
 </g>
 <!-- PaymentsModule&#45;&gt;PaymentsSpinnerComponent  -->
 <g id="edge21" class="edge">
 <title>PaymentsModule&#45;&gt;PaymentsSpinnerComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M985.5679,-178C858.9325,-178 566.8726,-178 566.8726,-178 566.8726,-178 566.8726,-205.973 566.8726,-205.973"/>
-<polygon fill="#000000" stroke="#000000" points="563.3726,-205.973 566.8726,-215.973 570.3726,-205.973 563.3726,-205.973"/>
-</g>
-<!-- PaymentsService  -->
-<g id="node23" class="node">
-<title>PaymentsService </title>
-<polygon fill="#fb8072" stroke="#000000" points="408.9152,-252 293.0848,-252 293.0848,-216 408.9152,-216 408.9152,-252"/>
-<text text-anchor="middle" x="351" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">PaymentsService </text>
-</g>
-<!-- PaymentsModule&#45;&gt;PaymentsService  -->
-<g id="edge22" class="edge">
-<title>PaymentsModule&#45;&gt;PaymentsService </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M985.7929,-174C825.8035,-174 385.4027,-174 385.4027,-174 385.4027,-174 385.4027,-205.998 385.4027,-205.998"/>
-<polygon fill="#000000" stroke="#000000" points="381.9028,-205.998 385.4027,-215.998 388.9028,-205.9981 381.9028,-205.998"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M985.9844,-177C830.3769,-177 409.9493,-177 409.9493,-177 409.9493,-177 409.9493,-205.9648 409.9493,-205.9648"/>
+<polygon fill="#000000" stroke="#000000" points="406.4494,-205.9648 409.9493,-215.9648 413.4494,-205.9649 406.4494,-205.9648"/>
 </g>
 <!-- BrowserModule -->
 <g id="node10" class="node">
@@ -259,8 +247,8 @@
 <!-- BrowserModule&#45;&gt;PaymentsModule -->
 <g id="edge9" class="edge">
 <title>BrowserModule&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M805.7064,-122.1243C805.7064,-136.7832 805.7064,-155 805.7064,-155 805.7064,-155 975.8603,-155 975.8603,-155"/>
-<polygon fill="#000000" stroke="#000000" points="975.8603,-158.5001 985.8603,-155 975.8603,-151.5001 975.8603,-158.5001"/>
+<path fill="none" stroke="#000000" d="M834.9176,-122.1243C834.9176,-136.7832 834.9176,-155 834.9176,-155 834.9176,-155 975.8653,-155 975.8653,-155"/>
+<polygon fill="#000000" stroke="#000000" points="975.8654,-158.5001 985.8653,-155 975.8653,-151.5001 975.8654,-158.5001"/>
 </g>
 <!-- HttpModule -->
 <g id="node11" class="node">
@@ -271,8 +259,8 @@
 <!-- HttpModule&#45;&gt;PaymentsModule -->
 <g id="edge10" class="edge">
 <title>HttpModule&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M680,-122.2819C680,-137.9478 680,-158 680,-158 680,-158 975.8819,-158 975.8819,-158"/>
-<polygon fill="#000000" stroke="#000000" points="975.882,-161.5001 985.8819,-158 975.8819,-154.5001 975.882,-161.5001"/>
+<path fill="none" stroke="#000000" d="M692.0724,-122.0091C692.0724,-138.0494 692.0724,-159 692.0724,-159 692.0724,-159 975.8364,-159 975.8364,-159"/>
+<polygon fill="#000000" stroke="#000000" points="975.8364,-162.5001 985.8364,-159 975.8364,-155.5001 975.8364,-162.5001"/>
 </g>
 <!-- FormsModule -->
 <g id="node12" class="node">
@@ -283,8 +271,8 @@
 <!-- FormsModule&#45;&gt;PaymentsModule -->
 <g id="edge11" class="edge">
 <title>FormsModule&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M614.5367,-122.0352C614.5367,-138.7344 614.5367,-161 614.5367,-161 614.5367,-161 975.6601,-161 975.6601,-161"/>
-<polygon fill="#000000" stroke="#000000" points="975.6601,-164.5001 985.6601,-161 975.6601,-157.5001 975.6601,-164.5001"/>
+<path fill="none" stroke="#000000" d="M572.7642,-122.0336C572.7642,-139.0597 572.7642,-162 572.7642,-162 572.7642,-162 975.81,-162 975.81,-162"/>
+<polygon fill="#000000" stroke="#000000" points="975.81,-165.5001 985.81,-162 975.8099,-158.5001 975.81,-165.5001"/>
 </g>
 <!-- ReactiveFormsModule -->
 <g id="node13" class="node">
@@ -295,8 +283,8 @@
 <!-- ReactiveFormsModule&#45;&gt;PaymentsModule -->
 <g id="edge12" class="edge">
 <title>ReactiveFormsModule&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M466.3715,-122.302C466.3715,-140.2699 466.3715,-165 466.3715,-165 466.3715,-165 975.8678,-165 975.8678,-165"/>
-<polygon fill="#000000" stroke="#000000" points="975.8678,-168.5001 985.8678,-165 975.8678,-161.5001 975.8678,-168.5001"/>
+<path fill="none" stroke="#000000" d="M458.0507,-122.2667C458.0507,-140.5552 458.0507,-166 458.0507,-166 458.0507,-166 975.8476,-166 975.8476,-166"/>
+<polygon fill="#000000" stroke="#000000" points="975.8476,-169.5001 985.8476,-166 975.8475,-162.5001 975.8476,-169.5001"/>
 </g>
 <!-- BasketServiceModule -->
 <g id="node14" class="node">
@@ -307,20 +295,20 @@
 <!-- BasketServiceModule&#45;&gt;PaymentsModule -->
 <g id="edge13" class="edge">
 <title>BasketServiceModule&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M318.4283,-122.1686C318.4283,-141.0898 318.4283,-168 318.4283,-168 318.4283,-168 975.8416,-168 975.8416,-168"/>
-<polygon fill="#000000" stroke="#000000" points="975.8416,-171.5001 985.8416,-168 975.8416,-164.5001 975.8416,-171.5001"/>
+<path fill="none" stroke="#000000" d="M334.2025,-122.1061C334.2025,-141.3391 334.2025,-169 334.2025,-169 334.2025,-169 975.8957,-169 975.8957,-169"/>
+<polygon fill="#000000" stroke="#000000" points="975.8958,-172.5001 985.8957,-169 975.8957,-165.5001 975.8958,-172.5001"/>
 </g>
 <!-- PaymentsService -->
-<g id="node24" class="node">
+<g id="node23" class="node">
 <title>PaymentsService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="102" cy="-104" rx="77.5839" ry="18"/>
 <text text-anchor="middle" x="102" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">PaymentsService</text>
 </g>
 <!-- PaymentsService&#45;&gt;PaymentsModule -->
-<g id="edge23" class="edge">
+<g id="edge22" class="edge">
 <title>PaymentsService&#45;&gt;PaymentsModule</title>
-<path fill="none" stroke="#000000" d="M102,-122.308C102,-142.1455 102,-171 102,-171 102,-171 975.9045,-171 975.9045,-171"/>
-<polygon fill="#000000" stroke="#000000" points="975.9046,-174.5001 985.9045,-171 975.9045,-167.5001 975.9046,-174.5001"/>
+<path fill="none" stroke="#000000" d="M102,-122.1289C102,-142.5724 102,-173 102,-173 102,-173 975.9045,-173 975.9045,-173"/>
+<polygon fill="#000000" stroke="#000000" points="975.9046,-176.5001 985.9045,-173 975.9045,-169.5001 975.9046,-176.5001"/>
 </g>
 </g>
 </svg>

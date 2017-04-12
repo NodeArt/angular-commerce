@@ -1,7 +1,7 @@
 {
   "name": "@nodeart/add-props-component",
   "description": "Form to add new categories, attributes, tags",
-  "version": "2.1.22",
+  "version": "2.1.23",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/productservice": "2.1.22"
+    "@nodeart/productservice": "2.1.23"
   }
 }

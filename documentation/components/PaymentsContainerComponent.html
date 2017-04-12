@@ -718,7 +718,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(http: any, basketService: any, zone: any, dal: any, authService: any, paymentsService: <a href="../injectables/PaymentsService.html" >PaymentsService</a>)</code>
+                            <code>constructor(http: any, basketService: any, zone: any, dal: any, authService: any)</code>
                         </td>
                     </tr>
     
@@ -1319,8 +1319,7 @@ export class PaymentsContainerComponent implements OnInit {
         private basketService: BasketService,
         private zone: NgZone,
         private dal: DbAbstractionLayer,
-        private authService: AuthService,
-        private paymentsService: PaymentsService) {
+        private authService: AuthService) {
     }
     ngOnInit() {
         this.zone.run(() &#x3D;&gt; {
@@ -1402,7 +1401,7 @@ export class PaymentsContainerComponent implements OnInit {
             };
             this.saveOrder(data).subscribe( 
                 res &#x3D;&gt; {
-                    this.paymentsService.orderSubject.next(data);
+                    this.dal.getOrderSubject().next(data);
                     this.failedPayment &#x3D; data.failedPayment;
                     this.successPayment &#x3D; data.successPayment;
                 },

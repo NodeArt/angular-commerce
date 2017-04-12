@@ -729,6 +729,17 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>priceRanges</code>
+                        </td>
+                        <td class="col-md-10">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </section>
 
 
@@ -1233,6 +1244,8 @@ export class ProductsListComponent implements OnInit {
    */
   @Input() categoryId &#x3D; &quot;&quot;;
 
+  @Input() priceRanges &#x3D; [0, &#x27;Infinity&#x27;];
+
   constructor(private dal: DbAbstractionLayer,
               private router: Router, 
               private productService: ProductService,
@@ -1282,7 +1295,7 @@ export class ProductsListComponent implements OnInit {
     console.log(this.attrs);
     console.log(this.tags);
     this.productService
-      .searchProducts(this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
+      .searchProducts(this.categoryId, this.priceRanges ,this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
       .subscribe( data &#x3D;&gt;{
       if(data.val()){
         this.products &#x3D; data.val().map(item &#x3D;&gt; {
@@ -1300,7 +1313,7 @@ export class ProductsListComponent implements OnInit {
   filter(){
     this.currentPage &#x3D; 1;
     this.getTotalPages();
-    this.productService.filterProducts(this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
+    this.productService.filterProducts(this.priceRanges ,this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
       .subscribe(data &#x3D;&gt; {
         if (data.val()){
           if (data.val()[&#x27;total&#x27;] &#x3D;&#x3D; 0) { 
@@ -1320,7 +1333,7 @@ export class ProductsListComponent implements OnInit {
    * Get total pages for product from category
    */
   getTotalPages(){
-    this.productService.getTotalPages(this.attrs, this.tags).subscribe( data &#x3D;&gt; {
+    this.productService.getTotalPages(this.categoryId, this.priceRanges, this.attrs, this.tags).subscribe( data &#x3D;&gt; {
       if(data.val()){
         let items &#x3D; data.val();
         this.totalPages &#x3D; Math.ceil(items / this.itemsOnPage);
