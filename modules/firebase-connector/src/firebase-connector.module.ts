@@ -11,12 +11,6 @@ import {VkAuth} from "./authMethods/vk";
  * Firebase connector module
  */
 
-export {
-  VkAuthConfig,
-  PopupConfig,
-  VkConfig
-} from  "./authMethods/vk";
-
 @NgModule({
   providers: [
     FirebaseConnector,
