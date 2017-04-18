@@ -126,20 +126,7 @@ export class ProductsListComponent implements OnInit {
   filter(){
     this.currentPage = 1;
     this.getTotalPages();
-    this.productService.filterProducts(this.priceRanges ,this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
-      .subscribe(data => {
-        if (data.val()){
-          if (data.val()['total'] == 0) { 
-            this.products = [];
-          }else if (data.val()['hits']){
-            this.products = data.val()['hits'].map(item => {
-              item['_source']['id'] = item['_id'];
-              return item['_source'];
-            });
-          }
-          console.log(this.products);
-        }
-    });
+    this.getProducts();
   }
 
   /**

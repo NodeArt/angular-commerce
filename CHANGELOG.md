@@ -1,3 +1,15 @@
+# 2.1.29
+
+### Bug fixes 
+
+* **product-service:** update to Firebase Flashlight 3.0
+
+# 2.1.28
+
+### Bug fixes 
+
+* **product-list-component:** fix filtering of products by attributes
+
 # 2.1.23-2.1.27
 
 ### Features 

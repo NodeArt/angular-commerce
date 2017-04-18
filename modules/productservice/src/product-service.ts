@@ -73,16 +73,18 @@ export class ProductService{
     for(let i = 0; i < attributes.length; i++){
         let key = "attributes." + attributes[i]['attrId'];
         queryObject.query.bool.must[0]['bool'].should.push({
-          match: {
-            [key] : attributes[i]['valueName']
+          multi_match: {
+            query: attributes[i]['valueName'],
+            fields: [key]
           }
         });
     }
     for(let i = 0; i < tags.length; i++){
         let key = "tags";
         queryObject.query.bool.must[0]['bool'].should.push({
-          match: {
-            [key] : tags[i]['id']
+          multi_match: {
+            query: tags[i]['id'],
+            fields: [key]
           }
         });
     }
@@ -129,7 +131,7 @@ export class ProductService{
    * 
    * @returns {Observable} Observable of products
    */
-  filterProducts(priceRange: any, attributes : any[], tags: any[], size, offset){
+  filterProducts(priceRange: number[], attributes : any[], tags: any[], size, offset){
     let queryObject = {
      size: size,
      from: offset,
@@ -165,8 +167,9 @@ export class ProductService{
     for(let i = 0; i < tags.length; i++){
         let key = "tags";
         queryObject.query.bool.must[0]['bool'].should.push({
-          match: {
-            [key] : tags[i]['id']
+          multi_match: {
+            query: tags[i]['id'],
+            fields: [key]
           }
         });
     }
@@ -354,8 +357,9 @@ export class ProductService{
     for(let i = 0; i < tags.length; i++){
         let key = "tags";
         queryObject.query.bool.must[0]['bool'].should.push({
-          match: {
-            [key] : tags[i]['id']
+          multi_match: {
+            query: tags[i]['id'],
+            fields: [key]
           }
         });
     }

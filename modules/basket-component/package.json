@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/basket-component",
-  "version": "2.1.27",
+  "version": "2.1.29",
   "description": "Display user basket",
   "main": "index.ts",
   "scripts": {
@@ -13,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/basketservice": "2.1.27"
+    "@nodeart/basketservice": "2.1.29"
   }
 }
