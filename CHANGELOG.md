@@ -1,3 +1,10 @@
+# 2.1.30
+
+### Features 
+
+* **attributes-search-component:** emit true of false if categor has attributes
+* **product-list-component:** add RouterModule, add boolean value isProductsHasAttributes if category has attributes
+
 # 2.1.29
 
 ### Bug fixes 

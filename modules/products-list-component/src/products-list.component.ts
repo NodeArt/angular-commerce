@@ -1,10 +1,11 @@
 import { Params } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Inject, Input} from '@angular/core';
+import { Component, OnInit, Inject, Input, AfterViewInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {DbAbstractionLayer} from "@nodeart/dal";
 import {Subject} from 'rxjs/Subject';
 import {ProductService} from "@nodeart/productservice";
+import {AttributesSearchComponent} from '@nodeart/attributes-search-component';
 /**
  * Display products form specific category. There are two methods of passing category id: 
  * 1. Input id to categoryId variable
@@ -16,6 +17,10 @@ import {ProductService} from "@nodeart/productservice";
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
+
+  @ViewChild(AttributesSearchComponent) attrComponent: AttributesSearchComponent;
+
+  public isProductsHasAttributes: boolean = false;
 
   /**
    * Products array
@@ -77,6 +82,10 @@ export class ProductsListComponent implements OnInit {
     this.currentPageStream.subscribe(newPage => {
       this.getProducts();
     });
+
+    this.attrComponent.attrsEmiter
+      .subscribe(isAttrsExist => this.isProductsHasAttributes = isAttrsExist);
+
   }
 
   /**
