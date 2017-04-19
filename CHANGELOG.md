@@ -1,3 +1,10 @@
+# 2.1.31
+
+### Features 
+
+* **search-bar-component:** fix bugs, some refactoring
+* **productservice:** change getProducts method
+
 # 2.1.30
 
 ### Features 

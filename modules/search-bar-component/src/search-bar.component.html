@@ -1,7 +1,6 @@
 Search product:
 <div class="search-input">
-    <input type="text" #query (input)="change(query.value)" >
-    <div class="button" (click)="showCountries()"></div>
+    <input type="text" #query (input)="change(query.value)" class="queryInput" >
 </div>
 <div class="menu" [ngClass]="{'products-list': products.length > 0}">
   <div class="item product-item" *ngFor="let product of products" (click)="onSelect(product.id)">

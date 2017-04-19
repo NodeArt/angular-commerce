@@ -297,15 +297,25 @@ export class ProductService{
    * @returns {Observable} Observable of data
    */
   getProducts(query, size){
+    query = query.split(' ');
     let queryObj = {
       "size": size,
         "query": {
-            "wildcard": {
-              "name": "*" + query + "*"
-            }
+          "bool": {
+            "must": [
+            ]
+          }
         }
     };
-    return this.dal.requestData(this.esIndex, 'product', queryObj);
+    query.map(term => {
+      term = term.replace(/\(|\)/g, '');
+      queryObj.query.bool.must.push({
+        "wildcard": {
+          "name": term.toLowerCase() + "*"
+        }
+      });
+    });
+    return this.dal.requestFullData(this.esIndex, 'product', queryObj);
   }
 
   /**

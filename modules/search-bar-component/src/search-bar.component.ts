@@ -33,12 +33,17 @@ export class SearchBarComponent implements OnInit {
   ngOnInit() {
     this.inputSubject.debounceTime(500).subscribe(query => {
       this.productService.getProducts(query, 5).subscribe( data => {
-        if(data.val()){
-          this.products = data.val().map(product => {
+        console.log(data.val());
+        console.log(this.queryString.nativeElement.value.length);
+        if(data.val() && data.val()['total'] > 0 && this.queryString.nativeElement.value.length > 0){
+          console.log(data.val());
+          this.products = data.val()['hits'].map(product => {
             product['_source']['id'] = product['_id'];
             return product['_source'];
-          });
+          });    
           console.log(this.products);
+        } else {
+          this.products = [];
         }
       });
     });
