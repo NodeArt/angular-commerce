@@ -21,6 +21,7 @@ export class AuthService {
       if(authData){
         let uid = authData.uid;
         this.userData = {};
+        this.userData['uid'] = uid;
         this.dal.getUserData(uid).subscribe( data => {
           if(data.val()){
             let userData = data.val()[0]['_source'];

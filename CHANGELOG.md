@@ -1,3 +1,15 @@
+# 2.1.33
+
+### Refactor
+
+* **auth-service:** change firebaseUid to uid in register form.
+
+# 2.1.32
+
+### Bug fixes
+
+* **auth-service:** fix bugs with saving user data with custom auth
+
 # 2.1.31
 
 ### Features 

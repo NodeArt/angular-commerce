@@ -121,8 +121,8 @@ export class FirebaseConnector {
     registerForm["registerTime"] = Date.now();
     return Observable.create(observer => {
       this.register(email, password).then(authData => {
-        let firebaseUId = authData.uid;
-        registerForm.firebaseUId = firebaseUId;
+        let uid = authData.uid;
+        registerForm.uid = uid;
         firebase.database().ref('user/' + userId).set(registerForm).then(data => {
            this.loginEmail(email, password).subscribe( data => {
               observer.next(data);
@@ -181,7 +181,7 @@ export class FirebaseConnector {
     let queryObj = {
       query: {
         match: {
-          "firebaseUId" : uid
+          "uid" : uid
         }
       }
     };
