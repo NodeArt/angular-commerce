@@ -62,7 +62,7 @@ export class ProductsListComponent implements OnInit {
    */
   @Input() categoryId = "";
 
-  @Input() priceRanges = [0, 'Infinity'];
+  @Input() priceRanges = [0, 100000000000000];
 
   constructor(private dal: DbAbstractionLayer,
               private router: Router, 

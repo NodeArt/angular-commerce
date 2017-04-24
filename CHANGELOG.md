@@ -1,3 +1,9 @@
+# 2.1.34
+
+### Refactor
+
+* **product-list-component:** temporary magic number to max price because of ElasticSearch
+
 # 2.1.33
 
 ### Refactor
