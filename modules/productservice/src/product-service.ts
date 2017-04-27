@@ -89,7 +89,7 @@ export class ProductService{
         });
     }
     console.log(queryObject);
-    return this.dal.requestData(this.esIndex, 'product', queryObject);
+    return this.dal.requestFullData(this.esIndex, 'product', queryObject);
   }
 
   /**

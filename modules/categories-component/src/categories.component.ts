@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { ProductService } from '@nodeart/productservice';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 /**
  * Categories component. Display list of store categories
@@ -17,6 +17,16 @@ export class CategoriesComponent implements OnInit {
    */
   public categories = [];
 
+  /**
+   * Id of general category
+   */
+  @Input() public generalCategoryId: string | number;
+  
+  /**
+   * Name of specific category route
+   */
+  @Input() public routeName: string;
+
   constructor(private productService: ProductService,
               private router: Router) { }
 
@@ -28,7 +38,7 @@ export class CategoriesComponent implements OnInit {
    * Get categories and patch to variable
    */
   getCategories(): void {
-    this.productService.getCategories().subscribe( categories => {
+    this.productService.getCategories(this.generalCategoryId).subscribe( categories => {
       if(categories.val()){
         this.categories = categories.val().map(category => {
           category['_source']['id'] = category['_id'];
@@ -43,7 +53,7 @@ export class CategoriesComponent implements OnInit {
    * @param categoryId category id
    */
   onSelect(categoryId){
-    this.router.navigate(['category', categoryId]);
+    this.router.navigate([this.routeName, categoryId]);
   }
 
 }

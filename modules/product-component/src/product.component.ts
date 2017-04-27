@@ -1,3 +1,4 @@
+import { AuthService } from '@nodeart/auth-service';
 import {Component, OnInit, NgZone} from '@angular/core';
 import {ProductService} from "@nodeart/productservice";
 import {ActivatedRoute, Params, Router} from "@angular/router";
@@ -42,12 +43,13 @@ export class ProductComponent implements OnInit {
    * Is user authorized
    */
   isAuth = false;
-  constructor(private productService: ProductService,
-              private route: ActivatedRoute,
-              private basket: BasketService,
+  constructor(protected productService: ProductService,
+              protected route: ActivatedRoute,
+              protected basket: BasketService,
               protected zone: NgZone,
               protected router: Router,
-              private dal: DbAbstractionLayer){
+              protected dal: DbAbstractionLayer,
+              protected authService: AuthService){
     this.dal.getAuth().onAuthStateChanged(data => {
       if(data == null) {
         this.isAuth = false;
@@ -158,6 +160,11 @@ export class ProductComponent implements OnInit {
    * Add product to basket
    */
   buyProduct(){
+    let buyObj = this.generateBuyObject();
+    this.basket.addProduct(buyObj);
+  }
+
+  generateBuyObject() {
     let buyObj = {
       id: this.id,
       fullId: this.id + "?",
@@ -173,7 +180,7 @@ export class ProductComponent implements OnInit {
       buyObj.fullId += "" + obj.id + "=" + obj.value + ";";
       return obj;
     });
-    this.basket.addProduct(buyObj);
+    return buyObj;
   }
 
   /**

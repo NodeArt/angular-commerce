@@ -71,14 +71,14 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProducts();
     this.route.params.forEach((params: Params) => {
+      console.log(params);
       if(params['id']){
         this.categoryId = params['id'];
       }
-      
-      });
+    });
     this.getTotalPages();
+    this.getProducts();
     this.currentPageStream.subscribe(newPage => {
       this.getProducts();
     });
@@ -118,15 +118,20 @@ export class ProductsListComponent implements OnInit {
     console.log(this.tags);
     this.productService
       .searchProducts(this.categoryId, this.priceRanges ,this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
-      .subscribe( data =>{
-      if(data.val()){
-        this.products = data.val().map(item => {
-          item['_source']['id'] = item['_id'];
-          return item['_source'];
+        .subscribe( data =>{
+          if(data.val()){
+            if(data.val()['total'] === 0) {
+              this.products = [];
+            } else if(data.val()['hits']){
+              console.log('Products data: ', data.val());
+              this.products = data.val()['hits'].map(item => {
+                item['_source']['id'] = item['_id'];
+                return item['_source'];
+              });
+              console.log(this.products);
+            }
+          }
         });
-        console.log(this.products);
-      }
-    });
   }
 
   /**
@@ -143,9 +148,9 @@ export class ProductsListComponent implements OnInit {
    */
   getTotalPages(){
     this.productService.getTotalPages(this.categoryId, this.priceRanges, this.attrs, this.tags).subscribe( data => {
-      if(data.val()){
+      if(data.val() >= 0){
         let items = data.val();
-        this.totalPages = Math.ceil(items / this.itemsOnPage);
+        items === 0 ? this.totalPages = 1 : this.totalPages = Math.ceil(items / this.itemsOnPage);
       }
     });
   }

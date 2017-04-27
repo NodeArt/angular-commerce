@@ -30,7 +30,7 @@ export class FirebaseConnector {
 
   private basketHistorySubscription$: Subscription;
 
-  private orderSubject: Subject<any>;
+  private orderSubject: Subject<any> = new Subject();
 
   constructor(private http: Http){
   }

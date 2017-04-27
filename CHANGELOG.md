@@ -1,3 +1,37 @@
+# 2.1.39
+
+### Bug fixes
+
+* **product-list-component, products-service:** fix when after filtering there no matches
+
+# 2.1.38
+
+### Features
+
+* **payments-component:** add deliveryCompany input
+
+# 2.1.37
+
+### Refactor
+
+* **product-component:** change private instances to protected, some refactorings with methods
+
+# 2.1.36
+
+### Bug fixes
+
+* **product-list-component:** getProducts after initialize route param
+
+# 2.1.35
+
+### Refactor
+
+* **categories-component:** add inputs for generalCategoryId and routeName
+
+### Bug fixes
+
+* **product-list-component:** add export to ProductListComponent in index.ts
+
 # 2.1.34
 
 ### Refactor

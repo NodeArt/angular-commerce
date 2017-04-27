@@ -12,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/basketservice": "2.1.34",
-    "@nodeart/productservice": "2.1.34"
+    "@nodeart/basketservice": "2.1.39",
+    "@nodeart/productservice": "2.1.39"
   },
-  "version": "2.1.34"
+  "version": "2.1.39"
 }

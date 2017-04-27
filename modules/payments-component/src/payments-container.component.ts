@@ -82,6 +82,11 @@ export class PaymentsContainerComponent implements OnInit {
     public isLoading = true;
 
     /**
+     * Delivery company name
+     */
+    public deliveryCompany: string = '';
+
+    /**
      * {@link PaymentsComponent}
      */
     @ViewChild(PaymentsComponent) paymentsComponent: PaymentsComponent;
@@ -153,6 +158,14 @@ export class PaymentsContainerComponent implements OnInit {
     }
 
     /**
+     * Set delivery company name
+     * @param deliveryCompany Delivery company name
+     */
+    setDeliveryCompany(deliveryCompany) {
+        this.deliveryCompany = deliveryCompany;
+    }
+
+    /**
      * Process payment after saving payment information and (optional) delivery form.
      */
     finish() {
@@ -161,26 +174,40 @@ export class PaymentsContainerComponent implements OnInit {
             orderForm: this.orderForm,
             paymentForm: this.paymentForm,
             deliveryForm: this.deliveryForm
-        }
-        this.paymentForm.payMethod(this.dal, paymentData).subscribe(data => {
-            console.log(data);
-            if(data.status) {
-              this.zone.run(() => {
-                this.paymentStatus = data.status;
-              });
-              this.isLoading = false;
-            };
-            this.saveOrder(data).subscribe( 
+        };
+        if(this.paymentForm.payMethod){
+            this.paymentForm.payMethod(this.dal, paymentData).subscribe(data => {
+                console.log(data);
+                if(data.status) {
+                this.zone.run(() => {
+                    this.paymentStatus = data.status;
+                });
+                this.isLoading = false;
+                };
+                this.saveOrder(data).subscribe( 
+                    res => {
+                        this.dal.getOrderSubject().next(data);
+                        this.failedPayment = data.failedPayment;
+                        this.successPayment = data.successPayment;
+                    },
+                    e => {
+                        this.successPayment = false;
+                        this.failedPayment = true;
+                });
+            });
+        } else {
+            this.saveOrder(paymentData).subscribe( 
                 res => {
-                    this.dal.getOrderSubject().next(data);
-                    this.failedPayment = data.failedPayment;
-                    this.successPayment = data.successPayment;
+                    console.log(this.dal.getOrderSubject());
+                    this.dal.getOrderSubject().next(paymentData);
+                    this.failedPayment = false;
+                    this.successPayment = true;
                 },
                 e => {
                     this.successPayment = false;
                     this.failedPayment = true;
             });
-        });
+        }
     }
     
     /**
@@ -200,6 +227,8 @@ export class PaymentsContainerComponent implements OnInit {
         this.showPayments = true;
         this.showDeliveryForm = false;
         this.showFinish = false;
+        this.successPayment = false;
+        this.failedPayment = false;
         this.deliveryForm = null;
         this.paymentForm = null;
         if(this.paymentsComponent){

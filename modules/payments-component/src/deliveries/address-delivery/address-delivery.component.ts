@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { countries } from './countries';
@@ -18,6 +19,11 @@ export class AddressDeliveryComponent implements OnInit {
     public addressDeliveryForm: FormGroup;
 
     /**
+     * Delivery company name
+     */
+    @Input() deliveryCompany: string = '';
+
+    /**
      * Emit form when user finish to fill in it
      */
     @Output() addressDeliverySaved = new EventEmitter();
@@ -31,7 +37,9 @@ export class AddressDeliveryComponent implements OnInit {
             addrLine1: '',
             name: '',
             email: '',
-            phoneNumber: ''
+            phoneNumber: '',
+            deliveryCompany: this.deliveryCompany,
+            additionalInfo: ''
         });
      }
 
