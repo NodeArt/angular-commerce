@@ -919,12 +919,17 @@ export class SearchBarComponent implements OnInit {
   ngOnInit() {
     this.inputSubject.debounceTime(500).subscribe(query &#x3D;&gt; {
       this.productService.getProducts(query, 5).subscribe( data &#x3D;&gt; {
-        if(data.val()){
-          this.products &#x3D; data.val().map(product &#x3D;&gt; {
+        console.log(data.val());
+        console.log(this.queryString.nativeElement.value.length);
+        if(data.val() &amp;&amp; data.val()[&#x27;total&#x27;] &gt; 0 &amp;&amp; this.queryString.nativeElement.value.length &gt; 0){
+          console.log(data.val());
+          this.products &#x3D; data.val()[&#x27;hits&#x27;].map(product &#x3D;&gt; {
             product[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; product[&#x27;_id&#x27;];
             return product[&#x27;_source&#x27;];
-          });
+          });    
           console.log(this.products);
+        } else {
+          this.products &#x3D; [];
         }
       });
     });

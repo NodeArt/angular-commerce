@@ -701,11 +701,20 @@
                             </li>
                     </ul>
                 </div>
+                <div class="col-sm-3">
+                    <h3>Exports<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#exports-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                    <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                            </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre><code class="hljs javascript">import { NgModule } from &#x27;@angular/core&#x27;;
+        <pre><code class="hljs javascript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { NgModule } from &#x27;@angular/core&#x27;;
 
 import { SearchBarComponent }   from &#x27;./search-bar.component&#x27;;
 
@@ -715,8 +724,8 @@ import {ProductServiceModule} from &#x27;@nodeart/productservice/index&#x27;;
  * Search bar for searching products by name
  */
 @NgModule({
-    imports: [ProductServiceModule],
-    exports: [],
+    imports: [ProductServiceModule, CommonModule],
+    exports: [SearchBarComponent],
     declarations: [SearchBarComponent],
     providers: [],
 })

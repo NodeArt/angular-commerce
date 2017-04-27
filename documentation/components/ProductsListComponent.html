@@ -1024,6 +1024,21 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> attrComponent</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>attrComponent:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> attrs</b>
                         </td>
                     </tr>
@@ -1086,6 +1101,26 @@
     </div>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> isProductsHasAttributes</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-circle"></span><code>isProductsHasAttributes:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -1187,11 +1222,12 @@
         <div class="tab-pane fade tab-source-code" id="source">
             <pre><code class="hljs javascript">import { Params } from &#x27;@angular/router&#x27;;
 import { ActivatedRoute } from &#x27;@angular/router&#x27;;
-import { Component, OnInit, Inject, Input} from &#x27;@angular/core&#x27;;
+import { Component, OnInit, Inject, Input, AfterViewInit, ViewChild} from &#x27;@angular/core&#x27;;
 import {Router} from &#x27;@angular/router&#x27;;
 import {DbAbstractionLayer} from &quot;@nodeart/dal&quot;;
 import {Subject} from &#x27;rxjs/Subject&#x27;;
 import {ProductService} from &quot;@nodeart/productservice&quot;;
+import {AttributesSearchComponent} from &#x27;@nodeart/attributes-search-component&#x27;;
 /**
  * Display products form specific category. There are two methods of passing category id: 
  * 1. Input id to categoryId variable
@@ -1203,6 +1239,10 @@ import {ProductService} from &quot;@nodeart/productservice&quot;;
   styleUrls: [&#x27;./products-list.component.scss&#x27;]
 })
 export class ProductsListComponent implements OnInit {
+
+  @ViewChild(AttributesSearchComponent) attrComponent: AttributesSearchComponent;
+
+  public isProductsHasAttributes: boolean &#x3D; false;
 
   /**
    * Products array
@@ -1244,7 +1284,7 @@ export class ProductsListComponent implements OnInit {
    */
   @Input() categoryId &#x3D; &quot;&quot;;
 
-  @Input() priceRanges &#x3D; [0, &#x27;Infinity&#x27;];
+  @Input() priceRanges &#x3D; [0, 100000000000000];
 
   constructor(private dal: DbAbstractionLayer,
               private router: Router, 
@@ -1253,17 +1293,21 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProducts();
     this.route.params.forEach((params: Params) &#x3D;&gt; {
+      console.log(params);
       if(params[&#x27;id&#x27;]){
         this.categoryId &#x3D; params[&#x27;id&#x27;];
       }
-      
-      });
+    });
     this.getTotalPages();
+    this.getProducts();
     this.currentPageStream.subscribe(newPage &#x3D;&gt; {
       this.getProducts();
     });
+
+    this.attrComponent.attrsEmiter
+      .subscribe(isAttrsExist &#x3D;&gt; this.isProductsHasAttributes &#x3D; isAttrsExist);
+
   }
 
   /**
@@ -1296,15 +1340,20 @@ export class ProductsListComponent implements OnInit {
     console.log(this.tags);
     this.productService
       .searchProducts(this.categoryId, this.priceRanges ,this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
-      .subscribe( data &#x3D;&gt;{
-      if(data.val()){
-        this.products &#x3D; data.val().map(item &#x3D;&gt; {
-          item[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; item[&#x27;_id&#x27;];
-          return item[&#x27;_source&#x27;];
+        .subscribe( data &#x3D;&gt;{
+          if(data.val()){
+            if(data.val()[&#x27;total&#x27;] &#x3D;&#x3D;&#x3D; 0) {
+              this.products &#x3D; [];
+            } else if(data.val()[&#x27;hits&#x27;]){
+              console.log(&#x27;Products data: &#x27;, data.val());
+              this.products &#x3D; data.val()[&#x27;hits&#x27;].map(item &#x3D;&gt; {
+                item[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; item[&#x27;_id&#x27;];
+                return item[&#x27;_source&#x27;];
+              });
+              console.log(this.products);
+            }
+          }
         });
-        console.log(this.products);
-      }
-    });
   }
 
   /**
@@ -1313,20 +1362,7 @@ export class ProductsListComponent implements OnInit {
   filter(){
     this.currentPage &#x3D; 1;
     this.getTotalPages();
-    this.productService.filterProducts(this.priceRanges ,this.attrs, this.tags, this.itemsOnPage, (this.currentPage - 1) * this.itemsOnPage)
-      .subscribe(data &#x3D;&gt; {
-        if (data.val()){
-          if (data.val()[&#x27;total&#x27;] &#x3D;&#x3D; 0) { 
-            this.products &#x3D; [];
-          }else if (data.val()[&#x27;hits&#x27;]){
-            this.products &#x3D; data.val()[&#x27;hits&#x27;].map(item &#x3D;&gt; {
-              item[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; item[&#x27;_id&#x27;];
-              return item[&#x27;_source&#x27;];
-            });
-          }
-          console.log(this.products);
-        }
-    });
+    this.getProducts();
   }
 
   /**
@@ -1334,9 +1370,9 @@ export class ProductsListComponent implements OnInit {
    */
   getTotalPages(){
     this.productService.getTotalPages(this.categoryId, this.priceRanges, this.attrs, this.tags).subscribe( data &#x3D;&gt; {
-      if(data.val()){
+      if(data.val() &gt;&#x3D; 0){
         let items &#x3D; data.val();
-        this.totalPages &#x3D; Math.ceil(items / this.itemsOnPage);
+        items &#x3D;&#x3D;&#x3D; 0 ? this.totalPages &#x3D; 1 : this.totalPages &#x3D; Math.ceil(items / this.itemsOnPage);
       }
     });
   }
@@ -1356,8 +1392,7 @@ export class ProductsListComponent implements OnInit {
   updateTags(newTags){
     this.tags &#x3D; newTags;
   }
-}
-</code></pre>
+}</code></pre>
         </div>
     </div>
 

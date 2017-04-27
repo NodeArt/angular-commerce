@@ -718,7 +718,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(productService: any, route: any, basket: any, zone: any, router: any, dal: any)</code>
+                            <code>constructor(productService: any, route: any, basket: any, zone: any, router: any, dal: any, authService: any)</code>
                         </td>
                     </tr>
     
@@ -855,6 +855,30 @@
                         <td class="col-md-4">
                                 <div class="io-description"><p>Add product to basket</p>
     </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> generateBuyObject</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>generateBuyObject()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>void</code>
     
@@ -1027,7 +1051,8 @@
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import {Component, OnInit, NgZone} from &#x27;@angular/core&#x27;;
+            <pre><code class="hljs javascript">import { AuthService } from &#x27;@nodeart/auth-service&#x27;;
+import {Component, OnInit, NgZone} from &#x27;@angular/core&#x27;;
 import {ProductService} from &quot;@nodeart/productservice&quot;;
 import {ActivatedRoute, Params, Router} from &quot;@angular/router&quot;;
 import {BasketService} from &quot;@nodeart/basketservice&quot;;
@@ -1071,12 +1096,13 @@ export class ProductComponent implements OnInit {
    * Is user authorized
    */
   isAuth &#x3D; false;
-  constructor(private productService: ProductService,
-              private route: ActivatedRoute,
-              private basket: BasketService,
+  constructor(protected productService: ProductService,
+              protected route: ActivatedRoute,
+              protected basket: BasketService,
               protected zone: NgZone,
               protected router: Router,
-              private dal: DbAbstractionLayer){
+              protected dal: DbAbstractionLayer,
+              protected authService: AuthService){
     this.dal.getAuth().onAuthStateChanged(data &#x3D;&gt; {
       if(data &#x3D;&#x3D; null) {
         this.isAuth &#x3D; false;
@@ -1187,6 +1213,11 @@ export class ProductComponent implements OnInit {
    * Add product to basket
    */
   buyProduct(){
+    let buyObj &#x3D; this.generateBuyObject();
+    this.basket.addProduct(buyObj);
+  }
+
+  generateBuyObject() {
     let buyObj &#x3D; {
       id: this.id,
       fullId: this.id + &quot;?&quot;,
@@ -1202,7 +1233,7 @@ export class ProductComponent implements OnInit {
       buyObj.fullId +&#x3D; &quot;&quot; + obj.id + &quot;&#x3D;&quot; + obj.value + &quot;;&quot;;
       return obj;
     });
-    this.basket.addProduct(buyObj);
+    return buyObj;
   }
 
   /**

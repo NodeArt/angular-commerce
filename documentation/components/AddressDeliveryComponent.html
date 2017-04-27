@@ -710,6 +710,26 @@
     </table>
 </section>
 
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>deliveryCompany</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Delivery company name</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
     <section>
         <h3 id="outputs">Outputs</h3>
@@ -815,7 +835,8 @@
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import { FormGroup, FormBuilder } from &#x27;@angular/forms&#x27;;
+            <pre><code class="hljs javascript">import { Input } from &#x27;@angular/core&#x27;;
+import { FormGroup, FormBuilder } from &#x27;@angular/forms&#x27;;
 import { Component, OnInit, EventEmitter, Output } from &#x27;@angular/core&#x27;;
 import { countries } from &#x27;./countries&#x27;;
 
@@ -835,6 +856,11 @@ export class AddressDeliveryComponent implements OnInit {
     public addressDeliveryForm: FormGroup;
 
     /**
+     * Delivery company name
+     */
+    @Input() deliveryCompany: string &#x3D; &#x27;&#x27;;
+
+    /**
      * Emit form when user finish to fill in it
      */
     @Output() addressDeliverySaved &#x3D; new EventEmitter();
@@ -848,7 +874,9 @@ export class AddressDeliveryComponent implements OnInit {
             addrLine1: &#x27;&#x27;,
             name: &#x27;&#x27;,
             email: &#x27;&#x27;,
-            phoneNumber: &#x27;&#x27;
+            phoneNumber: &#x27;&#x27;,
+            deliveryCompany: this.deliveryCompany,
+            additionalInfo: &#x27;&#x27;
         });
      }
 

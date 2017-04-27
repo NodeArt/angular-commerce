@@ -1570,21 +1570,23 @@ export class ProductService{
     for(let i &#x3D; 0; i &lt; attributes.length; i++){
         let key &#x3D; &quot;attributes.&quot; + attributes[i][&#x27;attrId&#x27;];
         queryObject.query.bool.must[0][&#x27;bool&#x27;].should.push({
-          match: {
-            [key] : attributes[i][&#x27;valueName&#x27;]
+          multi_match: {
+            query: attributes[i][&#x27;valueName&#x27;],
+            fields: [key]
           }
         });
     }
     for(let i &#x3D; 0; i &lt; tags.length; i++){
         let key &#x3D; &quot;tags&quot;;
         queryObject.query.bool.must[0][&#x27;bool&#x27;].should.push({
-          match: {
-            [key] : tags[i][&#x27;id&#x27;]
+          multi_match: {
+            query: tags[i][&#x27;id&#x27;],
+            fields: [key]
           }
         });
     }
     console.log(queryObject);
-    return this.dal.requestData(this.esIndex, &#x27;product&#x27;, queryObject);
+    return this.dal.requestFullData(this.esIndex, &#x27;product&#x27;, queryObject);
   }
 
   /**
@@ -1662,8 +1664,9 @@ export class ProductService{
     for(let i &#x3D; 0; i &lt; tags.length; i++){
         let key &#x3D; &quot;tags&quot;;
         queryObject.query.bool.must[0][&#x27;bool&#x27;].should.push({
-          match: {
-            [key] : tags[i][&#x27;id&#x27;]
+          multi_match: {
+            query: tags[i][&#x27;id&#x27;],
+            fields: [key]
           }
         });
     }
@@ -1791,15 +1794,25 @@ export class ProductService{
    * @returns {Observable} Observable of data
    */
   getProducts(query, size){
+    query &#x3D; query.split(&#x27; &#x27;);
     let queryObj &#x3D; {
       &quot;size&quot;: size,
         &quot;query&quot;: {
-            &quot;wildcard&quot;: {
-              &quot;name&quot;: &quot;*&quot; + query + &quot;*&quot;
-            }
+          &quot;bool&quot;: {
+            &quot;must&quot;: [
+            ]
+          }
         }
     };
-    return this.dal.requestData(this.esIndex, &#x27;product&#x27;, queryObj);
+    query.map(term &#x3D;&gt; {
+      term &#x3D; term.replace(/\(|\)/g, &#x27;&#x27;);
+      queryObj.query.bool.must.push({
+        &quot;wildcard&quot;: {
+          &quot;name&quot;: term.toLowerCase() + &quot;*&quot;
+        }
+      });
+    });
+    return this.dal.requestFullData(this.esIndex, &#x27;product&#x27;, queryObj);
   }
 
   /**
@@ -1851,8 +1864,9 @@ export class ProductService{
     for(let i &#x3D; 0; i &lt; tags.length; i++){
         let key &#x3D; &quot;tags&quot;;
         queryObject.query.bool.must[0][&#x27;bool&#x27;].should.push({
-          match: {
-            [key] : tags[i][&#x27;id&#x27;]
+          multi_match: {
+            query: tags[i][&#x27;id&#x27;],
+            fields: [key]
           }
         });
     }

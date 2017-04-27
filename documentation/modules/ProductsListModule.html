@@ -719,7 +719,8 @@
         </div>
     </div>
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre><code class="hljs javascript">import { NgModule } from &#x27;@angular/core&#x27;;
+        <pre><code class="hljs javascript">import { RouterModule } from &#x27;@angular/router&#x27;;
+import { NgModule } from &#x27;@angular/core&#x27;;
 import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
 import { ProductsListComponent } from &#x27;./products-list.component&#x27;;
 import { ProductServiceModule } from &#x27;@nodeart/productservice/index&#x27;;
@@ -729,7 +730,13 @@ import { TagsSearchModule } from &#x27;@nodeart/tags-search-component&#x27;;
  * Display products from specific category
  */
 @NgModule({
-    imports: [ProductServiceModule, BrowserModule, AttributesSearchModule, TagsSearchModule],
+    imports: [
+        ProductServiceModule, 
+        BrowserModule, 
+        AttributesSearchModule, 
+        TagsSearchModule,
+        RouterModule
+    ],
     exports: [ProductsListComponent],
     declarations: [ProductsListComponent],
     providers: [],

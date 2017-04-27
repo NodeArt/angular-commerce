@@ -2400,7 +2400,7 @@ export class FirebaseConnector {
 
   private basketHistorySubscription$: Subscription;
 
-  private orderSubject: Subject&lt;any&gt;;
+  private orderSubject: Subject&lt;any&gt; &#x3D; new Subject();
 
   constructor(private http: Http){
   }
@@ -2491,8 +2491,8 @@ export class FirebaseConnector {
     registerForm[&quot;registerTime&quot;] &#x3D; Date.now();
     return Observable.create(observer &#x3D;&gt; {
       this.register(email, password).then(authData &#x3D;&gt; {
-        let firebaseUId &#x3D; authData.uid;
-        registerForm.firebaseUId &#x3D; firebaseUId;
+        let uid &#x3D; authData.uid;
+        registerForm.uid &#x3D; uid;
         firebase.database().ref(&#x27;user/&#x27; + userId).set(registerForm).then(data &#x3D;&gt; {
            this.loginEmail(email, password).subscribe( data &#x3D;&gt; {
               observer.next(data);
@@ -2551,7 +2551,7 @@ export class FirebaseConnector {
     let queryObj &#x3D; {
       query: {
         match: {
-          &quot;firebaseUId&quot; : uid
+          &quot;uid&quot; : uid
         }
       }
     };

@@ -816,6 +816,49 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> setDeliveryCompany</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>setDeliveryCompany(deliveryCompany: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Set delivery company name</p>
+    </div>
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <ul class="jsdoc-params">
+                                                <li>
+                                                    <div>
+                                                        <b>deliveryCompany</b>
+                                                    </div>
+                                                    <div>
+                                                        <p>Delivery company name</p>
+    
+                                                    </div>
+                                                </li>
+                                        </ul>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> finish</b>
                         </td>
                     </tr>
@@ -911,6 +954,27 @@
 
     <section>
         <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> deliveryCompany</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-circle"></span><code>deliveryCompany:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Delivery company name</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1311,6 +1375,11 @@ export class PaymentsContainerComponent implements OnInit {
     public isLoading &#x3D; true;
 
     /**
+     * Delivery company name
+     */
+    public deliveryCompany: string &#x3D; &#x27;&#x27;;
+
+    /**
      * {@link PaymentsComponent}
      */
     @ViewChild(PaymentsComponent) paymentsComponent: PaymentsComponent;
@@ -1382,6 +1451,14 @@ export class PaymentsContainerComponent implements OnInit {
     }
 
     /**
+     * Set delivery company name
+     * @param deliveryCompany Delivery company name
+     */
+    setDeliveryCompany(deliveryCompany) {
+        this.deliveryCompany &#x3D; deliveryCompany;
+    }
+
+    /**
      * Process payment after saving payment information and (optional) delivery form.
      */
     finish() {
@@ -1390,26 +1467,40 @@ export class PaymentsContainerComponent implements OnInit {
             orderForm: this.orderForm,
             paymentForm: this.paymentForm,
             deliveryForm: this.deliveryForm
-        }
-        this.paymentForm.payMethod(this.dal, paymentData).subscribe(data &#x3D;&gt; {
-            console.log(data);
-            if(data.status) {
-              this.zone.run(() &#x3D;&gt; {
-                this.paymentStatus &#x3D; data.status;
-              });
-              this.isLoading &#x3D; false;
-            };
-            this.saveOrder(data).subscribe( 
+        };
+        if(this.paymentForm.payMethod){
+            this.paymentForm.payMethod(this.dal, paymentData).subscribe(data &#x3D;&gt; {
+                console.log(data);
+                if(data.status) {
+                this.zone.run(() &#x3D;&gt; {
+                    this.paymentStatus &#x3D; data.status;
+                });
+                this.isLoading &#x3D; false;
+                };
+                this.saveOrder(data).subscribe( 
+                    res &#x3D;&gt; {
+                        this.dal.getOrderSubject().next(data);
+                        this.failedPayment &#x3D; data.failedPayment;
+                        this.successPayment &#x3D; data.successPayment;
+                    },
+                    e &#x3D;&gt; {
+                        this.successPayment &#x3D; false;
+                        this.failedPayment &#x3D; true;
+                });
+            });
+        } else {
+            this.saveOrder(paymentData).subscribe( 
                 res &#x3D;&gt; {
-                    this.dal.getOrderSubject().next(data);
-                    this.failedPayment &#x3D; data.failedPayment;
-                    this.successPayment &#x3D; data.successPayment;
+                    console.log(this.dal.getOrderSubject());
+                    this.dal.getOrderSubject().next(paymentData);
+                    this.failedPayment &#x3D; false;
+                    this.successPayment &#x3D; true;
                 },
                 e &#x3D;&gt; {
                     this.successPayment &#x3D; false;
                     this.failedPayment &#x3D; true;
             });
-        });
+        }
     }
     
     /**
@@ -1429,6 +1520,8 @@ export class PaymentsContainerComponent implements OnInit {
         this.showPayments &#x3D; true;
         this.showDeliveryForm &#x3D; false;
         this.showFinish &#x3D; false;
+        this.successPayment &#x3D; false;
+        this.failedPayment &#x3D; false;
         this.deliveryForm &#x3D; null;
         this.paymentForm &#x3D; null;
         if(this.paymentsComponent){

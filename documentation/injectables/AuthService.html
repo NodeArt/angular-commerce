@@ -906,6 +906,7 @@ export class AuthService {
       if(authData){
         let uid &#x3D; authData.uid;
         this.userData &#x3D; {};
+        this.userData[&#x27;uid&#x27;] &#x3D; uid;
         this.dal.getUserData(uid).subscribe( data &#x3D;&gt; {
           if(data.val()){
             let userData &#x3D; data.val()[0][&#x27;_source&#x27;];

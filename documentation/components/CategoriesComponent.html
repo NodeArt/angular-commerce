@@ -710,6 +710,43 @@
     </table>
 </section>
 
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>generalCategoryId</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Id of general category</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>string | number</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>routeName</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Name of specific category route</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
 
     <section>
@@ -827,7 +864,7 @@
         <div class="tab-pane fade tab-source-code" id="source">
             <pre><code class="hljs javascript">import { Router } from &#x27;@angular/router&#x27;;
 import { ProductService } from &#x27;@nodeart/productservice&#x27;;
-import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
 
 /**
  * Categories component. Display list of store categories
@@ -844,6 +881,16 @@ export class CategoriesComponent implements OnInit {
    */
   public categories &#x3D; [];
 
+  /**
+   * Id of general category
+   */
+  @Input() public generalCategoryId: string | number;
+  
+  /**
+   * Name of specific category route
+   */
+  @Input() public routeName: string;
+
   constructor(private productService: ProductService,
               private router: Router) { }
 
@@ -855,7 +902,7 @@ export class CategoriesComponent implements OnInit {
    * Get categories and patch to variable
    */
   getCategories(): void {
-    this.productService.getCategories().subscribe( categories &#x3D;&gt; {
+    this.productService.getCategories(this.generalCategoryId).subscribe( categories &#x3D;&gt; {
       if(categories.val()){
         this.categories &#x3D; categories.val().map(category &#x3D;&gt; {
           category[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; category[&#x27;_id&#x27;];
@@ -870,7 +917,7 @@ export class CategoriesComponent implements OnInit {
    * @param categoryId category id
    */
   onSelect(categoryId){
-    this.router.navigate([&#x27;category&#x27;, categoryId]);
+    this.router.navigate([this.routeName, categoryId]);
   }
 
 }

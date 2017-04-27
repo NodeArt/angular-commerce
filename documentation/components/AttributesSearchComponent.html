@@ -877,6 +877,21 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b><span class="modifier">Public</span> attrsEmiter</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-circle"></span><code>attrsEmiter:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b><span class="modifier">Private</span> checkedAttrs</b>
                         </td>
                     </tr>
@@ -902,102 +917,107 @@ import { DbAbstractionLayer } from &#x27;@nodeart/dal&#x27;;
 import { Component, OnInit, Input, Output, EventEmitter } from &#x27;@angular/core&#x27;;
 
 /**
- * Represent product filter by attributes
- */
+* Represent product filter by attributes
+*/
 @Component({
-  selector: &#x27;app-attributes-search&#x27;,
-  templateUrl: &#x27;./attributes-search.component.html&#x27;,
-  styleUrls: [&#x27;./attributes-search.component.scss&#x27;]
+ selector: &#x27;app-attributes-search&#x27;,
+ templateUrl: &#x27;./attributes-search.component.html&#x27;,
+ styleUrls: [&#x27;./attributes-search.component.scss&#x27;]
 })
 export class AttributesSearchComponent implements OnInit {
-  /**
-   * Category id
-   */
-  @Input() categoryId;
-  
-  /**
-   * Emitts selected attributes when attributes updated
-   */
-  @Output() attrsUpdated &#x3D; new EventEmitter();
+ /**
+  * Category id
+  */
+ @Input() categoryId;
+ 
+ /**
+  * Emitts selected attributes when attributes updated
+  */
+ @Output() attrsUpdated &#x3D; new EventEmitter();
 
-  /**
-   * Category attributes
-   */
-  public attributes &#x3D; []; 
+ /**
+  * Category attributes
+  */
+ public attributes &#x3D; [];
 
-  /**
-   * Checked attributes
-   */
-  private checkedAttrs &#x3D; [];
+ /**
+  * Checked attributes
+  */
+ private checkedAttrs &#x3D; [];
 
-  constructor(private productService: ProductService,
-              private dal: DbAbstractionLayer) { }
+ constructor(private productService: ProductService,
+             private dal: DbAbstractionLayer) { }
 
-  ngOnInit() {
-    this.getAttributes();
-  }
+ ngOnInit() {
+   this.getAttributes();
+ }
 
-  /**
-   * Get attributes for specific category
-   */
-  getAttributes(){
-    this.productService.getCategory(this.categoryId).subscribe( data &#x3D;&gt; {
-      if(data.val()){
-        console.log(&quot;Attrs ids:&quot;);
-        console.log(data.val());
-        let ids &#x3D; data.val()[0][&#x27;_source&#x27;][&#x27;attrs&#x27;];
-        let queryObject &#x3D; {
-            query: {
-                bool: {
-                  should: []
-                }
-            }
-        };
-        // add OR matches to find all attributes 
-        for(let i &#x3D; 0; i &lt; ids.length; i++){
-          queryObject.query.bool.should.push({
-            match: {
-              &quot;_id&quot;: ids[i]
-            }
-          })
-        }
-        this.dal.getAttributes(queryObject).subscribe( data &#x3D;&gt; {
-          if(data.val()){
-            console.log(&quot;Final data: &quot;);
-            this.attributes &#x3D; data.val().map(item &#x3D;&gt; {
-              item[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; item[&#x27;_id&#x27;];
-              return item[&#x27;_source&#x27;];
-            });
-            console.log(this.attributes);
-          }
-        });
-      }
-    });
-  }
+ public attrsEmiter &#x3D; new EventEmitter();
 
-  /**
-   * Runs when user check some attribute
-   * @param {string} attrId  attribute id
-   * @param {string} valueName 
-   * @param event emitted event
-   */
-  check(attrId: string, valueName: string, $event){
-    if($event.target.checked){
-      this.checkedAttrs.push({
-        attrId: attrId,
-        valueName: valueName
-      });
-    }else{
-      this.checkedAttrs &#x3D; this.checkedAttrs.filter(checkedAttr &#x3D;&gt; {
-        if(checkedAttr.attrId !&#x3D;&#x3D; attrId || checkedAttr.valueName !&#x3D;&#x3D; valueName){
-          return checkedAttr;
-        }
-      });
-    }
-    this.attrsUpdated.emit(this.checkedAttrs);
-  }
-}
-</code></pre>
+
+ /**
+  * Get attributes for specific category
+  */
+ getAttributes(){
+   this.productService.getCategory(this.categoryId).subscribe( data &#x3D;&gt; {
+     if(data.val()){
+       console.log(&quot;Attrs ids:&quot;);
+       console.log(data.val());
+       let ids &#x3D; data.val()[0][&#x27;_source&#x27;][&#x27;attrs&#x27;];
+       if(ids) {
+         let queryObject &#x3D; {
+           query: {
+             bool: {
+               should: []
+             }
+           }
+         };
+         // add OR matches to find all attributes
+         for(let i &#x3D; 0; i &lt; ids.length; i++){
+           queryObject.query.bool.should.push({
+             match: {
+               &quot;_id&quot;: ids[i]
+             }
+           })
+         }
+         this.dal.getAttributes(queryObject).subscribe( data &#x3D;&gt; {
+           if(data.val()){
+             console.log(&quot;Final data: &quot;);
+             this.attributes &#x3D; data.val().map(item &#x3D;&gt; {
+               item[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; item[&#x27;_id&#x27;];
+               return item[&#x27;_source&#x27;];
+             });
+             console.log(this.attributes);
+             this.attrsEmiter.next(this.attributes.length &gt; 0);
+           }
+         });
+       }
+     }
+   });
+ }
+
+ /**
+  * Runs when user check some attribute
+  * @param {string} attrId  attribute id
+  * @param {string} valueName
+  * @param event emitted event
+  */
+ check(attrId: string, valueName: string, $event){
+   if($event.target.checked){
+     this.checkedAttrs.push({
+       attrId: attrId,
+       valueName: valueName
+     });
+   }else{
+     this.checkedAttrs &#x3D; this.checkedAttrs.filter(checkedAttr &#x3D;&gt; {
+       if(checkedAttr.attrId !&#x3D;&#x3D; attrId || checkedAttr.valueName !&#x3D;&#x3D; valueName){
+         return checkedAttr;
+       }
+     });
+   }
+   this.attrsUpdated.emit(this.checkedAttrs);
+ }
+}</code></pre>
         </div>
     </div>
 
