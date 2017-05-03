@@ -1,3 +1,9 @@
+# 2.1.40
+
+### Features
+
+* **product-component:** add items number field for product
+
 # 2.1.39
 
 ### Bug fixes

@@ -132,7 +132,9 @@ export class BasketService{
       return basketProduct;
     });
     if(!productExistInBasket) {
-      product.items = 1;
+      if(!product.items){
+        product.items = 1;
+      }
       newBasket.push(product);
     }
     if(this.userId){

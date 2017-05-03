@@ -43,6 +43,13 @@ export class ProductComponent implements OnInit {
    * Is user authorized
    */
   isAuth = false;
+
+  /**
+   * Items of product
+   */
+
+  items : number = 1;
+
   constructor(protected productService: ProductService,
               protected route: ActivatedRoute,
               protected basket: BasketService,
@@ -169,7 +176,8 @@ export class ProductComponent implements OnInit {
       id: this.id,
       fullId: this.id + "?",
       attributes: [],
-      product: this.product
+      product: this.product,
+      items: +this.items
     };
     buyObj.attributes = this.attributesToChoose.map(item => {
       let obj = {
