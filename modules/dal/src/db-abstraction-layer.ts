@@ -353,11 +353,14 @@ export class DbAbstractionLayer {
   getOrdersByUserId(userId) {
     let queryObj = {
       query: {
-        match: {
-          "orderForm.userId": userId
+        multi_match: {
+          query: userId,
+          fields: ["orderForm.userId"],
+          type: "phrase"
         }
       }
     };
+    console.log(queryObj);
     return this.connector.requestData(esIndex, 'orders', queryObj);
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/general-categories-all",
-  "version": "2.1.40",
+  "version": "2.1.41",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/productservice": "2.1.40",
-    "@nodeart/loading-indicator": "2.1.40"
+    "@nodeart/productservice": "2.1.41",
+    "@nodeart/loading-indicator": "2.1.41"
   }
 }

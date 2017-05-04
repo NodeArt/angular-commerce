@@ -1,3 +1,9 @@
+# 2.1.41
+
+### Bug fixes
+
+* **dal:** update getOrdersByUserId method to Firebase Flashlight 3.0
+ 
 # 2.1.40
 
 ### Features
