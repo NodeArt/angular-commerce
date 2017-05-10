@@ -4,7 +4,7 @@
     <div class="header">{{attribute.name}}</div>
     <div class="menu">
       <div *ngFor="let item of attribute.childs">
-        <p>{{item.name}}<input type="checkbox" class="item" value="item.key" (change)="check(attribute.id, item.key, $event)"/></p>
+        <p>{{item.name}}<input type="checkbox" class="item" value="item.key" [checked]="item.checked" (change)="check(attribute.id, item.key, $event)"/></p>
       </div>
     </div>
   </div>

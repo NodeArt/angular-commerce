@@ -40,7 +40,7 @@ export class ProductsListComponent implements OnInit {
   /**
    * Total pages for products
    */
-  totalPages = 0;
+  totalPages = 1;
 
   /**
    * Number of products on page 
@@ -64,10 +64,10 @@ export class ProductsListComponent implements OnInit {
 
   @Input() priceRanges = [0, 100000000000000];
 
-  constructor(private dal: DbAbstractionLayer,
-              private router: Router, 
-              private productService: ProductService,
-              private route: ActivatedRoute) {
+  constructor(protected dal: DbAbstractionLayer,
+              protected router: Router, 
+              protected productService: ProductService,
+              protected route: ActivatedRoute) {
   }
 
   ngOnInit() {

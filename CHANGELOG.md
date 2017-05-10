@@ -1,3 +1,9 @@
+# 2.1.42
+
+### Changes
+
+* **product-list-component, attributes-search-component:** adopt for query parameters in URL
+ 
 # 2.1.41
 
 ### Bug fixes
