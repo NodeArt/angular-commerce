@@ -1,10 +1,15 @@
+# 2.1.44
+
+### Features
+
+* **seo-text-component:** Create seo-text-component
+ 
 # 2.1.43
 
 ### Changes
 
 * **dal:** Update method for getting orders
  
-
 # 2.1.42
 
 ### Changes
