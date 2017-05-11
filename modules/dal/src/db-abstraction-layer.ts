@@ -361,7 +361,7 @@ export class DbAbstractionLayer {
       }
     };
     console.log(queryObj);
-    return this.connector.requestData(esIndex, 'orders', queryObj);
+    return this.connector.requestFullData(esIndex, 'orders', queryObj);
   }
 
   /**
