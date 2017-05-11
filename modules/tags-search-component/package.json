@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/tags-search-component",
-  "version": "2.1.42",
+  "version": "2.1.43",
   "description": "Generate tags filter that integrate into Product List Component",
   "main": "index.ts",
   "scripts": {
@@ -13,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/productservice": "2.1.42"
+    "@nodeart/productservice": "2.1.43"
   }
 }
