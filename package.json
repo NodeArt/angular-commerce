@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/store-components",
-  "version": "2.1.43",
+  "version": "2.1.44",
   "description": "Nodeart store components for quick and easy scaffolding of online store in Angular",
   "main": "index.ts",
   "scripts": {

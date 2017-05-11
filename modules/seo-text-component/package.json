@@ -1,7 +1,7 @@
 {
-  "name": "@nodeart/add-product-component",
+  "name": "@nodeart/seo-text-component",
   "version": "2.1.44",
-  "description": "Form to add new product",
+  "description": "Seo text component display seo text block of specific url",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/productservice": "2.1.44"
+    "@nodeart/dal": "2.1.44"
   }
 }
