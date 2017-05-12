@@ -1,3 +1,15 @@
+# 2.1.47
+
+### Bug fixes
+
+* **seo-text-component:** Change OnInit interface to OnChanges 
+
+# 2.1.45
+
+### Features
+
+* **dal, firebase-connector:** Add getSeoText method
+ 
 # 2.1.44
 
 ### Features

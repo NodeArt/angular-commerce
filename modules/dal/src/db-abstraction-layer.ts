@@ -396,4 +396,8 @@ export class DbAbstractionLayer {
   getOrderSubject() {
     return this.connector.getOrderSubject();
   }
+
+  getSeoText(url: string, indexBlock: number) :Observable<any>{
+    return this.connector.getSeoText(url, indexBlock);
+  } 
 }
