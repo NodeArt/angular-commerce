@@ -564,4 +564,18 @@ export class FirebaseConnector {
   getOrderSubject() {
     return this.orderSubject;
   }
+
+  getSeoText(url: string, indexBlock: number) : Observable<any>{
+    return Observable.create( observer => {
+      firebase.database().ref('seo-text').orderByChild('url').equalTo(url).on('value', data => {
+        if(data.val() && data.val() !== null){
+          Object.keys(data.val()).map( key => {
+            observer.next(data.val()[key]['blocks'][indexBlock]);
+          });
+        } else {
+          observer.next(null);
+        }
+      });
+    });
+  }
 }

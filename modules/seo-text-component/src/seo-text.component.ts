@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { DbAbstractionLayer } from '@nodeart/dal';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 /**
  * `SEO text component` display SEO text block from specific url. User have to input current `url` and optional index of text in `blocks` array.
  *
@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
  templateUrl: './seo-text.component.html',
  styleUrls: ['./seo-text.component.scss']
 })
-export class SeoTextComponent implements OnInit{
+export class SeoTextComponent implements OnChanges{
 
     /**
      * Page url
@@ -34,7 +34,7 @@ export class SeoTextComponent implements OnInit{
 
     }
 
-    ngOnInit() {
+    ngOnChanges() {
         console.log(this.url, ' <> ', this.indexBlock);
         this.dal.getSeoText(this.url, this.indexBlock).subscribe(data => {
             this.seoText = data;
