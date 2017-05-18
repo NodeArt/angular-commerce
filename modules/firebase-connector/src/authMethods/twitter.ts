@@ -1,9 +1,11 @@
-import {AuthMethods, AuthProviders, AngularFire, FirebaseAuthState} from "angularfire2";
+import { AngularFireAuth } from 'angularfire2/auth';
 import {AuthMethod} from "./auth-method";
-import {Injectable} from "@angular/core";
+import {Injectable, Inject} from "@angular/core";
+
+import * as firebase from 'firebase/app';
 
 /**
- * Twitter firebase auth service
+ * Facebook firebase auth service
  */
 @Injectable()
 export class TwitterAuth implements AuthMethod{
@@ -13,16 +15,15 @@ export class TwitterAuth implements AuthMethod{
    */
   name: string = 'Twitter';
 
-  constructor(private firebase: AngularFire){
+  constructor(private afAuth: AngularFireAuth){
   }
+
   /**
    * Login method
    * @return {firebase.Promise<FirebaseAuthState>} promise with FirebaseAuthState
    */
-  login(){
-    return this.firebase.auth.login({
-      provider: AuthProviders.Twitter,
-      method: AuthMethods.Popup
-    });
+  login(): firebase.Promise<any>{
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
   }
 }
+

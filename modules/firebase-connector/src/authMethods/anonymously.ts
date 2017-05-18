@@ -1,4 +1,4 @@
-import {AuthMethods, AuthProviders, AngularFire, FirebaseAuthState } from "angularfire2";
+import { AngularFireAuth } from "angularfire2/auth";
 import {AuthMethod} from "./auth-method";
 import {Injectable} from "@angular/core";
 
@@ -13,17 +13,14 @@ export class AnonymouslyAuth implements AuthMethod{
    */
   name: string = 'Anonymously';
 
-  constructor(private firebase: AngularFire){
+  constructor(private afAuth: AngularFireAuth){
   }
 
   /**
    * Login method
    * @returns {firebase.Promise<FirebaseAuthState>} promise with FirebaseAuthState
    */
-  login(){
-    return this.firebase.auth.login({
-      provider: AuthProviders.Anonymous,
-      method: AuthMethods.Anonymous
-    });
+  login(): firebase.Promise<any>{
+    return this.afAuth.auth.signInAnonymously();
   }
 }

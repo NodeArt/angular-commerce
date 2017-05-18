@@ -1,4 +1,3 @@
-import { FirebaseAuthState } from 'angularfire2';
 import { Injectable, Inject } from '@angular/core';
 import { AuthMethod } from './auth-method';
 import { Observable, Subject } from 'rxjs';
@@ -107,7 +106,7 @@ export class VkAuth implements AuthMethod {
     /**
      * Login method
      */
-    login(): Promise<FirebaseAuthState> {
+    login(): Promise<any> {
         /**
          * Create a popup window and get its reference.
          * @type {Window}

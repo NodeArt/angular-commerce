@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/products-list-component",
-  "version": "2.1.47",
+  "version": "2.1.48",
   "description": "Displays product from specific category",
   "main": "index.ts",
   "scripts": {
@@ -13,8 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/productservice": "2.1.47",
-    "@nodeart/attributes-search-component": "2.1.47",
-    "@nodeart/tags-search-component": "2.1.47"
+    "@nodeart/productservice": "2.1.48",
+    "@nodeart/attributes-search-component": "2.1.48",
+    "@nodeart/tags-search-component": "2.1.48"
   }
 }
