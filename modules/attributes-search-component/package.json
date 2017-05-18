@@ -1,7 +1,7 @@
 {
   "name": "@nodeart/attributes-search-component",
   "description": "Generate attrribute filter component that integrates into Product List Component",
-  "version": "2.1.48",
+  "version": "2.1.49",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/productservice": "2.1.48"
+    "@nodeart/productservice": "2.1.49"
   }
 }

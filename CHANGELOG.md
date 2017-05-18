@@ -1,3 +1,9 @@
+# 2.1.49
+
+### Bug fixes
+
+* **basket-component, payments-component:** Removed types
+
 # 2.1.48
 
 ### Features

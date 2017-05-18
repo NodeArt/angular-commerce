@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {BasketComponent} from "./basket.component";
-import {BasketService} from "@nodeart/basketservice/basket.service";
 import { BasketServiceModule } from '@nodeart/basketservice';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
