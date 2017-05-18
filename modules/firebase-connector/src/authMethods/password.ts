@@ -1,4 +1,4 @@
-import {AuthMethods, AuthProviders, AngularFire, FirebaseAuthState} from "angularfire2";
+import { AngularFireAuth } from "angularfire2/auth";
 import {AuthMethod} from "./auth-method";
 import {Injectable} from "@angular/core";
 
@@ -13,23 +13,14 @@ export class PasswordAuth implements AuthMethod{
    */
   name: string = 'Password';
 
-  constructor(private firebase: AngularFire){
+  constructor(private afAuth: AngularFireAuth){
   }
 
   /**
    * Login method
    * @return {firebase.Promise<FirebaseAuthState>} promise with FirebaseAuthState
    */
-  login(email, password){
-    return this.firebase.auth.login(
-      {
-        email: email,
-        password: password
-      },
-      {
-        provider: AuthProviders.Password,
-        method: AuthMethods.Password
-      }
-    );
+  login(email, password): firebase.Promise<any>{
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 }

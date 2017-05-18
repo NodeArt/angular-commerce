@@ -1,6 +1,8 @@
-import {AuthMethods, AuthProviders, AngularFire, FirebaseAuthState} from "angularfire2";
+import { AngularFireAuth } from 'angularfire2/auth';
 import {AuthMethod} from "./auth-method";
-import {Injectable} from "@angular/core";
+import {Injectable, Inject} from "@angular/core";
+
+import * as firebase from 'firebase/app';
 
 /**
  * Facebook firebase auth service
@@ -13,17 +15,14 @@ export class FacebookAuth implements AuthMethod{
    */
   name: string = 'Facebook';
 
-  constructor(private firebase: AngularFire){
+  constructor(private afAuth: AngularFireAuth){
   }
 
   /**
    * Login method
-   * @returns {firebase.Promise<FirebaseAuthState>} promise with FirebaseAuthState
+   * @return {firebase.Promise<FirebaseAuthState>} promise with FirebaseAuthState
    */
-  login(){
-    return this.firebase.auth.login({
-      provider: AuthProviders.Facebook,
-      method: AuthMethods.Popup
-    });
+  login(): firebase.Promise<any>{
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
 }

@@ -1,3 +1,9 @@
+# 2.1.48
+
+### Features
+
+* **firebase-connector:** Update firebase auth methods to angularfire2 4.0.0-rc.0
+
 # 2.1.47
 
 ### Bug fixes

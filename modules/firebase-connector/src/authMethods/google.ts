@@ -1,6 +1,8 @@
-import {AuthMethods, AuthProviders, AngularFire, FirebaseRef, FirebaseAuthState} from "angularfire2";
+import { AngularFireAuth } from 'angularfire2/auth';
 import {AuthMethod} from "./auth-method";
 import {Injectable, Inject} from "@angular/core";
+
+import * as firebase from 'firebase/app';
 
 /**
  * Google firebase auth service
@@ -13,17 +15,14 @@ export class GoogleAuth implements AuthMethod{
    */
   name: string = 'Google';
 
-  constructor(private firebase: AngularFire){
+  constructor(private afAuth: AngularFireAuth){
   }
 
   /**
    * Login method
    * @return {firebase.Promise<FirebaseAuthState>} promise with FirebaseAuthState
    */
-  login(){
-    return this.firebase.auth.login({
-      provider: AuthProviders.Google,
-      method: AuthMethods.Popup
-    });
+  login(): firebase.Promise<any> {
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 }
