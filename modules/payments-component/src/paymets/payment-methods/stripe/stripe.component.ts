@@ -1,11 +1,9 @@
-import {Component, OnInit, Output, EventEmitter, Renderer, ViewChildren} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter, Renderer, ViewChildren, Input} from "@angular/core";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {onlyNumberValidator} from './validators/only-number.validator';
 import {controlLengthValidator} from './validators/control-length.validator';
 
-declare var Stripe: StripeStatic;
-
-const STRIPE_PUBLIC_KEY: string = "pk_test_0uWBpHwggickbc69DcYtC6a4";
+declare var Stripe;
 
 @Component({
   selector: 'stripe',
@@ -19,9 +17,11 @@ export class StripeComponent implements OnInit {
 
   @ViewChildren('stripeInput') stripeInputs;
 
+  @Input() STRIPE_PUBLIC_KEY = "pk_test_0uWBpHwggickbc69DcYtC6a4";
+
   stripeForm: FormGroup;
 
-  stripeServerError: StripeError;
+  stripeServerError;
 
   isLoading: boolean = false;
 
@@ -32,7 +32,7 @@ export class StripeComponent implements OnInit {
 
   ngOnInit() {
     console.log("Stripe component was created");
-    Stripe.setPublishableKey(STRIPE_PUBLIC_KEY);
+    Stripe.setPublishableKey(this.STRIPE_PUBLIC_KEY);
   }
 
   initPaymentMethodCardModel() {
@@ -58,7 +58,7 @@ export class StripeComponent implements OnInit {
     this.isLoading = true;
     let stripeForm = this.stripeForm.value;
     console.log(stripeForm);
-    let stripeTokenData: StripeTokenData = {
+    let stripeTokenData = {
       number: stripeForm.cardNumber,
       exp_month: stripeForm.expiryMonth,
       exp_year: stripeForm.expiryYear,
@@ -75,9 +75,9 @@ export class StripeComponent implements OnInit {
       .then(() => this.isLoading = false)
   }
 
-  getCardToken(data: StripeTokenData): Promise<any> {
+  getCardToken(data): Promise<any> {
     return new Promise((resolve, reject) => {
-      Stripe.card.createToken(data, (status: number, response: StripeTokenResponse) => {
+      Stripe.card.createToken(data, (status: number, response) => {
         if(status !== 200) {
           reject(response.error);
         } else {
