@@ -1,3 +1,15 @@
+# 2.1.51
+
+### Bug fixes
+
+* **firebase-connector:** Add catch to loginEmail method
+
+# 2.1.50
+
+### Bug fixes
+
+* **firebase-connector:** Fix bug with catch in registerUser method
+
 # 2.1.49
 
 ### Bug fixes
