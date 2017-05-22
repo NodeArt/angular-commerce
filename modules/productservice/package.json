@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/productservice",
-  "version": "2.1.49",
+  "version": "2.1.51",
   "description": "Service that send work to DAL related to products (search, filted, get categories, attributes, tags etc.)",
   "main": "index.ts",
   "scripts": {
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/dal": "2.1.49"
+    "@nodeart/dal": "2.1.51"
   }
 }

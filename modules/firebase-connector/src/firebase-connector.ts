@@ -124,13 +124,14 @@ export class FirebaseConnector {
         let uid = authData.uid;
         registerForm.uid = uid;
         firebase.database().ref('user/' + userId).set(registerForm).then(data => {
-           this.loginEmail(email, password).subscribe( data => {
+           this.loginEmail(email, password).subscribe( 
+            data => {
               observer.next(data);
               observer.complete();
-           })
-           .catch(error => {
-              observer.error(error);
-           });
+            },
+            error => {
+                observer.error(error);
+            });
         });
       }).catch( error => {
         observer.error(error);
@@ -163,10 +164,15 @@ export class FirebaseConnector {
    */ 
   loginEmail(email, password){
     return Observable.create( observer => {
-      firebase.auth().signInWithEmailAndPassword(email, password).then( data => {
-        observer.next(data);
-        observer.complete();
-      });
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(data => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch(error => {
+          observer.error(error);
+          observer.complete();
+        });
     });
   }
 
