@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -1497,7 +1509,7 @@
             
                             <tr>
                                 <td class="col-md-4">
-            <code>requestData(index: any, type: any, queryObj: any)</code>
+            <code>requestData(index: any, type: any, body: any)</code>
                                 </td>
                             </tr>
             
@@ -1528,7 +1540,7 @@
                                                         </li>
                                                         <li>
                                                             <div>
-                                                                <b>queryObj</b>
+                                                                <b>body</b>
                                                                     :     <code>Object</code>
             
                                                             </div>
@@ -1561,7 +1573,7 @@
             
                             <tr>
                                 <td class="col-md-4">
-            <code>requestFullData(index: any, type: any, queryObj: any)</code>
+            <code>requestFullData(index: any, type: any, body: any)</code>
                                 </td>
                             </tr>
             
@@ -1592,7 +1604,7 @@
                                                         </li>
                                                         <li>
                                                             <div>
-                                                                <b>queryObj</b>
+                                                                <b>body</b>
                                                                     :     <code>Object</code>
             
                                                             </div>
@@ -1625,7 +1637,7 @@
             
                             <tr>
                                 <td class="col-md-4">
-            <code>requestItemsTotal(index: any, type: any, queryObj: any)</code>
+            <code>requestItemsTotal(index: any, type: any, body: any)</code>
                                 </td>
                             </tr>
             
@@ -1656,7 +1668,7 @@
                                                         </li>
                                                         <li>
                                                             <div>
-                                                                <b>queryObj</b>
+                                                                <b>body</b>
                                                                     :     <code>Object</code>
             
                                                             </div>
@@ -2274,10 +2286,49 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getSeoText</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getSeoText(url: string, indexBlock: number)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>any</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             </section>
 
             <section>
                 <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> auth</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>auth:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                             <tr>
@@ -2303,6 +2354,21 @@
                             <tr>
                                 <td class="col-md-4">
                                     <span class="modifier-icon fa fa-lock"></span><code>basketHistorySubscription$:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> database</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>database:     <code>any</code>
             </bcode>
                                 </td>
                             </tr>
@@ -2372,6 +2438,7 @@
 import { esIndex } from &#x27;./consts&#x27;;
 import {Injectable, Inject} from &quot;@angular/core&quot;;
 import * as firebase from &#x27;firebase&#x27;;
+import {} from &#x27;firebase&#x27;;
 import { Observable } from &quot;rxjs/Observable&quot;;
 import { FormGroup } from &#x27;@angular/forms&#x27;;
 import { Subject } from &#x27;rxjs/Subject&#x27;;
@@ -2402,6 +2469,10 @@ export class FirebaseConnector {
 
   private orderSubject: Subject&lt;any&gt; &#x3D; new Subject();
 
+  private database  &#x3D; firebase.database();
+
+  private auth &#x3D; firebase.auth();
+
   constructor(private http: Http){
   }
 
@@ -2414,9 +2485,9 @@ export class FirebaseConnector {
    * 
    */
   connectSessionFlowToDB(sessionFlow, deviceId, sessionId) {
-    this.sfVisitedRoutes &#x3D; firebase.database()
+    this.sfVisitedRoutes &#x3D; this.database
       .ref(&#x27;/session-flows/&#x27; + deviceId + &#x27;/&#x27; + sessionId + &#x27;/visitedRoutes&#x27;);
-    this.sfUserClicks &#x3D; firebase.database()
+    this.sfUserClicks &#x3D; this.database
       .ref(&#x27;/session-flows/&#x27; + deviceId + &#x27;/&#x27; + sessionId + &#x27;/userClicks&#x27;);  
     this.listenSfObject(sessionFlow);
   }
@@ -2452,7 +2523,7 @@ export class FirebaseConnector {
    * @returns Firebase realtime database object
    */
   getFirebaseDB(){
-    return firebase.database();
+    return this.database;
   }
 
   /**
@@ -2461,7 +2532,7 @@ export class FirebaseConnector {
    * @returns Firebase auth object
    */
   getAuth(){
-    return firebase.auth();
+    return this.auth;
   }
 
   /**
@@ -2473,7 +2544,7 @@ export class FirebaseConnector {
    * @returns [firebase.Promise]{@link https://firebase.google.com/docs/reference/js/firebase.Promise} containing non-null [firebase.User]{@link https://firebase.google.com/docs/reference/js/firebase.User}
    */
   register(email, password){
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+    return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
   /**
@@ -2493,14 +2564,15 @@ export class FirebaseConnector {
       this.register(email, password).then(authData &#x3D;&gt; {
         let uid &#x3D; authData.uid;
         registerForm.uid &#x3D; uid;
-        firebase.database().ref(&#x27;user/&#x27; + userId).set(registerForm).then(data &#x3D;&gt; {
-           this.loginEmail(email, password).subscribe( data &#x3D;&gt; {
+        this.database.ref(&#x27;user/&#x27; + userId).set(registerForm).then(data &#x3D;&gt; {
+           this.loginEmail(email, password).subscribe( 
+            data &#x3D;&gt; {
               observer.next(data);
               observer.complete();
-           })
-           .catch(error &#x3D;&gt; {
-              observer.error(error);
-           });
+            },
+            error &#x3D;&gt; {
+                observer.error(error);
+            });
         });
       }).catch( error &#x3D;&gt; {
         observer.error(error);
@@ -2533,10 +2605,15 @@ export class FirebaseConnector {
    */ 
   loginEmail(email, password){
     return Observable.create( observer &#x3D;&gt; {
-      firebase.auth().signInWithEmailAndPassword(email, password).then( data &#x3D;&gt; {
-        observer.next(data);
-        observer.complete();
-      });
+      this.auth.signInWithEmailAndPassword(email, password)
+        .then(data &#x3D;&gt; {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch(error &#x3D;&gt; {
+          observer.error(error);
+          observer.complete();
+        });
     });
   }
 
@@ -2562,7 +2639,7 @@ export class FirebaseConnector {
    * Logout user from firebase
    */
   logout(){
-    firebase.auth().signOut();
+    this.auth.signOut();
   }
 
   /**
@@ -2575,7 +2652,7 @@ export class FirebaseConnector {
       let oldSessionFlow &#x3D; JSON.parse(localStorage.getItem(&quot;oldSessionFlow&quot;));
       let sessionId &#x3D; oldSessionFlow.sessionId;
       delete oldSessionFlow.sessionId;
-      firebase.database().ref(&#x27;/session-flows/&#x27; + deviceId + &#x27;/&#x27; + sessionId).set(oldSessionFlow);
+      this.database.ref(&#x27;/session-flows/&#x27; + deviceId + &#x27;/&#x27; + sessionId).set(oldSessionFlow);
     }
   }
 
@@ -2588,7 +2665,7 @@ export class FirebaseConnector {
    */
   getBasketContent(userId){
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;/basket/&#x27; + userId).on(&#x27;value&#x27;, data &#x3D;&gt; {
+      this.database.ref().child(&#x27;/basket/&#x27; + userId).on(&#x27;value&#x27;, data &#x3D;&gt; {
         observer.next(data);
       });
     });
@@ -2598,7 +2675,7 @@ export class FirebaseConnector {
    * Will be realized in next versions
    */
   getComparison(id){
-    return firebase.database().ref().child(&#x27;comparison/&#x27; + id).once(&#x27;value&#x27;);
+    return this.database.ref().child(&#x27;comparison/&#x27; + id).once(&#x27;value&#x27;);
   }
 
   /**
@@ -2612,7 +2689,7 @@ export class FirebaseConnector {
       this.basketHistorySubscription$.unsubscribe();
     }
     this.basketHistorySubscription$ &#x3D; this.basketHistory$.subscribe( data &#x3D;&gt; {
-      firebase.database().ref(&#x27;/basket-history/&#x27; + userId).push(data);
+      this.database.ref(&#x27;/basket-history/&#x27; + userId).push(data);
     });
   }
 
@@ -2633,11 +2710,9 @@ export class FirebaseConnector {
    * @returns {Observable} Rx Observable of basket history
    */
    getBasketHistoryById(userId){
-     return Observable.create( observer &#x3D;&gt; {
-        firebase.database().ref().child(&#x27;/basket-history/&#x27; + userId).on(&#x27;value&#x27;, data &#x3D;&gt; {
-          observer.next(data);
-        });
-      });
+     return Observable.fromPromise( 
+       this.database.ref().child(&#x27;/basket-history/&#x27; + userId).once(&#x27;value&#x27;) as Promise&lt;any&gt;
+     );
    }
 
 
@@ -2650,8 +2725,9 @@ export class FirebaseConnector {
    */
   setNewBasket(id, newBasket){
     return Observable.create( observer &#x3D;&gt; {
-        firebase.database().ref().child(&#x27;basket/&#x27; + id).set(newBasket).then( data &#x3D;&gt; {
+        this.database.ref().child(&#x27;basket/&#x27; + id).set(newBasket).then( data &#x3D;&gt; {
           observer.next(data);
+          observer.complete();
         });
     });
   }
@@ -2660,14 +2736,14 @@ export class FirebaseConnector {
    * Will be realized in next versions
    */
   addProductToComparison(id, product){
-    return firebase.database().ref().child(&#x27;comparison/&#x27; + id).push(product);
+    return this.database.ref().child(&#x27;comparison/&#x27; + id).push(product);
   }
 
   /**
    * Will be realized in next versions
    */
   removeProductFromComparison(id, idInComparison){
-    return firebase.database().ref().child(&#x27;comparison/&#x27; + id + &#x27;/&#x27; + idInComparison).remove();
+    return this.database.ref().child(&#x27;comparison/&#x27; + id + &#x27;/&#x27; + idInComparison).remove();
   }
 
   /**
@@ -2675,25 +2751,18 @@ export class FirebaseConnector {
    * 
    * @param {string} index ElasticSearch index
    * @param {string} type ElasticSearch type
-   * @param {Object} queryObj query object for ElasticSearch
+   * @param {Object} body query object for ElasticSearch
    * 
    * @returns  {Observable} Observable of requested data hits
    */
-  requestData(index, type, queryObj){
-    let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push({
-      index: index,
-      type: type,
-      body: queryObj
-    }).key;
-    console.log(key);
-    return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;search/response/&#x27; + key + &#x27;/hits/hits&#x27;).on(&#x27;value&#x27;, data &#x3D;&gt; {
-        if(data.val()){
-          console.log(data.val());
-          observer.next(data);
-        }
-      });
-    });
+  requestData(index, type, body) {
+    const key &#x3D; this.database
+      .ref(&#x27;search/request&#x27;)
+      .push({ index, type, body })
+      .key;
+    return Observable.fromPromise(
+      this.database.ref(&#x60;search/response/${key}/hits/hits&#x60;).once(&#x27;child_added&#x27;) as Promise&lt;any&gt;
+    );
   }
 
   /**
@@ -2701,21 +2770,18 @@ export class FirebaseConnector {
    * 
    * @param {string} index ElasticSearch index
    * @param {string} type ElasticSearch type
-   * @param {Object} queryObj query object for ElasticSearch
+   * @param {Object} body query object for ElasticSearch
    * 
    * @returns  {Observable} Observable of requested data
    */
-  requestFullData(index, type, queryObj){
-    let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push({
-      index: index,
-      type: type,
-      body: queryObj
-    }).key;
-    return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;search/response/&#x27; + key + &#x27;/hits&#x27;).on(&#x27;value&#x27;, data &#x3D;&gt; {
-        observer.next(data);
-      });
-    });
+  requestFullData(index, type, body){
+    const key &#x3D; this.database
+      .ref(&#x27;search/request&#x27;)
+      .push({ index, type, body })
+      .key;
+    return Observable.fromPromise(
+      this.database.ref(&#x60;search/response/${key}/hits&#x60;).once(&#x27;child_added&#x27;) as Promise&lt;any&gt;
+    );
   }
 
   /**
@@ -2723,19 +2789,29 @@ export class FirebaseConnector {
    * 
    * @param {string} index ElasticSearch index
    * @param {string} type ElasticSearch type
-   * @param {Object} queryObj query object for ElasticSearch
+   * @param {Object} body query object for ElasticSearch
    * 
    * @returns  {Observable} Observable of total item
    */
-  requestItemsTotal(index, type,queryObj){
-    let key &#x3D; firebase.database().ref().child(&#x27;search/request&#x27;).push({
-      index: index,
-      type: type,
-      body: queryObj
-    }).key;
+  requestItemsTotal(index, type, body){
+    const key &#x3D; this.database
+      .ref(&#x27;search/request&#x27;)
+      .push({ index, type, body })
+      .key;
+    console.log(key);
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;search/response/&#x27; + key + &#x27;/hits/total&#x27;).on(&#x27;value&#x27;, data &#x3D;&gt; {
+      const ref &#x3D; this.database.ref(&#x60;search/response/${key}/hits/total&#x60;);
+      let promise &#x3D; new Promise( (resolve, reject) &#x3D;&gt; {
+        ref.on(&#x27;value&#x27;, ( data ) &#x3D;&gt; {
+          if(data.val() !&#x3D;&#x3D; null){
+            resolve(data);
+          }
+        });
+      });
+      promise.then( data &#x3D;&gt; {
+        ref.off(&#x27;value&#x27;);
         observer.next(data);
+        observer.complete();
       });
     });
   }
@@ -2746,7 +2822,7 @@ export class FirebaseConnector {
    * @param {Object} product product Object
    */
   addProduct(product){
-    firebase.database().ref(&#x27;product/&#x27;).push(product);
+    this.database.ref(&#x27;product/&#x27;).push(product);
   }
 
   /**
@@ -2773,7 +2849,7 @@ export class FirebaseConnector {
    * @param {FormGroup} generalCategoryForm form of general category
    */
   addGeneralCategory(generalCategoryForm: FormGroup){
-    firebase.database().ref(&#x27;general-category&#x27;).push(generalCategoryForm.value);
+    this.database.ref(&#x27;general-category&#x27;).push(generalCategoryForm.value);
   }
 
   /**
@@ -2782,7 +2858,7 @@ export class FirebaseConnector {
    * @param {FormGroup} categoryForm  form of category
    */
   addCategory(categoryForm : FormGroup){
-    firebase.database().ref(&#x27;category/&#x27;).push(categoryForm.value);
+    this.database.ref(&#x27;category/&#x27;).push(categoryForm.value);
   }
 
 
@@ -2793,21 +2869,21 @@ export class FirebaseConnector {
    * @param {string} categoryId id of category
    */
   addAttribute(attributeForm : FormGroup, categoryId){
-    firebase.database().ref(&#x27;attributes/&#x27;).push(attributeForm.value).then(ref &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;category/&#x27; + categoryId +&#x27;/attrs&#x27;).once(&#x27;value&#x27;).then(data &#x3D;&gt; {
+    this.database.ref(&#x27;attributes/&#x27;).push(attributeForm.value).then(ref &#x3D;&gt; {
+      this.database.ref().child(&#x27;category/&#x27; + categoryId +&#x27;/attrs&#x27;).once(&#x27;value&#x27;).then(data &#x3D;&gt; {
           if(data.val()){
             console.log(data);
             if(data.val()[0] &#x3D;&#x3D; &#x27;1234&#x27; &amp;&amp; data.val()[1] &#x3D;&#x3D; &#x27;1234&#x27;){
               let attrs &#x3D; [&#x27;1234&#x27;];
               attrs.push(ref[&#x27;key&#x27;]);
               console.log(attrs);
-              firebase.database().ref().child(&#x27;category/&#x27; + categoryId + &#x27;/attrs&#x27;).set(attrs);
+              this.database.ref().child(&#x27;category/&#x27; + categoryId + &#x27;/attrs&#x27;).set(attrs);
             } else {
               let attrs &#x3D; [].concat(...data.val());
               console.log(attrs);
               attrs.push(ref[&#x27;key&#x27;]);
               console.log(attrs);
-              firebase.database().ref().child(&#x27;category/&#x27; + categoryId + &#x27;/attrs&#x27;).set(attrs);
+              this.database.ref().child(&#x27;category/&#x27; + categoryId + &#x27;/attrs&#x27;).set(attrs);
             }
           }
       });
@@ -2821,20 +2897,20 @@ export class FirebaseConnector {
    * @param {string} categoryId id of category
    */
   addTag(tagForm: FormGroup, categoryId){
-    firebase.database().ref(&#x27;tags/&#x27;).push(tagForm.value).then(ref &#x3D;&gt; {
-      firebase.database().ref().child(&#x27;category/&#x27; + categoryId +&#x27;/tags&#x27;).once(&#x27;value&#x27;).then(data &#x3D;&gt; {
+    this.database.ref(&#x27;tags/&#x27;).push(tagForm.value).then(ref &#x3D;&gt; {
+      this.database.ref().child(&#x27;category/&#x27; + categoryId +&#x27;/tags&#x27;).once(&#x27;value&#x27;).then(data &#x3D;&gt; {
           if(data.val()){
             console.log(data);
             if(data.val()[0] &#x3D;&#x3D; &#x27;1234&#x27; &amp;&amp; data.val()[1] &#x3D;&#x3D; &#x27;1234&#x27;){
               let tags &#x3D; [&#x27;1234&#x27;];
               tags.push(ref[&#x27;key&#x27;]);
               console.log(tags);
-              firebase.database().ref().child(&#x27;category/&#x27; + categoryId + &#x27;/tags&#x27;).set(tags);
+              this.database.ref().child(&#x27;category/&#x27; + categoryId + &#x27;/tags&#x27;).set(tags);
             } else {
               let tags &#x3D; [].concat(data.val());
               tags.push(ref[&#x27;key&#x27;]);
               console.log(tags);
-              firebase.database().ref().child(&#x27;category/&#x27; + categoryId + &#x27;/tags&#x27;).set(tags);
+              this.database.ref().child(&#x27;category/&#x27; + categoryId + &#x27;/tags&#x27;).set(tags);
             }
           }
       });
@@ -2850,7 +2926,7 @@ export class FirebaseConnector {
    */
   saveOrder(paymentData){
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref(&#x27;orders&#x27;).push(paymentData).then( data &#x3D;&gt; {
+      this.database.ref(&#x27;orders&#x27;).push(paymentData).then( data &#x3D;&gt; {
         observer.next(data);
         observer.complete();
       });
@@ -2866,7 +2942,7 @@ export class FirebaseConnector {
    * @returns [firebase.database.ThenableReference]{@link https://firebase.google.com/docs/reference/js/firebase.database.ThenableReference}
    */
   addPaymentRequest(data, paymentMethod) {
-    return firebase.database().ref(&#x27;payment-request&#x27;).push({
+    return this.database.ref(&#x27;payment-request&#x27;).push({
             data: data,
             payMethod: paymentMethod
         });
@@ -2881,7 +2957,7 @@ export class FirebaseConnector {
    */
   listenPaymentResponse(paymentKey) {
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref(&#x27;payment-response/&#x27; + paymentKey).on(&#x27;value&#x27;, data &#x3D;&gt; {
+      this.database.ref(&#x27;payment-response/&#x27; + paymentKey).on(&#x27;value&#x27;, data &#x3D;&gt; {
         if(data.val()){
           observer.next(data);
         }
@@ -2898,7 +2974,7 @@ export class FirebaseConnector {
    * @returns      [firebase.Promise]{@link https://firebase.google.com/docs/reference/js/firebase.Promise} containing void
    */
   resetPassword(email) {
-    return firebase.auth().sendPasswordResetEmail(email);
+    return this.auth.sendPasswordResetEmail(email);
   }
 
   /**
@@ -2908,7 +2984,7 @@ export class FirebaseConnector {
    */
   getOrderById(id) {
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref(&#x27;orders/&#x27; + id).on(&#x27;value&#x27;, data &#x3D;&gt; {
+      this.database.ref(&#x27;orders/&#x27; + id).on(&#x27;value&#x27;, data &#x3D;&gt; {
         if(data.val()){
           observer.next(data.val());
         }
@@ -2923,7 +2999,7 @@ export class FirebaseConnector {
    */
   listenOrders() : Observable&lt;any&gt;{
     return Observable.create( observer &#x3D;&gt; {
-      firebase.database().ref(&#x27;orders&#x27;).on(&#x27;child_added&#x27;, newOrder &#x3D;&gt; {
+      this.database.ref(&#x27;orders&#x27;).on(&#x27;child_added&#x27;, newOrder &#x3D;&gt; {
         if(newOrder.val()){
           observer.next(newOrder.val());
         }
@@ -2933,6 +3009,20 @@ export class FirebaseConnector {
 
   getOrderSubject() {
     return this.orderSubject;
+  }
+
+  getSeoText(url: string, indexBlock: number) : Observable&lt;any&gt;{
+    return Observable.create( observer &#x3D;&gt; {
+      this.database.ref(&#x27;seo-text&#x27;).orderByChild(&#x27;url&#x27;).equalTo(url).on(&#x27;value&#x27;, data &#x3D;&gt; {
+        if(data.val() &amp;&amp; data.val() !&#x3D;&#x3D; null){
+          Object.keys(data.val()).map( key &#x3D;&gt; {
+            observer.next(data.val()[key][&#x27;blocks&#x27;][indexBlock]);
+          });
+        } else {
+          observer.next(null);
+        }
+      });
+    });
   }
 }
 </code></pre>

@@ -25,8 +25,8 @@ export class StripeComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder,
-              private renderer: Renderer) {
+  constructor(protected fb: FormBuilder,
+              protected renderer: Renderer) {
     this.stripeForm = fb.group(this.initPaymentMethodCardModel());
   }
 

@@ -187,10 +187,10 @@
                                     <a href="../components/ProductsListComponent.html" >ProductsListComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/SearchBarComponent.html"  class="active" >SearchBarComponent</a>
+                                    <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
+                                    <a href="../components/SeoTextComponent.html"  class="active" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -504,10 +504,10 @@
                                            <a href="../components/ProductsListComponent.html" >ProductsListComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/SearchBarComponent.html"  class="active" >SearchBarComponent</a>
+                                           <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
+                                           <a href="../components/SeoTextComponent.html"  class="active" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -654,7 +654,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>SearchBarComponent</li>
+  <li>SeoTextComponent</li>
 </ol>
 
 
@@ -672,15 +672,16 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>modules/search-bar-component/src/search-bar.component.ts</code>
+    <code>modules/seo-text-component/src/seo-text.component.ts</code>
 </p>
 
     <p class="comment">
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Search bar component for searching products by name</p>
-
+        <p><code>SEO text component</code> display SEO text block from specific url. User have to input current <code>url</code> and optional index of text in <code>blocks</code> array.</p>
+<p>For example:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">seo-text</span> [<span class="hljs-attr">url</span>]=<span class="hljs-string">"router.url"</span> [<span class="hljs-attr">indexBlock</span>]=<span class="hljs-string">"1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">seo-text</span>&gt;</span></code></pre>
     </p>
 
 
@@ -702,19 +703,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-search-bar</code></td>
+                <td class="col-md-9"><code>seo-text</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>search-bar.component.scss</code></td>
+                <td class="col-md-9"><code>seo-text.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>search-bar.component.html</code></td>
+                <td class="col-md-9"><code>seo-text.component.html</code></td>
             </tr>
 
 
@@ -722,6 +723,46 @@
     </table>
 </section>
 
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>indexBlock</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Index of text in <code>blocks</code> array</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>number</code>
+
+                              </p>
+                            <p>
+                              <em>Default value: </em><code>0</code>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>url</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Page url</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
 
     <section>
@@ -730,7 +771,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(productService: any, router: any)</code>
+                            <code>constructor(dal: any)</code>
                         </td>
                     </tr>
     
@@ -738,95 +779,6 @@
             </table>
     </section>
 
-    <section>
-        <h3 id="methods">Methods</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> change</b>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    <code>change(query: any)</code>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>On input name in text input</p>
-    </div>
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>query</b>
-                                                    </div>
-                                                    <div>
-                                                        <p>name query</p>
-    
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns: </b>    <code>void</code>
-    
-                                </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> onSelect</b>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    <code>onSelect(productId: any)</code>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>On select product navigate to product page</p>
-    </div>
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>productId</b>
-                                                    </div>
-                                                    <div>
-                                                        <p>product id</p>
-    
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns: </b>    <code>void</code>
-    
-                                </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
 
     <section>
         <h3 id="inputs">Properties</h3>
@@ -834,60 +786,18 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> inputSubject</b>
+                            <b><span class="modifier">Private</span> seoText</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>inputSubject:     <code>any</code>
+                            <span class="modifier-icon fa fa-lock"></span><code>seoText:     <code>string</code>
     </bcode>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>RxJs Subject </p>
-    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> products</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>products:     <code>any[]</code>
-    </bcode>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Searched products</p>
-    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> queryString</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>queryString:     <code>any</code>
-    </bcode>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Name query for searching</p>
+                            <div class="io-description"><p>SEO text</p>
     </div>
                         </td>
                     </tr>
@@ -896,81 +806,50 @@
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import { Router } from &#x27;@angular/router&#x27;;
-import { ProductService } from &#x27;@nodeart/productservice/index&#x27;;
-import { Subject } from &#x27;rxjs&#x27;;
-import { Component, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
-
+            <pre><code class="hljs javascript">import { Input } from &#x27;@angular/core&#x27;;
+import { DbAbstractionLayer } from &#x27;@nodeart/dal&#x27;;
+import { Component, OnChanges } from &#x27;@angular/core&#x27;;
 /**
- * Search bar component for searching products by name
+ * &#x60;SEO text component&#x60; display SEO text block from specific url. User have to input current &#x60;url&#x60; and optional index of text in &#x60;blocks&#x60; array.
+ *
+ * For example:
+ * &#x60;&#x60;&#x60;html
+ * &lt;seo-text [url]&#x3D;&quot;router.url&quot; [indexBlock]&#x3D;&quot;1&quot;&gt;&lt;/seo-text&gt;
+ * &#x60;&#x60;&#x60;
  */
 @Component({
-  selector: &#x27;app-search-bar&#x27;,
-  templateUrl: &#x27;./search-bar.component.html&#x27;,
-  styleUrls: [&#x27;./search-bar.component.scss&#x27;]
+ selector: &#x27;seo-text&#x27;,
+ templateUrl: &#x27;./seo-text.component.html&#x27;,
+ styleUrls: [&#x27;./seo-text.component.scss&#x27;]
 })
-export class SearchBarComponent implements OnInit {
+export class SeoTextComponent implements OnChanges{
 
-  /**
-   * RxJs Subject 
-   */
-  inputSubject &#x3D; new Subject&lt;string&gt;();
+    /**
+     * Page url
+     */
+    @Input() url: string;
 
-  /**
-   * Searched products
-   */
-  products &#x3D; [];
-  
-  /**
-   * Name query for searching
-   */
-  @ViewChild(&#x27;query&#x27;) queryString;
-  constructor(protected productService: ProductService, protected router: Router) { }
+    /**
+     * Index of text in &#x60;blocks&#x60; array
+     */
+    @Input() indexBlock: number &#x3D; 0;
 
+    /**
+     * SEO text
+     */
+    private seoText: string;
+    constructor(protected dal: DbAbstractionLayer) {
 
-  ngOnInit() {
-    this.inputSubject.debounceTime(500).subscribe(query &#x3D;&gt; {
-      this.productService.getProducts(query, 5).subscribe( data &#x3D;&gt; {
-        console.log(data.val());
-        console.log(this.queryString.nativeElement.value.length);
-        if(data.val() &amp;&amp; data.val()[&#x27;total&#x27;] &gt; 0 &amp;&amp; this.queryString.nativeElement.value.length &gt; 0){
-          console.log(data.val());
-          this.products &#x3D; data.val()[&#x27;hits&#x27;].map(product &#x3D;&gt; {
-            product[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; product[&#x27;_id&#x27;];
-            return product[&#x27;_source&#x27;];
-          });    
-          console.log(this.products);
-        } else {
-          this.products &#x3D; [];
-        }
-      });
-    });
-  }
-
-  /**
-   * On input name in text input
-   * @param {string} query name query
-   */
-  change(query){
-    if(query.length &gt; 0){
-      this.inputSubject.next(query);
-    }else{
-      this.products &#x3D; [];
     }
-  }
 
-  /**
-   * On select product navigate to product page
-   * @param {string} productId product id
-   */
-  onSelect(productId){
-    this.router.navigate([&#x27;product&#x27;, productId]);
-    this.products &#x3D; [];
-    this.queryString.nativeElement.value &#x3D; &quot;&quot;;
-  }
+    ngOnChanges() {
+        console.log(this.url, &#x27; &lt;&gt; &#x27;, this.indexBlock);
+        this.dal.getSeoText(this.url, this.indexBlock).subscribe(data &#x3D;&gt; {
+            this.seoText &#x3D; data;
+        });
+    }
 
-}
-</code></pre>
+}</code></pre>
         </div>
     </div>
 

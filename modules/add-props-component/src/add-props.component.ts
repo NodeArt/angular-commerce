@@ -48,7 +48,7 @@ export class AddPropsComponent implements OnInit {
    */
   addedChilds = [];
 
-  constructor(private fb: FormBuilder, private dal: DbAbstractionLayer, private productService: ProductService) {
+  constructor(protected fb: FormBuilder, protected dal: DbAbstractionLayer, protected productService: ProductService) {
     this.categoryForm = fb.group({
       name: '',
       tags: [],

@@ -23,7 +23,7 @@ export class TwoCheckoutComponent implements OnInit {
      * 2Checkout form
      */
     public twoCheckoutForm: FormGroup;
-    constructor(private fb: FormBuilder) {
+    constructor(protected fb: FormBuilder) {
         this.twoCheckoutForm = fb.group({
             token: '',
             ccNo: '',

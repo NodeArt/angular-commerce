@@ -57,6 +57,12 @@ export class ProductComponent implements OnInit {
               protected router: Router,
               protected dal: DbAbstractionLayer,
               protected authService: AuthService){
+    
+
+  }
+
+
+  ngOnInit() {
     this.dal.getAuth().onAuthStateChanged(data => {
       if(data == null) {
         this.isAuth = false;
@@ -70,8 +76,8 @@ export class ProductComponent implements OnInit {
         if(product.val()){
           console.log(product.val());
           this.zone.run(() => {
-            this.product = product.val()[0]['_source'];
-            this.product['id'] = product.val()[0]['_id'];
+            this.product = product.val()['_source'];
+            this.product['id'] = product.val()['_id'];
           });
           this.getAttributes();
           this.getTags();
@@ -79,19 +85,13 @@ export class ProductComponent implements OnInit {
       });
 
     });
-
-  }
-
-
-  ngOnInit() {
-
   }
 
 
   /**
    * Get attributes of product
    */
-  private getAttributes(){
+  getAttributes(){
     let attributes = this.product['attributes'];
     if(attributes){
       for(let attrId in attributes){
@@ -104,8 +104,8 @@ export class ProductComponent implements OnInit {
               name: '',
               childNames: []
             };
-            attributeObj['id'] = attribute.val()[0]['_id'];
-            attribute = attribute.val()[0]['_source'];
+            attributeObj['id'] = attribute.val()['_id'];
+            attribute = attribute.val()['_source'];
             attributeObj['name'] = attribute.name;
             for (let i = 0; i < attributeChilds.length; i++){
               let childKey = attributeChilds[i];
@@ -125,8 +125,6 @@ export class ProductComponent implements OnInit {
                 this.attributesToChoose.push(attributeObj);
               }
             });
-            
-            console.log(this.attributesToChoose);
           }
         });
       }
@@ -138,7 +136,7 @@ export class ProductComponent implements OnInit {
   /**
    * Get tags of product
    */
-  private getTags(){
+  getTags(){
     let tags = this.product['tags'];
     if(tags){
       for (let i = 0; i < tags.length; i++){

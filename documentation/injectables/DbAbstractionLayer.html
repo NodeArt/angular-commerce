@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -2288,6 +2300,30 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getSeoText</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getSeoText(url: string, indexBlock: number)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>any</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             </section>
 
     </div>
@@ -2368,7 +2404,7 @@ export class DbAbstractionLayer {
    * Returns products by query object (look to {@link ProductService} method getProductsByIds)
    */
   getProductsByIds(queryObj){
-    return this.connector.requestData(esIndex, &#x27;product&#x27;, queryObj);
+    return this.connector.requestFullData(esIndex, &#x27;product&#x27;, queryObj);
   }
 
   /**
@@ -2500,7 +2536,7 @@ export class DbAbstractionLayer {
    * @returns {Observable} Observable of attributes
    */
   getAttributes(queryObj){
-    return this.connector.requestData(esIndex, &#x27;attributes&#x27;, queryObj);
+    return this.connector.requestFullData(esIndex, &#x27;attributes&#x27;, queryObj);
   }
 
   /**
@@ -2647,12 +2683,15 @@ export class DbAbstractionLayer {
   getOrdersByUserId(userId) {
     let queryObj &#x3D; {
       query: {
-        match: {
-          &quot;orderForm.userId&quot;: userId
+        multi_match: {
+          query: userId,
+          fields: [&quot;orderForm.userId&quot;],
+          type: &quot;phrase&quot;
         }
       }
     };
-    return this.connector.requestData(esIndex, &#x27;orders&#x27;, queryObj);
+    console.log(queryObj);
+    return this.connector.requestFullData(esIndex, &#x27;orders&#x27;, queryObj);
   }
 
   /**
@@ -2687,6 +2726,10 @@ export class DbAbstractionLayer {
   getOrderSubject() {
     return this.connector.getOrderSubject();
   }
+
+  getSeoText(url: string, indexBlock: number) :Observable&lt;any&gt;{
+    return this.connector.getSeoText(url, indexBlock);
+  } 
 }
 </code></pre>
     </div>

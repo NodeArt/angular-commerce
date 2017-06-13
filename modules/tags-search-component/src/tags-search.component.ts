@@ -32,8 +32,8 @@ export class TagsSearchComponent implements OnInit {
    */
   private checkedTags = [];
 
-  constructor(private productService: ProductService,
-              private dal: DbAbstractionLayer) { }
+  constructor(protected productService: ProductService,
+              protected dal: DbAbstractionLayer) { }
 
 
   ngOnInit() {

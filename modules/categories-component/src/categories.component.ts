@@ -27,8 +27,8 @@ export class CategoriesComponent implements OnInit {
    */
   @Input() public routeName: string;
 
-  constructor(private productService: ProductService,
-              private router: Router) { }
+  constructor(protected productService: ProductService,
+              protected router: Router) { }
 
   ngOnInit() {
     this.getCategories();

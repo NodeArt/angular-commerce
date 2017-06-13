@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -732,16 +744,13 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b><span class="modifier">Private</span> getAttributes</b>
+                            <b> getAttributes</b>
                         </td>
                     </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play lock">
-                                    <span class="fa fa-lock"></span>
-                                </span>
-                            <code>getAttributes()</code>
+    <code>getAttributes()</code>
                         </td>
                     </tr>
     
@@ -761,16 +770,13 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b><span class="modifier">Private</span> getTags</b>
+                            <b> getTags</b>
                         </td>
                     </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <span class="modifier-icon method fa fa-play lock">
-                                    <span class="fa fa-lock"></span>
-                                </span>
-                            <code>getTags()</code>
+    <code>getTags()</code>
                         </td>
                     </tr>
     
@@ -1010,6 +1016,32 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> items</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>items:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>1</code>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Items of product</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> product</b>
                         </td>
                     </tr>
@@ -1096,6 +1128,13 @@ export class ProductComponent implements OnInit {
    * Is user authorized
    */
   isAuth &#x3D; false;
+
+  /**
+   * Items of product
+   */
+
+  items : number &#x3D; 1;
+
   constructor(protected productService: ProductService,
               protected route: ActivatedRoute,
               protected basket: BasketService,
@@ -1103,6 +1142,12 @@ export class ProductComponent implements OnInit {
               protected router: Router,
               protected dal: DbAbstractionLayer,
               protected authService: AuthService){
+    
+
+  }
+
+
+  ngOnInit() {
     this.dal.getAuth().onAuthStateChanged(data &#x3D;&gt; {
       if(data &#x3D;&#x3D; null) {
         this.isAuth &#x3D; false;
@@ -1116,8 +1161,8 @@ export class ProductComponent implements OnInit {
         if(product.val()){
           console.log(product.val());
           this.zone.run(() &#x3D;&gt; {
-            this.product &#x3D; product.val()[0][&#x27;_source&#x27;];
-            this.product[&#x27;id&#x27;] &#x3D; product.val()[0][&#x27;_id&#x27;];
+            this.product &#x3D; product.val()[&#x27;_source&#x27;];
+            this.product[&#x27;id&#x27;] &#x3D; product.val()[&#x27;_id&#x27;];
           });
           this.getAttributes();
           this.getTags();
@@ -1125,19 +1170,13 @@ export class ProductComponent implements OnInit {
       });
 
     });
-
-  }
-
-
-  ngOnInit() {
-
   }
 
 
   /**
    * Get attributes of product
    */
-  private getAttributes(){
+  getAttributes(){
     let attributes &#x3D; this.product[&#x27;attributes&#x27;];
     if(attributes){
       for(let attrId in attributes){
@@ -1150,8 +1189,8 @@ export class ProductComponent implements OnInit {
               name: &#x27;&#x27;,
               childNames: []
             };
-            attributeObj[&#x27;id&#x27;] &#x3D; attribute.val()[0][&#x27;_id&#x27;];
-            attribute &#x3D; attribute.val()[0][&#x27;_source&#x27;];
+            attributeObj[&#x27;id&#x27;] &#x3D; attribute.val()[&#x27;_id&#x27;];
+            attribute &#x3D; attribute.val()[&#x27;_source&#x27;];
             attributeObj[&#x27;name&#x27;] &#x3D; attribute.name;
             for (let i &#x3D; 0; i &lt; attributeChilds.length; i++){
               let childKey &#x3D; attributeChilds[i];
@@ -1171,8 +1210,6 @@ export class ProductComponent implements OnInit {
                 this.attributesToChoose.push(attributeObj);
               }
             });
-            
-            console.log(this.attributesToChoose);
           }
         });
       }
@@ -1184,7 +1221,7 @@ export class ProductComponent implements OnInit {
   /**
    * Get tags of product
    */
-  private getTags(){
+  getTags(){
     let tags &#x3D; this.product[&#x27;tags&#x27;];
     if(tags){
       for (let i &#x3D; 0; i &lt; tags.length; i++){
@@ -1222,7 +1259,8 @@ export class ProductComponent implements OnInit {
       id: this.id,
       fullId: this.id + &quot;?&quot;,
       attributes: [],
-      product: this.product
+      product: this.product,
+      items: +this.items
     };
     buyObj.attributes &#x3D; this.attributesToChoose.map(item &#x3D;&gt; {
       let obj &#x3D; {

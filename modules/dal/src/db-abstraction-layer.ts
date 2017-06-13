@@ -74,7 +74,7 @@ export class DbAbstractionLayer {
    * Returns products by query object (look to {@link ProductService} method getProductsByIds)
    */
   getProductsByIds(queryObj){
-    return this.connector.requestData(esIndex, 'product', queryObj);
+    return this.connector.requestFullData(esIndex, 'product', queryObj);
   }
 
   /**
@@ -206,7 +206,7 @@ export class DbAbstractionLayer {
    * @returns {Observable} Observable of attributes
    */
   getAttributes(queryObj){
-    return this.connector.requestData(esIndex, 'attributes', queryObj);
+    return this.connector.requestFullData(esIndex, 'attributes', queryObj);
   }
 
   /**

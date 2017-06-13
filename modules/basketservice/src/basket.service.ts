@@ -37,7 +37,7 @@ export class BasketService{
    * User basket history Rx Subject
    */
   basketHistory: Subject<any>;
-  constructor(private sessionFlow: SessionFlow, private dal: DbAbstractionLayer){
+  constructor(protected sessionFlow: SessionFlow, protected dal: DbAbstractionLayer){
     this.basketHistory = this.dal.getBasketHistorySubject();
     this.products.subscribe(products => {
       this.productsSnapshot = products;
