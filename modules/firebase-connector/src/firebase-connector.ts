@@ -2,6 +2,7 @@ import { Http, Response } from '@angular/http';
 import { esIndex } from './consts';
 import {Injectable, Inject} from "@angular/core";
 import * as firebase from 'firebase';
+import {} from 'firebase';
 import { Observable } from "rxjs/Observable";
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
@@ -32,6 +33,10 @@ export class FirebaseConnector {
 
   private orderSubject: Subject<any> = new Subject();
 
+  private database  = firebase.database();
+
+  private auth = firebase.auth();
+
   constructor(private http: Http){
   }
 
@@ -44,9 +49,9 @@ export class FirebaseConnector {
    * 
    */
   connectSessionFlowToDB(sessionFlow, deviceId, sessionId) {
-    this.sfVisitedRoutes = firebase.database()
+    this.sfVisitedRoutes = this.database
       .ref('/session-flows/' + deviceId + '/' + sessionId + '/visitedRoutes');
-    this.sfUserClicks = firebase.database()
+    this.sfUserClicks = this.database
       .ref('/session-flows/' + deviceId + '/' + sessionId + '/userClicks');  
     this.listenSfObject(sessionFlow);
   }
@@ -82,7 +87,7 @@ export class FirebaseConnector {
    * @returns Firebase realtime database object
    */
   getFirebaseDB(){
-    return firebase.database();
+    return this.database;
   }
 
   /**
@@ -91,7 +96,7 @@ export class FirebaseConnector {
    * @returns Firebase auth object
    */
   getAuth(){
-    return firebase.auth();
+    return this.auth;
   }
 
   /**
@@ -103,7 +108,7 @@ export class FirebaseConnector {
    * @returns [firebase.Promise]{@link https://firebase.google.com/docs/reference/js/firebase.Promise} containing non-null [firebase.User]{@link https://firebase.google.com/docs/reference/js/firebase.User}
    */
   register(email, password){
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+    return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
   /**
@@ -123,7 +128,7 @@ export class FirebaseConnector {
       this.register(email, password).then(authData => {
         let uid = authData.uid;
         registerForm.uid = uid;
-        firebase.database().ref('user/' + userId).set(registerForm).then(data => {
+        this.database.ref('user/' + userId).set(registerForm).then(data => {
            this.loginEmail(email, password).subscribe( 
             data => {
               observer.next(data);
@@ -164,7 +169,7 @@ export class FirebaseConnector {
    */ 
   loginEmail(email, password){
     return Observable.create( observer => {
-      firebase.auth().signInWithEmailAndPassword(email, password)
+      this.auth.signInWithEmailAndPassword(email, password)
         .then(data => {
           observer.next(data);
           observer.complete();
@@ -198,7 +203,7 @@ export class FirebaseConnector {
    * Logout user from firebase
    */
   logout(){
-    firebase.auth().signOut();
+    this.auth.signOut();
   }
 
   /**
@@ -211,7 +216,7 @@ export class FirebaseConnector {
       let oldSessionFlow = JSON.parse(localStorage.getItem("oldSessionFlow"));
       let sessionId = oldSessionFlow.sessionId;
       delete oldSessionFlow.sessionId;
-      firebase.database().ref('/session-flows/' + deviceId + '/' + sessionId).set(oldSessionFlow);
+      this.database.ref('/session-flows/' + deviceId + '/' + sessionId).set(oldSessionFlow);
     }
   }
 
@@ -224,7 +229,7 @@ export class FirebaseConnector {
    */
   getBasketContent(userId){
     return Observable.create( observer => {
-      firebase.database().ref().child('/basket/' + userId).on('value', data => {
+      this.database.ref().child('/basket/' + userId).on('value', data => {
         observer.next(data);
       });
     });
@@ -234,7 +239,7 @@ export class FirebaseConnector {
    * Will be realized in next versions
    */
   getComparison(id){
-    return firebase.database().ref().child('comparison/' + id).once('value');
+    return this.database.ref().child('comparison/' + id).once('value');
   }
 
   /**
@@ -248,7 +253,7 @@ export class FirebaseConnector {
       this.basketHistorySubscription$.unsubscribe();
     }
     this.basketHistorySubscription$ = this.basketHistory$.subscribe( data => {
-      firebase.database().ref('/basket-history/' + userId).push(data);
+      this.database.ref('/basket-history/' + userId).push(data);
     });
   }
 
@@ -269,11 +274,9 @@ export class FirebaseConnector {
    * @returns {Observable} Rx Observable of basket history
    */
    getBasketHistoryById(userId){
-     return Observable.create( observer => {
-        firebase.database().ref().child('/basket-history/' + userId).on('value', data => {
-          observer.next(data);
-        });
-      });
+     return Observable.fromPromise( 
+       this.database.ref().child('/basket-history/' + userId).once('value') as Promise<any>
+     );
    }
 
 
@@ -286,8 +289,9 @@ export class FirebaseConnector {
    */
   setNewBasket(id, newBasket){
     return Observable.create( observer => {
-        firebase.database().ref().child('basket/' + id).set(newBasket).then( data => {
+        this.database.ref().child('basket/' + id).set(newBasket).then( data => {
           observer.next(data);
+          observer.complete();
         });
     });
   }
@@ -296,14 +300,14 @@ export class FirebaseConnector {
    * Will be realized in next versions
    */
   addProductToComparison(id, product){
-    return firebase.database().ref().child('comparison/' + id).push(product);
+    return this.database.ref().child('comparison/' + id).push(product);
   }
 
   /**
    * Will be realized in next versions
    */
   removeProductFromComparison(id, idInComparison){
-    return firebase.database().ref().child('comparison/' + id + '/' + idInComparison).remove();
+    return this.database.ref().child('comparison/' + id + '/' + idInComparison).remove();
   }
 
   /**
@@ -311,25 +315,18 @@ export class FirebaseConnector {
    * 
    * @param {string} index ElasticSearch index
    * @param {string} type ElasticSearch type
-   * @param {Object} queryObj query object for ElasticSearch
+   * @param {Object} body query object for ElasticSearch
    * 
    * @returns  {Observable} Observable of requested data hits
    */
-  requestData(index, type, queryObj){
-    let key = firebase.database().ref().child('search/request').push({
-      index: index,
-      type: type,
-      body: queryObj
-    }).key;
-    console.log(key);
-    return Observable.create( observer => {
-      firebase.database().ref().child('search/response/' + key + '/hits/hits').on('value', data => {
-        if(data.val()){
-          console.log(data.val());
-          observer.next(data);
-        }
-      });
-    });
+  requestData(index, type, body) {
+    const key = this.database
+      .ref('search/request')
+      .push({ index, type, body })
+      .key;
+    return Observable.fromPromise(
+      this.database.ref(`search/response/${key}/hits/hits`).once('child_added') as Promise<any>
+    );
   }
 
   /**
@@ -337,21 +334,18 @@ export class FirebaseConnector {
    * 
    * @param {string} index ElasticSearch index
    * @param {string} type ElasticSearch type
-   * @param {Object} queryObj query object for ElasticSearch
+   * @param {Object} body query object for ElasticSearch
    * 
    * @returns  {Observable} Observable of requested data
    */
-  requestFullData(index, type, queryObj){
-    let key = firebase.database().ref().child('search/request').push({
-      index: index,
-      type: type,
-      body: queryObj
-    }).key;
-    return Observable.create( observer => {
-      firebase.database().ref().child('search/response/' + key + '/hits').on('value', data => {
-        observer.next(data);
-      });
-    });
+  requestFullData(index, type, body){
+    const key = this.database
+      .ref('search/request')
+      .push({ index, type, body })
+      .key;
+    return Observable.fromPromise(
+      this.database.ref(`search/response/${key}/hits`).once('child_added') as Promise<any>
+    );
   }
 
   /**
@@ -359,19 +353,29 @@ export class FirebaseConnector {
    * 
    * @param {string} index ElasticSearch index
    * @param {string} type ElasticSearch type
-   * @param {Object} queryObj query object for ElasticSearch
+   * @param {Object} body query object for ElasticSearch
    * 
    * @returns  {Observable} Observable of total item
    */
-  requestItemsTotal(index, type,queryObj){
-    let key = firebase.database().ref().child('search/request').push({
-      index: index,
-      type: type,
-      body: queryObj
-    }).key;
+  requestItemsTotal(index, type, body){
+    const key = this.database
+      .ref('search/request')
+      .push({ index, type, body })
+      .key;
+    console.log(key);
     return Observable.create( observer => {
-      firebase.database().ref().child('search/response/' + key + '/hits/total').on('value', data => {
+      const ref = this.database.ref(`search/response/${key}/hits/total`);
+      let promise = new Promise( (resolve, reject) => {
+        ref.on('value', ( data ) => {
+          if(data.val() !== null){
+            resolve(data);
+          }
+        });
+      });
+      promise.then( data => {
+        ref.off('value');
         observer.next(data);
+        observer.complete();
       });
     });
   }
@@ -382,7 +386,7 @@ export class FirebaseConnector {
    * @param {Object} product product Object
    */
   addProduct(product){
-    firebase.database().ref('product/').push(product);
+    this.database.ref('product/').push(product);
   }
 
   /**
@@ -409,7 +413,7 @@ export class FirebaseConnector {
    * @param {FormGroup} generalCategoryForm form of general category
    */
   addGeneralCategory(generalCategoryForm: FormGroup){
-    firebase.database().ref('general-category').push(generalCategoryForm.value);
+    this.database.ref('general-category').push(generalCategoryForm.value);
   }
 
   /**
@@ -418,7 +422,7 @@ export class FirebaseConnector {
    * @param {FormGroup} categoryForm  form of category
    */
   addCategory(categoryForm : FormGroup){
-    firebase.database().ref('category/').push(categoryForm.value);
+    this.database.ref('category/').push(categoryForm.value);
   }
 
 
@@ -429,21 +433,21 @@ export class FirebaseConnector {
    * @param {string} categoryId id of category
    */
   addAttribute(attributeForm : FormGroup, categoryId){
-    firebase.database().ref('attributes/').push(attributeForm.value).then(ref => {
-      firebase.database().ref().child('category/' + categoryId +'/attrs').once('value').then(data => {
+    this.database.ref('attributes/').push(attributeForm.value).then(ref => {
+      this.database.ref().child('category/' + categoryId +'/attrs').once('value').then(data => {
           if(data.val()){
             console.log(data);
             if(data.val()[0] == '1234' && data.val()[1] == '1234'){
               let attrs = ['1234'];
               attrs.push(ref['key']);
               console.log(attrs);
-              firebase.database().ref().child('category/' + categoryId + '/attrs').set(attrs);
+              this.database.ref().child('category/' + categoryId + '/attrs').set(attrs);
             } else {
               let attrs = [].concat(...data.val());
               console.log(attrs);
               attrs.push(ref['key']);
               console.log(attrs);
-              firebase.database().ref().child('category/' + categoryId + '/attrs').set(attrs);
+              this.database.ref().child('category/' + categoryId + '/attrs').set(attrs);
             }
           }
       });
@@ -457,20 +461,20 @@ export class FirebaseConnector {
    * @param {string} categoryId id of category
    */
   addTag(tagForm: FormGroup, categoryId){
-    firebase.database().ref('tags/').push(tagForm.value).then(ref => {
-      firebase.database().ref().child('category/' + categoryId +'/tags').once('value').then(data => {
+    this.database.ref('tags/').push(tagForm.value).then(ref => {
+      this.database.ref().child('category/' + categoryId +'/tags').once('value').then(data => {
           if(data.val()){
             console.log(data);
             if(data.val()[0] == '1234' && data.val()[1] == '1234'){
               let tags = ['1234'];
               tags.push(ref['key']);
               console.log(tags);
-              firebase.database().ref().child('category/' + categoryId + '/tags').set(tags);
+              this.database.ref().child('category/' + categoryId + '/tags').set(tags);
             } else {
               let tags = [].concat(data.val());
               tags.push(ref['key']);
               console.log(tags);
-              firebase.database().ref().child('category/' + categoryId + '/tags').set(tags);
+              this.database.ref().child('category/' + categoryId + '/tags').set(tags);
             }
           }
       });
@@ -486,7 +490,7 @@ export class FirebaseConnector {
    */
   saveOrder(paymentData){
     return Observable.create( observer => {
-      firebase.database().ref('orders').push(paymentData).then( data => {
+      this.database.ref('orders').push(paymentData).then( data => {
         observer.next(data);
         observer.complete();
       });
@@ -502,7 +506,7 @@ export class FirebaseConnector {
    * @returns [firebase.database.ThenableReference]{@link https://firebase.google.com/docs/reference/js/firebase.database.ThenableReference}
    */
   addPaymentRequest(data, paymentMethod) {
-    return firebase.database().ref('payment-request').push({
+    return this.database.ref('payment-request').push({
             data: data,
             payMethod: paymentMethod
         });
@@ -517,7 +521,7 @@ export class FirebaseConnector {
    */
   listenPaymentResponse(paymentKey) {
     return Observable.create( observer => {
-      firebase.database().ref('payment-response/' + paymentKey).on('value', data => {
+      this.database.ref('payment-response/' + paymentKey).on('value', data => {
         if(data.val()){
           observer.next(data);
         }
@@ -534,7 +538,7 @@ export class FirebaseConnector {
    * @returns      [firebase.Promise]{@link https://firebase.google.com/docs/reference/js/firebase.Promise} containing void
    */
   resetPassword(email) {
-    return firebase.auth().sendPasswordResetEmail(email);
+    return this.auth.sendPasswordResetEmail(email);
   }
 
   /**
@@ -544,7 +548,7 @@ export class FirebaseConnector {
    */
   getOrderById(id) {
     return Observable.create( observer => {
-      firebase.database().ref('orders/' + id).on('value', data => {
+      this.database.ref('orders/' + id).on('value', data => {
         if(data.val()){
           observer.next(data.val());
         }
@@ -559,7 +563,7 @@ export class FirebaseConnector {
    */
   listenOrders() : Observable<any>{
     return Observable.create( observer => {
-      firebase.database().ref('orders').on('child_added', newOrder => {
+      this.database.ref('orders').on('child_added', newOrder => {
         if(newOrder.val()){
           observer.next(newOrder.val());
         }
@@ -573,7 +577,7 @@ export class FirebaseConnector {
 
   getSeoText(url: string, indexBlock: number) : Observable<any>{
     return Observable.create( observer => {
-      firebase.database().ref('seo-text').orderByChild('url').equalTo(url).on('value', data => {
+      this.database.ref('seo-text').orderByChild('url').equalTo(url).on('value', data => {
         if(data.val() && data.val() !== null){
           Object.keys(data.val()).map( key => {
             observer.next(data.val()[key]['blocks'][indexBlock]);

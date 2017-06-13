@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -1206,7 +1218,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Default value: </i><code>0</code>
+                                <i>Default value: </i><code>1</code>
                             </td>
                         </tr>
                     <tr>
@@ -1262,7 +1274,7 @@ export class ProductsListComponent implements OnInit {
   /**
    * Total pages for products
    */
-  totalPages &#x3D; 0;
+  totalPages &#x3D; 1;
 
   /**
    * Number of products on page 
@@ -1286,10 +1298,10 @@ export class ProductsListComponent implements OnInit {
 
   @Input() priceRanges &#x3D; [0, 100000000000000];
 
-  constructor(private dal: DbAbstractionLayer,
-              private router: Router, 
-              private productService: ProductService,
-              private route: ActivatedRoute) {
+  constructor(protected dal: DbAbstractionLayer,
+              protected router: Router, 
+              protected productService: ProductService,
+              protected route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -1344,13 +1356,12 @@ export class ProductsListComponent implements OnInit {
           if(data.val()){
             if(data.val()[&#x27;total&#x27;] &#x3D;&#x3D;&#x3D; 0) {
               this.products &#x3D; [];
-            } else if(data.val()[&#x27;hits&#x27;]){
+            } else if(data.val().length &gt; 0){
               console.log(&#x27;Products data: &#x27;, data.val());
-              this.products &#x3D; data.val()[&#x27;hits&#x27;].map(item &#x3D;&gt; {
+              this.products &#x3D; data.val().map(item &#x3D;&gt; {
                 item[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; item[&#x27;_id&#x27;];
                 return item[&#x27;_source&#x27;];
               });
-              console.log(this.products);
             }
           }
         });

@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -1071,7 +1083,7 @@ export class BasketService{
    * User basket history Rx Subject
    */
   basketHistory: Subject&lt;any&gt;;
-  constructor(private sessionFlow: SessionFlow, private dal: DbAbstractionLayer){
+  constructor(protected sessionFlow: SessionFlow, protected dal: DbAbstractionLayer){
     this.basketHistory &#x3D; this.dal.getBasketHistorySubject();
     this.products.subscribe(products &#x3D;&gt; {
       this.productsSnapshot &#x3D; products;
@@ -1166,7 +1178,9 @@ export class BasketService{
       return basketProduct;
     });
     if(!productExistInBasket) {
-      product.items &#x3D; 1;
+      if(!product.items){
+        product.items &#x3D; 1;
+      }
       newBasket.push(product);
     }
     if(this.userId){

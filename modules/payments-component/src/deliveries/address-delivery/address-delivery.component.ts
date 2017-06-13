@@ -28,7 +28,7 @@ export class AddressDeliveryComponent implements OnInit {
      */
     @Output() addressDeliverySaved = new EventEmitter();
     public countries;
-    constructor(private fb: FormBuilder) {
+    constructor(protected fb: FormBuilder) {
         this.addressDeliveryForm = this.fb.group({
             country: '',
             state: '',

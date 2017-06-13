@@ -116,7 +116,7 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                    <a href="../modules/SeoTextModule.html"  class="active" >SeoTextModule</a>
                                 </li>
                                 <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
@@ -187,7 +187,7 @@
                                     <a href="../components/ProductsListComponent.html" >ProductsListComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/SearchBarComponent.html"  class="active" >SearchBarComponent</a>
+                                    <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
@@ -433,7 +433,7 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                           <a href="../modules/SeoTextModule.html"  class="active" >SeoTextModule</a>
                                        </li>
                                        <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
@@ -504,7 +504,7 @@
                                            <a href="../components/ProductsListComponent.html" >ProductsListComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/SearchBarComponent.html"  class="active" >SearchBarComponent</a>
+                                           <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
@@ -648,331 +648,100 @@
                    
                    </nav>
                </div>
-               <div class="content component">
+               <div class="content module">
                    <div class="content-data">
 
-
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li>SearchBarComponent</li>
+  <li>Modules</li>
+  <li>SeoTextModule</li>
 </ol>
 
-
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
-        </li>
-        <li>
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
-        </li>
-    </ul>
-
-    <div class="tab-content">
-        <div class="tab-pane fade active in" id="infos"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>modules/search-bar-component/src/search-bar.component.ts</code>
-</p>
-
-    <p class="comment">
-        <h3>Description</h3>
-    </p>
-    <p class="comment">
-        <p>Search bar component for searching products by name</p>
-
-    </p>
-
-
-<section>
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
-        <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-search-bar</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>search-bar.component.scss</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>search-bar.component.html</code></td>
-            </tr>
-
-
-        </tbody>
-    </table>
-</section>
-
-
-
-    <section>
-        <h3 id="constructor">Constructor</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>constructor(productService: any, router: any)</code>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-    </section>
-
-    <section>
-        <h3 id="methods">Methods</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> change</b>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    <code>change(query: any)</code>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>On input name in text input</p>
+<div class="text-center">
+    <object id="demo-svg" type="image/svg+xml" data="../modules/SeoTextModule/dependencies.svg" style="width: 100%; height: 250px;">
+            Your browser does not support SVG
+    </object>
+    <div class="btn-group">
+        <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+        <button id="reset" class="btn btn-default btn-sm">Reset</button>
+        <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
     </div>
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>query</b>
-                                                    </div>
-                                                    <div>
-                                                        <p>name query</p>
-    
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns: </b>    <code>void</code>
-    
-                                </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> onSelect</b>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    <code>onSelect(productId: any)</code>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>On select product navigate to product page</p>
-    </div>
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>productId</b>
-                                                    </div>
-                                                    <div>
-                                                        <p>product id</p>
-    
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns: </b>    <code>void</code>
-    
-                                </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
-
-    <section>
-        <h3 id="inputs">Properties</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> inputSubject</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>inputSubject:     <code>any</code>
-    </bcode>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>RxJs Subject </p>
-    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> products</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>products:     <code>any[]</code>
-    </bcode>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Searched products</p>
-    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> queryString</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>queryString:     <code>any</code>
-    </bcode>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Name query for searching</p>
-    </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
 </div>
-        <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import { Router } from &#x27;@angular/router&#x27;;
-import { ProductService } from &#x27;@nodeart/productservice/index&#x27;;
-import { Subject } from &#x27;rxjs&#x27;;
-import { Component, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+<script src="../js/libs/svg-pan-zoom.min.js"></script>
+<script src="../js/svg-pan-zoom.controls.js"></script>
 
-/**
- * Search bar component for searching products by name
- */
-@Component({
-  selector: &#x27;app-search-bar&#x27;,
-  templateUrl: &#x27;./search-bar.component.html&#x27;,
-  styleUrls: [&#x27;./search-bar.component.scss&#x27;]
-})
-export class SearchBarComponent implements OnInit {
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+    </li>
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
+    </li>
+</ul>
 
-  /**
-   * RxJs Subject 
-   */
-  inputSubject &#x3D; new Subject&lt;string&gt;();
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="infos">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>modules/seo-text-component/src/seo-text.module.ts</code>
+        </p>
 
-  /**
-   * Searched products
-   */
-  products &#x3D; [];
-  
-  /**
-   * Name query for searching
-   */
-  @ViewChild(&#x27;query&#x27;) queryString;
-  constructor(protected productService: ProductService, protected router: Router) { }
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>SEO text module</p>
 
+            </p>
 
-  ngOnInit() {
-    this.inputSubject.debounceTime(500).subscribe(query &#x3D;&gt; {
-      this.productService.getProducts(query, 5).subscribe( data &#x3D;&gt; {
-        console.log(data.val());
-        console.log(this.queryString.nativeElement.value.length);
-        if(data.val() &amp;&amp; data.val()[&#x27;total&#x27;] &gt; 0 &amp;&amp; this.queryString.nativeElement.value.length &gt; 0){
-          console.log(data.val());
-          this.products &#x3D; data.val()[&#x27;hits&#x27;].map(product &#x3D;&gt; {
-            product[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; product[&#x27;_id&#x27;];
-            return product[&#x27;_source&#x27;];
-          });    
-          console.log(this.products);
-        } else {
-          this.products &#x3D; [];
-        }
-      });
-    });
-  }
-
-  /**
-   * On input name in text input
-   * @param {string} query name query
-   */
-  change(query){
-    if(query.length &gt; 0){
-      this.inputSubject.next(query);
-    }else{
-      this.products &#x3D; [];
-    }
-  }
-
-  /**
-   * On select product navigate to product page
-   * @param {string} productId product id
-   */
-  onSelect(productId){
-    this.router.navigate([&#x27;product&#x27;, productId]);
-    this.products &#x3D; [];
-    this.queryString.nativeElement.value &#x3D; &quot;&quot;;
-  }
-
-}
-</code></pre>
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Declarations<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#declarations-anchor" target="_blank"><span class="fa fa-info-circle"></span></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="../components/SeoTextComponent.html">SeoTextComponent</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Imports<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#imports-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                    <a href="../modules/DalModule.html" >DalModule</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Exports<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#exports-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre><code class="hljs javascript">import { DalModule } from &#x27;@nodeart/dal&#x27;;
+import { SeoTextComponent } from &#x27;./seo-text.component&#x27;;
+import { NgModule } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+/**
+ * SEO text module
+ */
+@NgModule({
+    imports: [CommonModule, DalModule],
+    exports: [SeoTextComponent],
+    declarations: [SeoTextComponent],
+    providers: [],
+})
+export class SeoTextModule { }
+</code></pre>
+    </div>
+</div>
 
 
 

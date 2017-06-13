@@ -27,7 +27,7 @@ export class SearchBarComponent implements OnInit {
    * Name query for searching
    */
   @ViewChild('query') queryString;
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(protected productService: ProductService, protected router: Router) { }
 
 
   ngOnInit() {

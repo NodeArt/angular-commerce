@@ -63,10 +63,10 @@ export class ProductsGeneralComponent implements OnInit {
   @Input() generalCategoryId;
 
   @Output() categoryUpdated = new EventEmitter();
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private productService: ProductService,
-              private zone: NgZone) { 
+  constructor(protected router: Router,
+              protected route: ActivatedRoute,
+              protected productService: ProductService,
+              protected zone: NgZone) { 
               
               }
 

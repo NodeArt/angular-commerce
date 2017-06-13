@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -921,7 +933,7 @@ export class TwoCheckoutComponent implements OnInit {
      * 2Checkout form
      */
     public twoCheckoutForm: FormGroup;
-    constructor(private fb: FormBuilder) {
+    constructor(protected fb: FormBuilder) {
         this.twoCheckoutForm &#x3D; fb.group({
             token: &#x27;&#x27;,
             ccNo: &#x27;&#x27;,

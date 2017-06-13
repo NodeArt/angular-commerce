@@ -1,3 +1,23 @@
+# 2.1.54
+
+### Features
+
+* **firebase-connector:** Perfomance improvements: change firebase .on to once
+* **all components:** Refactor to new firebase-connector
+
+# 2.1.53
+
+### Changes
+
+* **all components:** Change private fields to protected in constructor
+
+# 2.1.52
+
+### Changes
+
+* **productservice:** Change getProducts method - set size argument optional
+* **product-component:** Put constructor code to ngOnInit, change private methods to public
+
 # 2.1.51
 
 ### Bug fixes

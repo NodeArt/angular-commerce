@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -1165,7 +1177,7 @@ export class AddPropsComponent implements OnInit {
    */
   addedChilds &#x3D; [];
 
-  constructor(private fb: FormBuilder, private dal: DbAbstractionLayer, private productService: ProductService) {
+  constructor(protected fb: FormBuilder, protected dal: DbAbstractionLayer, protected productService: ProductService) {
     this.categoryForm &#x3D; fb.group({
       name: &#x27;&#x27;,
       tags: [],

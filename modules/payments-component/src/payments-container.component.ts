@@ -91,11 +91,11 @@ export class PaymentsContainerComponent implements OnInit {
      */
     @ViewChild(PaymentsComponent) paymentsComponent: PaymentsComponent;
     constructor(
-        private http: Http,
-        private basketService: BasketService,
-        private zone: NgZone,
-        private dal: DbAbstractionLayer,
-        private authService: AuthService) {
+        protected http: Http,
+        protected basketService: BasketService,
+        protected zone: NgZone,
+        protected dal: DbAbstractionLayer,
+        protected authService: AuthService) {
     }
     ngOnInit() {
         this.zone.run(() => {

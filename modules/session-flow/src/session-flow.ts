@@ -84,7 +84,7 @@ export class SessionFlow{
    */
   private lastRouteTimeStart: Date = new Date();
 
-  constructor(private router: Router, @Inject('isBrowser') private isBrowser){
+  constructor(protected router: Router, @Inject('isBrowser') protected isBrowser){
     this.userId = 'guest';
     if(isBrowser){
       this.reffererUrl = document.referrer;

@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -1312,7 +1324,7 @@ export class SessionFlow{
    */
   private lastRouteTimeStart: Date &#x3D; new Date();
 
-  constructor(private router: Router, @Inject(&#x27;isBrowser&#x27;) private isBrowser){
+  constructor(protected router: Router, @Inject(&#x27;isBrowser&#x27;) protected isBrowser){
     this.userId &#x3D; &#x27;guest&#x27;;
     if(isBrowser){
       this.reffererUrl &#x3D; document.referrer;

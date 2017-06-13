@@ -56,9 +56,7 @@ export class AttributesSearchComponent implements OnInit {
  getAttributes(){
    this.productService.getCategory(this.categoryId).subscribe( data => {
      if(data.val()){
-       console.log("Attrs ids:");
-       console.log(data.val());
-       let ids = data.val()[0]['_source']['attrs'];
+       let ids = data.val()['_source']['attrs'];
        if(ids) {
          let queryObject = {
            query: {
@@ -76,8 +74,8 @@ export class AttributesSearchComponent implements OnInit {
            })
          }
          this.dal.getAttributes(queryObject).subscribe( data => {
+           console.log(data.val());
            if(data.val()){
-             console.log("Final data: ");
              this.attributes = data.val().map(item => {
                item['_source']['id'] = item['_id'];
                item['_source']['childs'] = item['_source']['childs'].map(child => {
@@ -86,11 +84,12 @@ export class AttributesSearchComponent implements OnInit {
                });
                return item['_source'];
              });
-             console.log(this.attributes);
              this.checkSelected();
              this.attrsEmiter.next(this.attributes.length > 0);
            }
          });
+       } else {
+         this.checkSelected();
        }
      }
    });
@@ -122,8 +121,6 @@ export class AttributesSearchComponent implements OnInit {
  }
 
  checkSelected() {
-   console.log(this.checkedAttrs);
-   console.log(this.attributes);
    for (let i = 0; i < this.attributes.length; i++) {
      for (let j = 0; j < this.checkedAttrs.length; j++) {
        let attribute = this.attributes[i];
@@ -139,7 +136,6 @@ export class AttributesSearchComponent implements OnInit {
       }
      }
    }
-   console.log(this.attributes);
    this.areAttributesReady = true;
    this.attributesReadyEmitter.next(true);
  }

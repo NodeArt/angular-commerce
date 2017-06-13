@@ -34,7 +34,7 @@ export class GeneralCategoryAllComponent extends LoadingPage implements OnInit, 
    * Array of products.
    */
   products = [];
-  constructor(private productService: ProductService, private zone: NgZone, private router: Router) { 
+  constructor(protected productService: ProductService, protected zone: NgZone, protected router: Router) { 
     super(true);
   }
 

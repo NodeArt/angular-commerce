@@ -44,9 +44,9 @@ export class AddProductComponent implements OnInit {
   addedTags = [];
 
   isCategorySelected = false;
-  constructor(private fb: FormBuilder, 
-              private dal: DbAbstractionLayer,
-              private productService: ProductService) {
+  constructor(protected fb: FormBuilder, 
+              protected dal: DbAbstractionLayer,
+              protected productService: ProductService) {
 
     this.productForm = this.fb.group({
       name: '',

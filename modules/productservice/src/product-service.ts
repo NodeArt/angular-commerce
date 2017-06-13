@@ -12,7 +12,7 @@ export class ProductService{
    */
   public esIndex = 'firebase';
 
-   constructor(private dal: DbAbstractionLayer){
+   constructor(protected dal: DbAbstractionLayer){
   }
 
   /**
@@ -296,17 +296,19 @@ export class ProductService{
    * 
    * @returns {Observable} Observable of data
    */
-  getProducts(query, size){
+  getProducts(query, size?){
     query = query.split(' ');
     let queryObj = {
-      "size": size,
-        "query": {
+      "query": {
           "bool": {
             "must": [
             ]
           }
         }
     };
+    if(size) {
+      queryObj['size'] = size;
+    }
     query.map(term => {
       term = term.replace(/\(|\)/g, '');
       queryObj.query.bool.must.push({

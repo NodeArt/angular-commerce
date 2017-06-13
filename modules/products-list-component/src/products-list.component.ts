@@ -122,13 +122,12 @@ export class ProductsListComponent implements OnInit {
           if(data.val()){
             if(data.val()['total'] === 0) {
               this.products = [];
-            } else if(data.val()['hits']){
+            } else if(data.val().length > 0){
               console.log('Products data: ', data.val());
-              this.products = data.val()['hits'].map(item => {
+              this.products = data.val().map(item => {
                 item['_source']['id'] = item['_id'];
                 return item['_source'];
               });
-              console.log(this.products);
             }
           }
         });

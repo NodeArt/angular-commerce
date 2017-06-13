@@ -22,7 +22,7 @@ export class BasketComponent implements OnInit {
    * Total products price
    */
   public totalPrice = 0;
-  constructor(private basketService: BasketService, private zone: NgZone, private router: Router) {
+  constructor(protected basketService: BasketService, protected zone: NgZone, protected router: Router) {
     this.basketService.products.subscribe(data => {
       let products = JSON.parse(JSON.stringify(data));
       this.totalPrice = this.basketService.totalPrice;

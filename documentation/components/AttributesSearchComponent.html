@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -733,6 +745,19 @@
                 <tbody>
                     <tr>
                         <td class="col-md-2">
+                            <code>attributesReadyEmitter</code>
+                        </td>
+                        <td class="col-md-10">
+                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
                             <code>attrsUpdated</code>
                         </td>
                         <td class="col-md-10">
@@ -752,7 +777,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(productService: any, dal: any)</code>
+                            <code>constructor(productService: any, dal: any, route: any)</code>
                         </td>
                     </tr>
     
@@ -848,10 +873,78 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> checkSelected</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>checkSelected()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> parseParams</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>parseParams(param: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </section>
 
     <section>
         <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> areAttributesReady</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-circle"></span><code>areAttributesReady:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -892,12 +985,12 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b><span class="modifier">Private</span> checkedAttrs</b>
+                            <b><span class="modifier">Public</span> checkedAttrs</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-lock"></span><code>checkedAttrs:     <code>any[]</code>
+                            <span class="modifier-icon fa fa-circle"></span><code>checkedAttrs:     <code>any[]</code>
     </bcode>
                         </td>
                     </tr>
@@ -912,7 +1005,8 @@
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import { ProductService } from &#x27;@nodeart/productservice&#x27;;
+            <pre><code class="hljs javascript">import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { ProductService } from &#x27;@nodeart/productservice&#x27;;
 import { DbAbstractionLayer } from &#x27;@nodeart/dal&#x27;;
 import { Component, OnInit, Input, Output, EventEmitter } from &#x27;@angular/core&#x27;;
 
@@ -943,13 +1037,21 @@ export class AttributesSearchComponent implements OnInit {
  /**
   * Checked attributes
   */
- private checkedAttrs &#x3D; [];
+ public checkedAttrs &#x3D; [];
+
+ public areAttributesReady &#x3D; false;
+
+ @Output() attributesReadyEmitter &#x3D; new EventEmitter();
 
  constructor(private productService: ProductService,
-             private dal: DbAbstractionLayer) { }
+             private dal: DbAbstractionLayer,
+             protected route: ActivatedRoute) { }
 
  ngOnInit() {
-   this.getAttributes();
+   this.route.queryParams.subscribe((param) &#x3D;&gt; {
+     this.parseParams(param);
+     this.getAttributes();
+   });
  }
 
  public attrsEmiter &#x3D; new EventEmitter();
@@ -961,9 +1063,7 @@ export class AttributesSearchComponent implements OnInit {
  getAttributes(){
    this.productService.getCategory(this.categoryId).subscribe( data &#x3D;&gt; {
      if(data.val()){
-       console.log(&quot;Attrs ids:&quot;);
-       console.log(data.val());
-       let ids &#x3D; data.val()[0][&#x27;_source&#x27;][&#x27;attrs&#x27;];
+       let ids &#x3D; data.val()[&#x27;_source&#x27;][&#x27;attrs&#x27;];
        if(ids) {
          let queryObject &#x3D; {
            query: {
@@ -982,12 +1082,15 @@ export class AttributesSearchComponent implements OnInit {
          }
          this.dal.getAttributes(queryObject).subscribe( data &#x3D;&gt; {
            if(data.val()){
-             console.log(&quot;Final data: &quot;);
              this.attributes &#x3D; data.val().map(item &#x3D;&gt; {
                item[&#x27;_source&#x27;][&#x27;id&#x27;] &#x3D; item[&#x27;_id&#x27;];
+               item[&#x27;_source&#x27;][&#x27;childs&#x27;] &#x3D; item[&#x27;_source&#x27;][&#x27;childs&#x27;].map(child &#x3D;&gt; {
+                 child.checked &#x3D; false;
+                 return child;
+               });
                return item[&#x27;_source&#x27;];
              });
-             console.log(this.attributes);
+             this.checkSelected();
              this.attrsEmiter.next(this.attributes.length &gt; 0);
            }
          });
@@ -1003,6 +1106,9 @@ export class AttributesSearchComponent implements OnInit {
   * @param event emitted event
   */
  check(attrId: string, valueName: string, $event){
+   let attrName &#x3D; this.attributes.find(attribute &#x3D;&gt; {
+     return attrId &#x3D;&#x3D;&#x3D; attribute.id;
+   }).name;
    if($event.target.checked){
      this.checkedAttrs.push({
        attrId: attrId,
@@ -1017,6 +1123,40 @@ export class AttributesSearchComponent implements OnInit {
    }
    this.attrsUpdated.emit(this.checkedAttrs);
  }
+
+ checkSelected() {
+   for (let i &#x3D; 0; i &lt; this.attributes.length; i++) {
+     for (let j &#x3D; 0; j &lt; this.checkedAttrs.length; j++) {
+       let attribute &#x3D; this.attributes[i];
+       let checkedAttr &#x3D; this.checkedAttrs[j];
+       if(attribute.id &#x3D;&#x3D;&#x3D; checkedAttr.attrId) {
+          for(let k &#x3D; 0; k &lt; this.attributes[i].childs.length; k++) { 
+            let attributeChild &#x3D; this.attributes[i].childs[k];
+            if(attributeChild.key &#x3D;&#x3D;&#x3D; checkedAttr.valueName) {
+              this.attributes[i].childs[k].checked &#x3D; true;
+              break;
+            }
+       }
+      }
+     }
+   }
+   this.areAttributesReady &#x3D; true;
+   this.attributesReadyEmitter.next(true);
+ }
+
+  parseParams(param) {
+      let checkedAttrs &#x3D; [];
+      Object.keys(param).map( key &#x3D;&gt; {
+          param[key].split(&#x27;~&#x27;).map( value &#x3D;&gt; {
+              checkedAttrs.push({
+                  attrId: key,
+                  valueName: value
+              });
+          });
+      });
+      this.checkedAttrs &#x3D; checkedAttrs;
+      this.attrsUpdated.next(checkedAttrs);
+  }
 }</code></pre>
         </div>
     </div>

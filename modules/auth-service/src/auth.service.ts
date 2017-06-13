@@ -11,7 +11,7 @@ export class AuthService {
    * User data
    */
   userData = {};
-  constructor(private dal: DbAbstractionLayer, private sessionFlow: SessionFlow, private zone: NgZone){
+  constructor(protected dal: DbAbstractionLayer, protected sessionFlow: SessionFlow, protected zone: NgZone){
     this.dal.getAuth().onAuthStateChanged(authData => {
       if(authData === null){
         this.sessionFlow.userId = 'guest';

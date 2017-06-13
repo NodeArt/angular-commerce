@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html" >StripeComponent</a>
@@ -669,7 +681,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Github firebase auth service</p>
+                <p>Facebook firebase auth service</p>
 
             </p>
 
@@ -679,7 +691,7 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(firebase: any)</code>
+                                    <code>constructor(afAuth: any)</code>
                                 </td>
                             </tr>
             
@@ -710,7 +722,7 @@
                                         <div class="io-description">
                                         </div>
                                         <div class="io-description">
-                                            <b>Returns: </b>    <code>void</code>
+                                            <b>Returns: </b>    <code>any</code>
             
                                         </div>
                                             <div class="io-description">
@@ -739,7 +751,7 @@
                             </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <i>Default value: </i><code>Github</code>
+                                        <i>Default value: </i><code>GitHub</code>
                                     </td>
                                 </tr>
                             <tr>
@@ -753,12 +765,14 @@
             </section>
     </div>
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre><code class="hljs javascript">import {AuthMethods, AuthProviders, AngularFire, FirebaseAuthState} from &quot;angularfire2&quot;;
+        <pre><code class="hljs javascript">import { AngularFireAuth } from &#x27;angularfire2/auth&#x27;;
 import {AuthMethod} from &quot;./auth-method&quot;;
-import {Injectable} from &quot;@angular/core&quot;;
+import {Injectable, Inject} from &quot;@angular/core&quot;;
+
+import * as firebase from &#x27;firebase/app&#x27;;
 
 /**
- * Github firebase auth service
+ * Facebook firebase auth service
  */
 @Injectable()
 export class GithubAuth implements AuthMethod{
@@ -766,20 +780,17 @@ export class GithubAuth implements AuthMethod{
   /**
    * Name of auth method
    */
-  name: string &#x3D; &#x27;Github&#x27;;
+  name: string &#x3D; &#x27;GitHub&#x27;;
 
-  constructor(private firebase: AngularFire){
+  constructor(private afAuth: AngularFireAuth){
   }
 
   /**
    * Login method
    * @return {firebase.Promise&lt;FirebaseAuthState&gt;} promise with FirebaseAuthState
    */
-  login(){
-    return this.firebase.auth.login({
-      provider: AuthProviders.Github,
-      method: AuthMethods.Popup
-    });
+  login(): firebase.Promise&lt;any&gt;{
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider());
   }
 }
 </code></pre>

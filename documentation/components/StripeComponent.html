@@ -116,6 +116,9 @@
                                     <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                 </li>
                         </ul>
@@ -185,6 +188,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/StripeComponent.html"  class="active" >StripeComponent</a>
@@ -427,6 +433,9 @@
                                            <a href="../modules/SearchBarModule.html" >SearchBarModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/SeoTextModule.html" >SeoTextModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/TagsSearchModule.html" >TagsSearchModule</a>
                                        </li>
                                </ul>
@@ -496,6 +505,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchBarComponent.html" >SearchBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SeoTextComponent.html" >SeoTextComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/StripeComponent.html"  class="active" >StripeComponent</a>
@@ -707,6 +719,23 @@
     </table>
 </section>
 
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>STRIPE_PUBLIC_KEY</code>
+                        </td>
+                        <td class="col-md-10">
+                            <p>
+                              <em>Default value: </em><code>pk_test_0uWBpHwggickbc69DcYtC6a4</code>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
     <section>
         <h3 id="outputs">Outputs</h3>
@@ -981,14 +1010,12 @@
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import {Component, OnInit, Output, EventEmitter, Renderer, ViewChildren} from &quot;@angular/core&quot;;
+            <pre><code class="hljs javascript">import {Component, OnInit, Output, EventEmitter, Renderer, ViewChildren, Input} from &quot;@angular/core&quot;;
 import {FormGroup, FormBuilder, Validators} from &quot;@angular/forms&quot;;
 import {onlyNumberValidator} from &#x27;./validators/only-number.validator&#x27;;
 import {controlLengthValidator} from &#x27;./validators/control-length.validator&#x27;;
 
-declare var Stripe: StripeStatic;
-
-const STRIPE_PUBLIC_KEY: string &#x3D; &quot;pk_test_0uWBpHwggickbc69DcYtC6a4&quot;;
+declare var Stripe;
 
 @Component({
   selector: &#x27;stripe&#x27;,
@@ -1002,20 +1029,22 @@ export class StripeComponent implements OnInit {
 
   @ViewChildren(&#x27;stripeInput&#x27;) stripeInputs;
 
+  @Input() STRIPE_PUBLIC_KEY &#x3D; &quot;pk_test_0uWBpHwggickbc69DcYtC6a4&quot;;
+
   stripeForm: FormGroup;
 
-  stripeServerError: StripeError;
+  stripeServerError;
 
   isLoading: boolean &#x3D; false;
 
-  constructor(private fb: FormBuilder,
-              private renderer: Renderer) {
+  constructor(protected fb: FormBuilder,
+              protected renderer: Renderer) {
     this.stripeForm &#x3D; fb.group(this.initPaymentMethodCardModel());
   }
 
   ngOnInit() {
     console.log(&quot;Stripe component was created&quot;);
-    Stripe.setPublishableKey(STRIPE_PUBLIC_KEY);
+    Stripe.setPublishableKey(this.STRIPE_PUBLIC_KEY);
   }
 
   initPaymentMethodCardModel() {
@@ -1041,7 +1070,7 @@ export class StripeComponent implements OnInit {
     this.isLoading &#x3D; true;
     let stripeForm &#x3D; this.stripeForm.value;
     console.log(stripeForm);
-    let stripeTokenData: StripeTokenData &#x3D; {
+    let stripeTokenData &#x3D; {
       number: stripeForm.cardNumber,
       exp_month: stripeForm.expiryMonth,
       exp_year: stripeForm.expiryYear,
@@ -1058,9 +1087,9 @@ export class StripeComponent implements OnInit {
       .then(() &#x3D;&gt; this.isLoading &#x3D; false)
   }
 
-  getCardToken(data: StripeTokenData): Promise&lt;any&gt; {
+  getCardToken(data): Promise&lt;any&gt; {
     return new Promise((resolve, reject) &#x3D;&gt; {
-      Stripe.card.createToken(data, (status: number, response: StripeTokenResponse) &#x3D;&gt; {
+      Stripe.card.createToken(data, (status: number, response) &#x3D;&gt; {
         if(status !&#x3D;&#x3D; 200) {
           reject(response.error);
         } else {
