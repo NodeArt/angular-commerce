@@ -1,3 +1,10 @@
+# 2.1.55
+
+### Features
+
+* **add-product-component:** Get category from parentCategory=1, in text updates support for inner categories
+* **add-props-component:** Sets parent category=1, in text updates support for inner categories
+
 # 2.1.54
 
 ### Features

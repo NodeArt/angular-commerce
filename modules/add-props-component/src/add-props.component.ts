@@ -52,7 +52,8 @@ export class AddPropsComponent implements OnInit {
     this.categoryForm = fb.group({
       name: '',
       tags: [],
-      attrs: []
+      attrs: [],
+      parentCategory: '1'
     });
     this.attributeForm = fb.group({
       name: '',

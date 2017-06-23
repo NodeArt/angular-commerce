@@ -270,7 +270,7 @@ export class AddProductComponent implements OnInit {
    * Get categories
    */
   getCategories(){
-    this.productService.getCategories().subscribe( data => {
+    this.productService.getCategories('1').subscribe( data => {
       if(data.val()) {
         this.categories = data.val().map(item => {
               item['_source']['id'] = item['_id'];
