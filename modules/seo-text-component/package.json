@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/seo-text-component",
-  "version": "2.1.54",
+  "version": "2.1.55",
   "description": "Seo text component display seo text block of specific url",
   "main": "index.ts",
   "scripts": {
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/dal": "2.1.54"
+    "@nodeart/dal": "2.1.55"
   }
 }

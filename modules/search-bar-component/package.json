@@ -1,6 +1,6 @@
 {
   "name": "@nodeart/search-bar-component",
-  "version": "2.1.54",
+  "version": "2.1.55",
   "description": "Live search input for products",
   "main": "index.ts",
   "scripts": {
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nodeart/productservice": "2.1.54"
+    "@nodeart/productservice": "2.1.55"
   }
 }
