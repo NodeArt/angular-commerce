@@ -1,3 +1,9 @@
+# 2.1.56
+
+### Features
+
+* **product-component, product-list-component:** Check if products exist
+
 # 2.1.55
 
 ### Features
