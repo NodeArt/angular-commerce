@@ -56,7 +56,7 @@ export class AttributesSearchComponent implements OnInit {
  getAttributes(){
    this.productService.getCategory(this.categoryId).subscribe( data => {
      if(data.val()){
-       let ids = data.val()['_source']['attrs'];
+       let ids = data.val()[0]['_source']['attrs'];
        if(ids) {
          let queryObject = {
            query: {

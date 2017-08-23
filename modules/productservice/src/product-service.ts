@@ -12,7 +12,7 @@ export class ProductService{
    */
   public esIndex = 'firebase';
 
-   constructor(protected dal: DbAbstractionLayer){
+   constructor(private dal: DbAbstractionLayer){
   }
 
   /**
@@ -27,7 +27,7 @@ export class ProductService{
           }
       }
     };
-    return this.dal.requestData(this.esIndex, 'product', queryObject);
+    return this.dal.requestFullData(this.esIndex, 'product', queryObject);
   }
 
   /**
@@ -207,7 +207,7 @@ export class ProductService{
             }
         }
     };
-   return this.dal.requestData(this.esIndex, 'category', queryObj);
+   return this.dal.requestFullData(this.esIndex, 'category', queryObj);
   }
 
   /**

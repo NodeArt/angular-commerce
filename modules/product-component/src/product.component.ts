@@ -73,11 +73,12 @@ export class ProductComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.id = params['id'];
       this.productService.getOneProduct(this.id).subscribe( product => {
-        if(product.val()){
-          console.log(product.val());
+        if(product.val() === 0) {
+          this.product = {};
+        } else if(product.val()){
           this.zone.run(() => {
-            this.product = product.val()['_source'];
-            this.product['id'] = product.val()['_id'];
+            this.product = product.val()[0]['_source'];
+            this.product['id'] = product.val()[0]['_id'];
           });
           this.getAttributes();
           this.getTags();

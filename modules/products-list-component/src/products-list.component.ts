@@ -75,6 +75,7 @@ export class ProductsListComponent implements OnInit {
       console.log(params);
       if(params['id']){
         this.categoryId = params['id'];
+        this.checkExistance(this.categoryId);
       }
     });
     this.getTotalPages();
@@ -86,6 +87,14 @@ export class ProductsListComponent implements OnInit {
     this.attrComponent.attrsEmiter
       .subscribe(isAttrsExist => this.isProductsHasAttributes = isAttrsExist);
 
+  }
+
+  checkExistance(categoryId) {
+    this.productService.getCategory(categoryId).subscribe( data => {
+      if(data.val() === 0) {
+        this.products = [];
+      }
+    });
   }
 
   /**

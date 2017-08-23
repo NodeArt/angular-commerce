@@ -32,5 +32,5 @@
     "@types/jasmine": "2.2.30",
     "@types/node": "6.0.54"
   },
-  "version": "2.1.55"
+  "version": "2.1.56"
 }
