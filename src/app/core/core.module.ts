@@ -5,6 +5,7 @@ import {CommonModule} from '@angular/common';
 import * as firebase from 'firebase';
 import {config} from '../../config/firebase.config';
 import {FirestoreConnector} from 'a2c-firestore-connector';
+import {ProductsModule} from 'a2c-products';
 
 firebase.initializeApp(config);
 
@@ -13,7 +14,8 @@ firebase.initializeApp(config);
     AppComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ProductsModule.forRoot(),
   ],
   exports: [
     AppComponent,

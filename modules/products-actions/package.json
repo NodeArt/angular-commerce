@@ -1,0 +1,11 @@
+{
+  "name": "a2c-products-actions",
+  "version": "0.0.1",
+  "description": "Actions for a2c-products component",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

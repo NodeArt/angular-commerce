@@ -1,0 +1,11 @@
+{
+  "name": "a2c-products",
+  "version": "0.0.1",
+  "description": "The part of a2c which represents product list component",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
