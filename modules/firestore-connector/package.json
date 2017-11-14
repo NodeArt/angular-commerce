@@ -1,0 +1,11 @@
+{
+  "name": "a2c-firestore-connector",
+  "version": "0.0.1",
+  "description": "Database connector for firebase firestore",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
