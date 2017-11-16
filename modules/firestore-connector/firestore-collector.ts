@@ -45,14 +45,11 @@ export class FirestoreCollector {
   }
 
   public runMany(): Observable<Object> {
+    const applyFromPromise = (promises, fn) => Observable.fromPromise(Promise.all(promises).then(fn));
     return Observable.forkJoin(
-      Observable.fromPromise(
-        Promise.all(this.queryPromises)
-          .then(snapshots => this.merge(snapshots))),
-      Observable.fromPromise(
-        Promise.all(this.orPromises)
-          .then(snapshots => this.union(snapshots))))
-      .map(objects => this.intersection(objects[0], objects[1]));
+      applyFromPromise(this.queryPromises, snapshots => this.merge(snapshots)),
+      applyFromPromise(this.orPromises, snapshots => this.union(snapshots))
+    ).map(objects => this.intersection(objects[0], objects[1]));
   }
 
   private merge(snapshots: Array<firebase.firestore.QuerySnapshot>): Object {
@@ -96,8 +93,10 @@ export class FirestoreCollector {
   }
 
   private intersection(o1: Object, o2: Object) {
-    const hasFirstKeys = this.hasObjKeys(o1);
-    const hasSecondKeys = this.hasObjKeys(o2);
+    const keys1 = Object.keys(o1);
+    const keys2 = Object.keys(o2);
+    const hasFirstKeys = !!keys1.length;
+    const hasSecondKeys = !!keys2.length;
     if (hasFirstKeys && hasSecondKeys) {
       return Object.keys(o1).concat(Object.keys(o2))
         .sort()
@@ -112,9 +111,5 @@ export class FirestoreCollector {
     } else {
       return {};
     }
-  }
-
-  private hasObjKeys(obj: Object): boolean {
-    return Object.keys(obj).length > 0;
   }
 }
