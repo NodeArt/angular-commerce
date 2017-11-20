@@ -45,7 +45,9 @@ export class FirestoreCollector {
   }
 
   public runMany(): Observable<Object> {
-    const applyFromPromise = (promises, fn) => Observable.fromPromise(Promise.all(promises).then(fn));
+    const applyFromPromise =
+      (promises: Array<Promise<firebase.firestore.QuerySnapshot>>, fn: (snapshots: Array<firebase.firestore.QuerySnapshot>) => Object) =>
+        Observable.fromPromise(Promise.all(promises).then(fn));
     return Observable.forkJoin(
       applyFromPromise(this.queryPromises, snapshots => this.merge(snapshots)),
       applyFromPromise(this.orPromises, snapshots => this.union(snapshots))
