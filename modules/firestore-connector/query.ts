@@ -34,14 +34,12 @@ export class Query {
   }
 
   public where(fieldName: string, operatorStr: WhereOp, value: AnyButObject): Query {
-    switch (operatorStr) {
-      case '==': return this.whereEquals(fieldName, value);
-      case '>=':
-      case '>':
-      case '<':
-      case '<=': return this.whereRange(fieldName, operatorStr, value);
-      default: return this;
+    if (operatorStr === '==') {
+      return this.whereEquals(fieldName, value);
+    } else if (operatorStr === '>=' || operatorStr === '>' || operatorStr === '<' || operatorStr === '<=') {
+      return this.whereRange(fieldName, operatorStr, value);
     }
+    return this;
   }
 
   private whereEquals(fieldName: string, value: AnyButObject): Query {
