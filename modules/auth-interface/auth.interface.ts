@@ -18,4 +18,8 @@ export interface IAuth {
   checkRole(role: string): boolean;
 
   isAuth(uid?: string): boolean;
+
+  getUID(): string | null;
+
+  logout(): Observable<void>;
 }
