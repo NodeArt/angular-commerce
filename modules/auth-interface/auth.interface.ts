@@ -9,7 +9,7 @@ export interface IAuth {
 
   loginFacebook(): Observable<User>;
 
-  loginEmail(email: string, password: string): Observable<void>;
+  loginEmail(email: string, password: string): Observable<any>;
 
   registerWithEmail(email: string, password: string): Observable<User>;
 
@@ -18,6 +18,8 @@ export interface IAuth {
   checkRole(role: string): boolean;
 
   isAuth(uid?: string): boolean;
+
+  getAuthStatus(): Observable<boolean>;
 
   getUID(): string | null;
 

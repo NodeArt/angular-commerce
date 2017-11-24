@@ -15,7 +15,7 @@ export class FirebaseAuth implements IAuth {
 
   protected readonly auth: firebase.auth.Auth = firebase.auth();
 
-  public constructor(authState: Observable<firebase.User>) {
+  public constructor() {
     this.authState = this.firebaseAuthStateObservable();
   }
 
@@ -57,13 +57,14 @@ export class FirebaseAuth implements IAuth {
       .map((userCredential: firebase.auth.UserCredential) => this.formUser(userCredential));
   }
 
-  public loginEmail(email: string, password: string): Observable<void> {
-    return Observable.fromPromise(this.auth.signInWithEmailAndPassword(email, password));
+  public loginEmail(email: string, password: string): Observable<any> {
+    return Observable.fromPromise(this.auth.signInWithEmailAndPassword(email, password))
+      .map((user: firebase.User) => this.formUser({ user }));
   }
 
   public registerWithEmail(email: string, password: string): Observable<User> {
     return Observable.fromPromise(this.auth.createUserWithEmailAndPassword(email, password))
-      .map((userCredential: firebase.auth.UserCredential) => this.formUser(userCredential));
+      .map((user: firebase.User) => this.formUser({ user }));
   }
 
   public logout(): Observable<void> {
