@@ -1,6 +1,6 @@
 import {Inject, Injectable, Optional} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
-import {IConnector, Q, Query} from 'a2c-firestore-connector';
+import {IConnector, Q, Query} from 'a2c-connector-interface';
 
 import * as products from 'a2c-products-actions';
 
