@@ -8,6 +8,8 @@ export const LOGOUT = '[A2C Auth] Logout';
 export const LOGIN_SUCCESS = '[A2C Auth] Login Success';
 export const LOGIN_FAILURE = '[A2C Auth] Login Failure';
 export const LOGIN_REDIRECT = '[A2C Auth] Login Redirect';
+export const REGISTER_EMAIL = '[A2C Auth] Register Email';
+export const REGISTER_FAILURE = '[A2C Auth] Register Failure';
 
 export class LoginEmail implements Action {
   readonly type = LOGIN_EMAIL;
@@ -47,6 +49,18 @@ export class Logout implements Action {
   readonly type = LOGOUT;
 }
 
+export class RegisterEmail implements Action {
+  readonly type = REGISTER_EMAIL;
+
+  constructor(public payload: { email: string, password: string }) {}
+}
+
+export class RegisterFailure implements Action {
+  readonly type = REGISTER_FAILURE;
+
+  constructor(public payload: any) {}
+}
+
 export type Actions =
   | LoginEmail
   | LoginFacebook
@@ -54,4 +68,6 @@ export type Actions =
   | LoginSuccess
   | LoginFailure
   | LoginRedirect
-  | Logout;
+  | Logout
+  | RegisterEmail
+  | RegisterFailure;
