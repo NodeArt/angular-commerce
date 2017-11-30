@@ -25,6 +25,7 @@
     "@ngrx/store": "^4.1.1",
     "a2c-auth-firebase": "file:modules/auth-firebase",
     "a2c-auth-interface": "file:modules/auth-interface",
+    "a2c-connector-interface": "file:modules/connector-interface",
     "a2c-firestore-connector": "file:modules/firestore-connector",
     "a2c-products": "file:modules/products",
     "a2c-products-actions": "file:modules/products-actions",
