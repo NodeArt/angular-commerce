@@ -47,4 +47,12 @@ export class AuthEffects {
       this.authService.registerWithEmail(email, password)
         .map(user => new auth.LoginEmail({ email, password }))
         .catch((error) => Observable.of(new auth.RegisterFailure(error))));
+
+  @Effect()
+  protected logout$ = this.actions$
+    .ofType(auth.LOGOUT)
+    .exhaustMap(() =>
+      this.authService.logout()
+        .map(() => new auth.LogoutSuccess())
+        .catch((error) => Observable.of(new auth.LogoutFailure(error))));
 }

@@ -20,7 +20,7 @@ export const events: { [key: string]: Function } = {
     };
   },
 
-  [auth.LOGOUT]: (state: State, action: auth.Logout): State => {
+  [auth.LOGOUT_SUCCESS]: (state: State, action: auth.Logout): State => {
     return initialState;
   }
 };
