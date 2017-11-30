@@ -3,8 +3,8 @@ import {Injectable} from '@angular/core';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
-import {IConnector} from './connector.interface';
-import {AnyButObject, Direction, Q, RangeMap, RangeOp} from './query';
+import {IConnector} from 'a2c-connector-interface';
+import {AnyButObject, Direction, Q, RangeMap, RangeOp} from 'a2c-connector-interface';
 import {FirestoreCollector} from './firestore-collector';
 
 import {Observable} from 'rxjs/Observable';
