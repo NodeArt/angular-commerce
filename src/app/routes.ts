@@ -1,5 +1,6 @@
 import {Routes} from '@angular/router';
 import {NotFoundPageComponent} from './core/containers/not-found-page.component';
+import {AuthGuard} from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -9,7 +10,8 @@ export const routes: Routes = [
   },
   {
     path: 'products',
-    loadChildren: './child-products/child-products.module#ChildProductsModule'
+    loadChildren: './child-products/child-products.module#ChildProductsModule',
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

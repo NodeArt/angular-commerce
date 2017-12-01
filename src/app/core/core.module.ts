@@ -11,7 +11,6 @@ import {config} from '../../config/firebase.config';
 import {FirestoreConnector} from 'a2c-firestore-connector';
 
 import {AppComponent} from './containers/app.component';
-import {ChildProductsModule} from '../child-products/child-products.module';
 import {NotFoundPageComponent} from './containers/not-found-page.component';
 import {LayoutComponent} from './components/layout';
 import {NavItemComponent} from './components/nav-item';
@@ -44,7 +43,6 @@ const MATERIAL = [
     CommonModule,
     ...MATERIAL,
     RouterModule,
-    ChildProductsModule,
   ],
   exports: COMPONENTS,
   providers: [

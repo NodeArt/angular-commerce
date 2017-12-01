@@ -13,6 +13,7 @@ import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AuthModule} from 'a2c-auth';
+import {AuthGuard} from './auth.guard';
 import {FirebaseAuth} from 'a2c-auth-firebase';
 import {FirestoreConnector} from 'a2c-firestore-connector';
 
@@ -29,6 +30,7 @@ import {FirestoreConnector} from 'a2c-firestore-connector';
     AuthModule.forRoot(),
   ],
   providers: [
+    AuthGuard,
     { provide: 'IConnector', useClass: FirestoreConnector },
     { provide: 'IAuth', useClass: FirebaseAuth },
   ],
