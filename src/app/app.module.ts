@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
+import {reducers} from './reducers/index';
 
 import {AppComponent} from './core/containers/app.component';
 import {CoreModule} from './core/core.module';
@@ -22,7 +23,7 @@ import {FirestoreConnector} from 'a2c-firestore-connector';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     CoreModule,
     AuthModule.forRoot(),
