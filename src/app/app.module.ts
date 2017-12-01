@@ -17,6 +17,8 @@ import {AuthGuard} from './auth.guard';
 import {FirebaseAuth} from 'a2c-auth-firebase';
 import {FirestoreConnector} from 'a2c-firestore-connector';
 
+import {ChildAuthEffects} from './effects/child-auth.effects';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -27,7 +29,7 @@ import {FirestoreConnector} from 'a2c-firestore-connector';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     CoreModule,
-    AuthModule.forRoot(),
+    AuthModule.forRoot(ChildAuthEffects),
   ],
   providers: [
     AuthGuard,

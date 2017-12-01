@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
-  MatButtonModule, MatCardModule, MatIconModule, MatListModule, MatSidenavModule,
+  MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatListModule, MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
@@ -16,6 +16,9 @@ import {LayoutComponent} from './components/layout';
 import {NavItemComponent} from './components/nav-item';
 import {SidenavComponent} from './components/sidenav';
 import {ToolbarComponent} from './components/toolbar';
+import {LoginFormComponent} from './components/login-form.component';
+import {LoginComponent} from './containers/login.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 firebase.initializeApp(config);
 
@@ -26,6 +29,8 @@ const COMPONENTS = [
   NavItemComponent,
   SidenavComponent,
   ToolbarComponent,
+  LoginFormComponent,
+  LoginComponent,
 ];
 
 const MATERIAL = [
@@ -35,6 +40,7 @@ const MATERIAL = [
   MatSidenavModule,
   MatListModule,
   MatToolbarModule,
+  MatInputModule,
 ];
 
 @NgModule({
@@ -43,6 +49,7 @@ const MATERIAL = [
     CommonModule,
     ...MATERIAL,
     RouterModule,
+    ReactiveFormsModule,
   ],
   exports: COMPONENTS,
   providers: [
