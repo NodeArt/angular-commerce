@@ -1,6 +1,5 @@
 import {Routes} from '@angular/router';
 import {NotFoundPageComponent} from './core/containers/not-found-page.component';
-import {ChildProductsComponent} from './child-products/child-products.component';
 
 export const routes: Routes = [
   {
@@ -10,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'products',
-    component: ChildProductsComponent,
+    loadChildren: './child-products/child-products.module#ChildProductsModule'
   },
   {
     path: '**',
