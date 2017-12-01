@@ -17,13 +17,26 @@ interface TProduct {
   selector: 'a2c-child-products',
   template: `
     <mat-nav-list>
-      <mat-list-item *ngFor="let p of products$ | async">
-        <p>id: {{ p.id }}</p>
-        <p>name: {{ p.name }}</p>
-      </mat-list-item>
+      <mat-card *ngFor="let p of products$ | async">
+        <mat-card-title>
+          Product ID: {{ p.id }}
+        </mat-card-title>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>Name: {{ p.name }}</mat-list-item>
+            <mat-list-item>Color: {{ p.color }}</mat-list-item>
+            <mat-list-item>Product size: {{ p.size }}</mat-list-item>
+            <mat-list-item>Product price: {{ p.price }}</mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
     </mat-nav-list>
   `,
-  styles: [``]
+  styles: [`
+    mat-card {
+      margin: 15px;
+    }
+  `]
 })
 export class ChildProductsComponent extends ProductsComponent {
 
