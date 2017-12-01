@@ -16,21 +16,31 @@ interface TProduct {
 @Component({
   selector: 'a2c-child-products',
   template: `
-    <div *ngFor="let p of products$ | async">
-      <p>id: {{ p.id }}</p> 
-      <p>name: {{ p.name }}</p>         
-    </div>
+    <mat-nav-list>
+      <mat-card *ngFor="let p of products$ | async">
+        <mat-card-title>
+          Product ID: {{ p.id }}
+        </mat-card-title>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>Name: {{ p.name }}</mat-list-item>
+            <mat-list-item>Color: {{ p.color }}</mat-list-item>
+            <mat-list-item>Product size: {{ p.size }}</mat-list-item>
+            <mat-list-item>Product price: {{ p.price }}</mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-nav-list>
   `,
   styles: [`
-    div {
-      border: 1px solid red;
+    mat-card {
+      margin: 15px;
     }
   `]
 })
 export class ChildProductsComponent extends ProductsComponent {
 
   protected init(): void {
-    console.log('Simple override example');
     this.products$ = this.store.select(fromProduct.getLoadedProducts) as Observable<Array<TProduct>>;
     this.store.dispatch(new products.GetAllProducts);
   }

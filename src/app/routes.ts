@@ -1,7 +1,25 @@
 import {Routes} from '@angular/router';
-import {AppComponent} from './core/app.component';
+import {NotFoundPageComponent} from './core/containers/not-found-page.component';
+import {AuthGuard} from './auth.guard';
+import {LoginComponent} from './core/containers/login.component';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent },
-  { path: '**', redirectTo: '' },
+  {
+    path: '',
+    redirectTo: '/products',
+    pathMatch: 'full',
+  },
+  {
+    path: 'products',
+    loadChildren: './child-products/child-products.module#ChildProductsModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundPageComponent,
+  }
 ];
