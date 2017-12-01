@@ -3,17 +3,24 @@ import {CommonModule} from '@angular/common';
 
 import {ProductsModule} from 'a2c-products';
 import {ChildProductsComponent} from './child-products.component';
+import {MatCardModule, MatListModule} from '@angular/material';
+
+const COMPONENTS = [
+  ChildProductsComponent
+];
+
+const MATERIAL = [
+  MatListModule,
+  MatCardModule,
+];
 
 @NgModule({
-  declarations: [
-    ChildProductsComponent,
-  ],
+  declarations: COMPONENTS,
   imports: [
     CommonModule,
-    ProductsModule.forRoot()
+    ProductsModule.forRoot(),
+    ...MATERIAL,
   ],
-  exports: [
-    ChildProductsComponent,
-  ]
+  exports: COMPONENTS
 })
 export class ChildProductsModule {}

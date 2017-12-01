@@ -14,7 +14,11 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
       </mat-card-actions>
     </mat-card>
   `,
-  styles: [``]
+  styles: [`
+    mat-card {
+      margin: 20px;
+    }
+  `]
 })
 export class NotFoundPageComponent {
 

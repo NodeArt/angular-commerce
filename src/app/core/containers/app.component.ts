@@ -11,11 +11,11 @@ import * as layout from '../actions/layout';
     <app-layout>
       <app-sidenav [open]="showSidenav$ | async">
         <app-nav-item (navigate)="closeSidenav()">
-          Close
+            Close
         </app-nav-item>
       </app-sidenav>
       <app-toolbar (openMenu)="openSidenav()">
-        Book Collection
+        Products collection
       </app-toolbar>
     
       <router-outlet></router-outlet>
