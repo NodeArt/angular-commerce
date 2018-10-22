@@ -25,7 +25,7 @@ About products organization you can read in docs for services, for example, `Pro
 ### Creating other connectors 
 If you want to create you own connector you must adopt it to `ElasticSearch flashlight` output.
 
-## Docs
+### Docs
 
 To create documentation: 
 ```
