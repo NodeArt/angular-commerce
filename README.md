@@ -1,4 +1,6 @@
 # Store components
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FNodeArt%2Fangular-commerce.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FNodeArt%2Fangular-commerce?ref=badge_shield)
+
 
 Online store components written in Angular.  
 
@@ -39,3 +41,7 @@ npm run serve-docs
 ```
 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FNodeArt%2Fangular-commerce.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FNodeArt%2Fangular-commerce?ref=badge_large)
