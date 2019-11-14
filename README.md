@@ -16,7 +16,7 @@ DAL is a bridge for some connector ( for now Firebase Connector ). DAL contains 
 ### Querying to database
 As we started to use firebase for database, auth, storage, it was a question how to process heavy queries with aggregations, multiple conditions etc. [Firebase Realtime Databese api](https://firebase.google.com/docs/database/) was very simple for our requirentments.  
 After some time of research we stayed at `ElasticSearch`.
-It's fast, allow to make heavy hard queries and Firebase team wrote an adapted to firebase called [Firebase Flashlight](https://github.com/firebase/flashlight).  
+It's fast, allow to make heavy hard queries and Firebase team wrote an adapter to firebase called [Firebase Flashlight](https://github.com/firebase/flashlight).  
 For example, queries in `Product Service` are written like `ElasticSearch queries`. 
 
 ### Organization of products
