@@ -18,9 +18,11 @@
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.4.1.tgz#62b4fbfc53c934bd5def78db594cbf245b3f446a"
 
-"@angular/core@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.1.tgz#3a6d2dc7fd86fdebe4febae7eb28abad7d04c76a"
+"@angular/core@^11.0.5":
+  version "11.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-11.0.5.tgz#b8c448c3cd4f6dae7327cc1ba4ee2aa29c8dbc26"
+  dependencies:
+    tslib "^2.0.0"
 
 "@angular/forms@^2.4.1":
   version "2.4.10"
@@ -167,6 +169,10 @@ tsickle@^0.2:
     mkdirp "^0.5.1"
     source-map "^0.5.6"
     source-map-support "^0.4.2"
+
+tslib@^2.0.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
 
 typescript@2.0.10:
   version "2.0.10"
